@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="theme-color" content="#08080C" />
+<title>Ai-Sinova | سینمای هوشمند</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#08080C;
+    --bg-2:#0E0E15;
+    --card:rgba(255,255,255,.04);
+    --card-2:rgba(255,255,255,.06);
+    --stroke:rgba(255,255,255,.08);
+    --stroke-2:rgba(255,255,255,.14);
+    --txt:#F2F3F7;
+    --txt-dim:#9AA0AE;
+    --txt-mute:#6B7280;
+    --accent:#2EE6C5;
+    --accent-2:#5B8CFF;
+    --accent-glow:rgba(46,230,197,.35);
+    --grad:linear-gradient(135deg,#2EE6C5 0%,#5B8CFF 100%);
+    --grad-soft:linear-gradient(135deg,rgba(46,230,197,.14),rgba(91,140,255,.14));
+    --radius:22px;
+    --radius-sm:14px;
+    --shadow:0 20px 60px -20px rgba(0,0,0,.8);
+    --shadow-glow:0 0 40px -8px var(--accent-glow);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%}
+  body{
+    font-family:'Vazirmatn',system-ui,-apple-system,sans-serif;
+    background:var(--bg);
+    color:var(--txt);
+    overflow-x:hidden;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+  }
+  /* پس‌زمینه گرادیانت مخملی */
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(91,140,255,.14), transparent 60%),
+      radial-gradient(900px 500px at 10% 10%, rgba(46,230,197,.10), transparent 60%),
+      radial-gradient(800px 800px at 50% 120%, rgba(91,140,255,.08), transparent 60%);
+    z-index:-2;
+    pointer-events:none;
+  }
+  /* نویز ظریف برای لوکس بودن */
+  body::after{
+    content:"";
+    position:fixed;inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+    opacity:.035;z-index:-1;pointer-events:none;
+  }
+  .wrap{max-width:520px;margin:0 auto;padding:0 18px 40px;position:relative}
+
+  /* ===== هدر شیشه‌ای ===== */
+  header{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(18px) saturate(160%);
+    -webkit-backdrop-filter:blur(18px) saturate(160%);
+    background:rgba(8,8,12,.55);
+    border-bottom:1px solid var(--stroke);
+    padding:14px 18px;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:12px;
+  }
+  .brand{display:flex;align-items:center;gap:10px}
+  .logo{
+    width:42px;height:42px;border-radius:13px;
+    background:var(--grad);
+    display:grid;place-items:center;
+    font-weight:900;font-size:18px;color:#06110F;
+    box-shadow:var(--shadow-glow);
+    position:relative;overflow:hidden;
+  }
+  .logo::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.5) 50%,transparent 70%);
+    transform:translateX(-120%);
+    animation:shine 4s ease-in-out infinite;
+  }
+  @keyframes shine{0%,60%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+  .brand-text{display:flex;flex-direction:column;line-height:1.1}
+  .brand-text b{font-size:16px;font-weight:800;letter-spacing:.3px}
+  .brand-text span{font-size:10.5px;color:var(--txt-mute);font-weight:500}
+
+  /* دکمه‌های شناور هدر (تگل قفل‌دار) */
+  .floating-toggles{display:flex;gap:8px}
+  .toggle{
+    display:flex;align-items:center;gap:7px;
+    padding:9px 13px;border-radius:14px;
+    background:var(--card);
+    border:1px solid var(--stroke-2);
+    color:var(--txt-dim);
+    font-family:inherit;font-size:11.5px;font-weight:600;
+    cursor:pointer;position:relative;
+    transition:.35s cubic-bezier(.2,.8,.2,1);
+    backdrop-filter:blur(10px);
+  }
+  .toggle .dot{
+    width:9px;height:9px;border-radius:50%;
+    background:var(--txt-mute);
+    transition:.35s;
+    box-shadow:0 0 0 0 transparent;
+  }
+  .toggle.locked::after{
+    content:"🔒";
+    position:absolute;top:-6px;left:-6px;
+    font-size:10px;
+    filter:grayscale(1) opacity(.85);
+  }
+  .toggle:hover{border-color:var(--accent);color:var(--txt);transform:translateY(-1px)}
+  .toggle.on{
+    background:var(--grad-soft);
+    border-color:var(--accent);
+    color:var(--txt);
+  }
+  .toggle.on .dot{background:var(--accent);box-shadow:0 0 12px 2px var(--accent-glow)}
+
+  /* ===== هرو ===== */
+  .hero{
+    padding:38px 0 26px;
+    text-align:center;
+    position:relative;
+  }
+  .badge{
+    display:inline-flex;align-items:center;gap:7px;
+    padding:7px 14px;border-radius:100px;
+    background:var(--grad-soft);
+    border:1px solid var(--stroke-2);
+    font-size:11.5px;font-weight:600;color:var(--txt-dim);
+    margin-bottom:20px;
+    backdrop-filter:blur(8px);
+  }
+  .badge .pulse{
+    width:7px;height:7px;border-radius:50%;background:var(--accent);
+    box-shadow:0 0 0 0 var(--accent-glow);
+    animation:pulse 2s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 var(--accent-glow)}
+    70%{box-shadow:0 0 0 10px transparent}
+    100%{box-shadow:0 0 0 0 transparent}
+  }
+  .hero h1{
+    font-size:clamp(26px,7.5vw,36px);
+    font-weight:900;
+    line-height:1.35;
+    letter-spacing:-.5px;
+    margin-bottom:14px;
+  }
+  .hero h1 .grad{
+    background:var(--grad);
+    -webkit-background-clip:text;background-clip:text;
+    color:transparent;
+    filter:drop-shadow(0 0 20px rgba(46,230,197,.25));
+  }
+  .hero p{
+    font-size:14px;color:var(--txt-dim);
+    max-width:420px;margin:0 auto 26px;
+    font-weight:400;line-height:1.9;
+  }
+
+  /* CTA اصلی */
+  .cta{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    width:100%;max-width:340px;
+    padding:16px 24px;
+    border-radius:18px;
+    background:var(--grad);
+    color:#06110F;
+    font-family:inherit;font-weight:800;font-size:15px;
+    border:none;cursor:pointer;
+    box-shadow:0 18px 40px -12px var(--accent-glow), inset 0 1px 0 rgba(255,255,255,.4);
+    transition:.3s cubic-bezier(.2,.8,.2,1);
+    position:relative;overflow:hidden;
+    text-decoration:none;
+  }
+  .cta::before{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.6) 50%,transparent 70%);
+    transform:translateX(-120%);
+    animation:shine 5s ease-in-out infinite;
+  }
+  .cta:hover{transform:translateY(-2px) scale(1.01);box-shadow:0 24px 50px -12px var(--accent-glow)}
+  .cta:active{transform:scale(.98)}
+  .cta svg{width:18px;height:18px}
+
+  /* ===== بخش‌ها ===== */
+  .section{margin-top:38px}
+  .section-head{
+    display:flex;align-items:center;justify-content:space-between;
+    margin-bottom:16px;
+  }
+  .section-head h2{
+    font-size:16px;font-weight:800;
+    display:flex;align-items:center;gap:8px;
+  }
+  .section-head h2 .bar{
+    width:4px;height:18px;border-radius:4px;background:var(--grad);
+    box-shadow:0 0 12px var(--accent-glow);
+  }
+  .section-head a{
+    font-size:11.5px;color:var(--accent);text-decoration:none;
+    font-weight:600;
+  }
+
+  /* کارت‌های ویژگی */
+  .features{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .feature{
+    background:var(--card);
+    border:1px solid var(--stroke);
+    border-radius:var(--radius-sm);
+    padding:16px 14px;
+    transition:.35s cubic-bezier(.2,.8,.2,1);
+    position:relative;overflow:hidden;
+  }
+  .feature::before{
+    content:"";position:absolute;inset:0;
+    background:var(--grad-soft);opacity:0;transition:.35s;
+  }
+  .feature:hover{border-color:var(--stroke-2);transform:translateY(-3px);box-shadow:var(--shadow)}
+  .feature:hover::before{opacity:1}
+  .feature .ico{
+    width:38px;height:38px;border-radius:11px;
+    background:var(--grad-soft);
+    border:1px solid var(--stroke-2);
+    display:grid;place-items:center;
+    font-size:18px;margin-bottom:11px;
+    position:relative;z-index:1;
+  }
+  .feature h3{font-size:13px;font-weight:700;margin-bottom:4px;position:relative;z-index:1}
+  .feature p{font-size:11px;color:var(--txt-mute);line-height:1.6;position:relative;z-index:1}
+
+  /* اسلایدر تبلیغات */
+  .ads{
+    display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
+    padding:4px 0 12px;margin:0 -18px;padding-right:18px;padding-left:18px;
+    scrollbar-width:none;
+  }
+  .ads::-webkit-scrollbar{display:none}
+  .ad{
+    flex:0 0 82%;scroll-snap-align:center;
+    border-radius:var(--radius-sm);
+    padding:18px;
+    background:var(--grad-soft);
+    border:1px solid var(--stroke-2);
+    min-height:110px;
+    display:flex;flex-direction:column;justify-content:space-between;
+    position:relative;overflow:hidden;
+  }
+  .ad::after{
+    content:"";position:absolute;top:-40%;left:-10%;width:60%;height:180%;
+    background:radial-gradient(circle,rgba(46,230,197,.25),transparent 70%);
+    filter:blur(20px);pointer-events:none;
+  }
+  .ad small{font-size:10px;color:var(--accent);font-weight:700;letter-spacing:1px}
+  .ad b{font-size:14px;font-weight:800;line-height:1.5;position:relative;z-index:1}
+  .ad span{font-size:11px;color:var(--txt-dim);position:relative;z-index:1}
+
+  /* راهنمای سریع */
+  .steps{display:flex;flex-direction:column;gap:10px}
+  .step{
+    display:flex;align-items:center;gap:13px;
+    background:var(--card);
+    border:1px solid var(--stroke);
+    border-radius:var(--radius-sm);
+    padding:13px 15px;
+    transition:.3s;
+  }
+  .step:hover{border-color:var(--stroke-2);transform:translateX(-3px)}
+  .step .num{
+    flex-shrink:0;width:34px;height:34px;border-radius:10px;
+    background:var(--grad);color:#06110F;
+    display:grid;place-items:center;
+    font-weight:900;font-size:14px;
+    box-shadow:0 6px 18px -6px var(--accent-glow);
+  }
+  .step div{display:flex;flex-direction:column}
+  .step b{font-size:13px;font-weight:700}
+  .step span{font-size:11px;color:var(--txt-mute)}
+
+  /* فوتر */
+  footer{
+    margin-top:44px;padding:24px 0 30px;
+    border-top:1px solid var(--stroke);
+    text-align:center;
+  }
+  footer p{font-size:11px;color:var(--txt-mute);margin-bottom:14px}
+  footer .mini-cta{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:11px 20px;border-radius:12px;
+    background:var(--card-2);border:1px solid var(--stroke-2);
+    color:var(--txt);font-family:inherit;font-size:12px;font-weight:700;
+    cursor:pointer;text-decoration:none;
+    transition:.3s;
+  }
+  footer .mini-cta:hover{border-color:var(--accent);transform:translateY(-1px)}
+
+  /* توست */
+  .toast{
+    position:fixed;bottom:28px;left:50%;transform:translate(-50%,120%);
+    background:rgba(14,14,21,.95);
+    border:1px solid var(--stroke-2);
+    backdrop-filter:blur(16px);
+    padding:13px 20px;border-radius:14px;
+    font-size:12.5px;font-weight:600;
+    box-shadow:var(--shadow);
+    z-index:999;
+    transition:.5s cubic-bezier(.2,.8,.2,1);
+    display:flex;align-items:center;gap:9px;
+    white-space:nowrap;
+  }
+  .toast.show{transform:translate(-50%,0)}
+  .toast .t-ico{font-size:16px}
+
+  /* انیمیشن ورود */
+  .reveal{opacity:0;transform:translateY(18px);transition:.7s cubic-bezier(.2,.8,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- ===== هدر ===== -->
+<header>
+  <div class="brand">
+    <div class="logo">Ai</div>
+    <div class="brand-text">
+      <b>Ai-Sinova</b>
+      <span>سینمای هوشمند</span>
+    </div>
+  </div>
+
+  <div class="floating-toggles">
+    <button class="toggle locked" data-toggle="sites" aria-label="بازکردن سایت‌های فیلم">
+      <span class="dot"></span>
+      <span>سایت‌های فیلم</span>
+    </button>
+    <button class="toggle locked" data-toggle="translate" aria-label="ترجمه فیلم">
+      <span class="dot"></span>
+      <span>ترجمه فیلم</span>
+    </button>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ===== هرو ===== -->
+  <section class="hero reveal">
+    <div class="badge"><span class="pulse"></span> نسخه نسل جدید — هوش مصنوعی</div>
+    <h1>هر فیلمی، هر زبانی،<br><span class="grad">با صدای خودت</span></h1>
+    <p>دنیای فیلم و سریال بدون مرز. همه سایت‌ها باز، دوبله آنی با هوش مصنوعی، و پخش با صدای مرجع خودت.</p>
+    <a href="./activation.html" class="cta">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+      فعال‌سازی اشتراک
+    </a>
+  </section>
+
+  <!-- ===== تبلیغات ===== -->
+  <section class="section reveal">
+    <div class="section-head">
+      <h2><span class="bar"></span> پیشنهاد ویژه</h2>
+      <a href="#">همه</a>
+    </div>
+    <div class="ads">
+      <div class="ad">
+        <small>OFFER · AI SINOVA</small>
+        <b>دوبله آنی با هوش مصنوعی</b>
+        <span>هم‌زمان با پخش، فارسی بشنو</span>
+      </div>
+      <div class="ad">
+        <small>NEW · VOICE CLONE</small>
+        <b>۱۰ صدای مرجع شخصی</b>
+        <span>فیلم با صدای خودت پخش شه</span>
+      </div>
+      <div class="ad">
+        <small>LIVE · SMART TV</small>
+        <b>هر چی از تلویزیون پخش شه، فارسی</b>
+        <span>بدون تأخیر، بدون قطعی</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ویژگی‌ها ===== -->
+  <section class="section reveal">
+    <div class="section-head">
+      <h2><span class="bar"></span> قدرت Ai-Sinova</h2>
+    </div>
+    <div class="features">
+      <div class="feature">
+        <div class="ico">🌐</div>
+        <h3>دسترسی آزاد</h3>
+        <p>تمام سایت‌های فیلم جهان باز</p>
+      </div>
+      <div class="feature">
+        <div class="ico">🎙️</div>
+        <h3>دوبله آنی</h3>
+        <p>ترجمه هم‌زمان با هوش مصنوعی</p>
+      </div>
+      <div class="feature">
+        <div class="ico">📺</div>
+        <h3>تلویزیون هوشمند</h3>
+        <p>هر پخش زنده، فارسی</p>
+      </div>
+      <div class="feature">
+        <div class="ico">🎧</div>
+        <h3>۱۰ صدای مرجع</h3>
+        <p>با صدای دلخواهت بشنو</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== راهنمای سریع ===== -->
+  <section class="section reveal">
+    <div class="section-head">
+      <h2><span class="bar"></span> در ۳ قدم شروع کن</h2>
+      <a href="./guide.html">راهنمای کامل</a>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="num">۱</div>
+        <div><b>اشتراک تهیه کن</b><span>فعال‌سازی سریع در چند ثانیه</span></div>
+      </div>
+      <div class="step">
+        <div class="num">۲</div>
+        <div><b>دکمه‌های هوشمند را روشن کن</b><span>سایت‌های فیلم + ترجمه آنی</span></div>
+      </div>
+      <div class="step">
+        <div class="num">۳</div>
+        <div><b>از سینمای شخصی لذت ببر</b><span>با ۱۰ صدای مرجع دلخواهت</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== فوتر ===== -->
+  <footer>
+    <p>© 2026 Ai-Sinova — ساخته‌شده برای عاشقان سینما</p>
+    <a href="./activation.html" class="mini-cta">✨ فعال‌سازی اشتراک</a>
+  </footer>
+
+</div>
+
+<!-- ===== توست ===== -->
+<div class="toast" id="toast">
+  <span class="t-ico">🔒</span>
+  <span id="toast-text">برای فعال‌سازی ابتدا اشتراک تهیه کنید</span>
+</div>
+
+<script>
+  // ===== دکمه‌های شناور قفل‌دار =====
+  const toasts = document.querySelectorAll('.toggle');
+  const toastEl = document.getElementById('toast');
+  const toastText = document.getElementById('toast-text');
+  let toastTimer;
+
+  function showToast(msg, icon = '🔒'){
+    toastEl.querySelector('.t-ico').textContent = icon;
+    toastText.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2800);
+  }
+
+  toasts.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (btn.classList.contains('locked')) {
+        showToast('برای فعال‌سازی ابتدا اشتراک تهیه کنید', '🔒');
+        // هدایت بعد از ۱ ثانیه به صفحه فعال‌سازی
+        setTimeout(() => { window.location.href = './activation.html'; }, 1100);
+      } else {
+        btn.classList.toggle('on');
+      }
+    });
+  });
+
+  // ===== انیمیشن ورود =====
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ===== لمس نرم =====
+  document.addEventListener('touchstart', () => {}, { passive: true });
+</script>
+
+</body>
+  </html>
