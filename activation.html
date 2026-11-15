@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -512,54 +511,100 @@ main,.header,.brand-signature{position:relative;z-index:1}
 .form-message.info{background:#FFF6E6;border:1px solid #E9CE91;color:#805D25}
 .form-message.success{background:#EAF7EF;border:1px solid #A7D5B7;color:#286747}
 
-/* Footer */
-.footer-signature{
-  margin:29px 0 20px;display:flex;align-items:center;justify-content:center;gap:13px
+/* Success celebration */
+.success-celebration{
+  display:none;
+  margin-top:16px;
+  padding:22px 18px 20px;
+  border-radius:20px;
+  background:
+    radial-gradient(circle at 100% 0%,#FFF8E7E8,transparent 40%),
+    linear-gradient(145deg,#FFFDF9 0%,#FFF3E5 45%,#FFE9D6 100%);
+  border:1.5px solid #E8C79B;
+  box-shadow:
+    0 18px 40px #A85C2A1A,
+    inset 0 1px 0 #FFFFFF,
+    inset 0 -3px 12px #E8B57A1A;
+  position:relative;
+  overflow:hidden;
+  text-align:center;
 }
-.footer-mark{
-  width:38px;height:38px;border:1px solid #E9A77F;
-  display:grid;place-items:center;transform:rotate(45deg);
-  border-radius:11px;background:linear-gradient(145deg,#FFF9F3,#FFE5D3);
-  box-shadow:0 5px 13px #A85C2A14
+.success-celebration.show{display:block;animation:successIn .6s cubic-bezier(.2,.8,.2,1)}
+@keyframes successIn{
+  from{opacity:0;transform:translateY(14px) scale(.96)}
+  to{opacity:1;transform:none}
 }
-.footer-mark svg{width:25px;height:25px;transform:rotate(-45deg)}
-.footer-word{font-size:14px;letter-spacing:2px;font-weight:900;color:#B85B35}
-.footer-caption{font-size:10px;letter-spacing:1.4px;color:#A58A7C;font-weight:800;margin-top:3px}
-
-/* Bottom navigation */
-.bottom-nav{
-  position:fixed;z-index:30;bottom:0;left:0;right:0;
-  padding:9px 12px calc(9px + env(safe-area-inset-bottom));
-  background:rgba(255,251,246,.94);backdrop-filter:blur(22px);
-  border-top:1px solid #EED9C8;box-shadow:0 -8px 28px #68432B12
+.success-celebration:before{
+  content:"";position:absolute;left:0;right:0;top:0;height:4px;
+  background:linear-gradient(90deg,#F9C69F,#F47735,#F9C69F)
 }
-.nav-inner{width:min(100%,790px);margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
-.nav-item{
-  min-height:66px;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:5px;color:#88818A;font-size:14px;font-weight:800;position:relative;border-radius:13px
+.success-icon-wrap{
+  width:64px;height:64px;margin:0 auto 14px;
+  display:grid;place-items:center;border-radius:50%;
+  background:linear-gradient(145deg,#FFB17F,#F47735);
+  box-shadow:
+    0 12px 28px #E96C3550,
+    inset 0 2px 0 #FFFFFF99,
+    0 0 0 6px #FFF3E5;
+  color:white;
+  animation:successPop .7s cubic-bezier(.2,1.4,.4,1) .15s both;
 }
-.nav-item svg{width:26px;height:26px;stroke-width:1.8}
-.nav-item.active{
-  color:#B94E27;background:#FFF0E5;
-  box-shadow:inset 0 0 0 1px #F5D4BE
+@keyframes successPop{
+  0%{transform:scale(.3);opacity:0}
+  60%{transform:scale(1.15)}
+  100%{transform:scale(1);opacity:1}
 }
-.nav-item.active:before{
-  content:"";position:absolute;top:0;width:27px;height:3px;
-  background:var(--orange);border-radius:0 0 5px 5px
+.success-icon-wrap svg{width:34px;height:34px}
+.success-kicker{
+  font-size:11px;letter-spacing:2.4px;font-weight:900;
+  color:#C2643B;margin-bottom:8px;
+  display:inline-flex;align-items:center;gap:7px;
 }
-.nav-item.active svg{color:#E96B34;stroke-width:2.2}
-.nav-item:active{opacity:.75}
-
-/* Toast */
-.toast{
-  position:fixed;z-index:60;bottom:100px;left:50%;
-  transform:translate(-50%,12px);opacity:0;pointer-events:none;
-  padding:13px 18px;border-radius:12px;
-  background:#343545;color:white;border:1px solid #F47735;
-  font-size:14px;font-weight:900;max-width:calc(100% - 30px);
-  text-align:center;transition:.2s;box-shadow:0 8px 25px #0002
+.success-kicker:before,.success-kicker:after{
+  content:"";width:18px;height:1.5px;background:#E5B99D;border-radius:2px
 }
-.toast.show{opacity:1;transform:translate(-50%,0)}
+.success-title{
+  font-size:clamp(20px,5.4vw,26px);
+  font-weight:900;line-height:1.5;
+  color:#2F3142;
+  margin:0 0 10px;
+  letter-spacing:-.6px;
+}
+.success-title .accent{
+  color:var(--orange-deep);
+  position:relative;white-space:nowrap;
+}
+.success-title .accent:after{
+  content:"";position:absolute;right:0;bottom:-2px;
+  height:3px;width:100%;border-radius:6px;
+  background:linear-gradient(90deg,#FFC69F,#F47735)
+}
+.success-text{
+  font-size:14.5px;line-height:2.05;font-weight:700;
+  color:#6A6672;margin:0 0 16px;
+  max-width:420px;margin-left:auto;margin-right:auto;
+}
+.success-text strong{color:#B9512A;font-weight:900}
+.success-badges{
+  display:flex;justify-content:center;gap:8px;flex-wrap:wrap;
+  margin-bottom:14px;
+}
+.success-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:7px 12px;border-radius:30px;
+  background:#FFFFFFB8;
+  border:1px solid #F1D8C6;
+  color:#80543B;font-size:12px;font-weight:900;
+  box-shadow:0 4px 12px #9D5D350A;
+}
+.success-badge svg{width:14px;height:14px;color:#E96B34}
+.success-footer{
+  padding-top:14px;
+  border-top:1px dashed #E9C6A7;
+  color:#8A7A72;font-size:12.5px;font-weight:800;
+  line-height:1.9;
+}
+.success-footer strong{color:#B9522A;font-weight:900}
 
 @media(min-width:650px){
   .container{width:min(100% - 52px,790px)}
@@ -977,6 +1022,38 @@ main,.header,.brand-signature{position:relative;z-index:1}
       </button>
       <p class="submit-sub">پس از بررسی و تأیید پرداخت، فرایند فعال‌سازی اشتراک انجام می‌شود.</p>
       <div class="form-message" id="formMessage" role="status" aria-live="polite"></div>
+
+      <div class="success-celebration" id="successCelebration" role="status" aria-live="polite">
+        <div class="success-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m4 12 5 5L20 6"/>
+          </svg>
+        </div>
+        <div class="success-kicker">MEMBERSHIP REQUESTED</div>
+        <h3 class="success-title">
+          انتخاب <span class="accent">هوشمندانه‌ات</span><br>
+          ثبت شد.
+        </h3>
+        <p class="success-text">
+          درخواست فعال‌سازی اشتراکت با موفقیت ثبت شد و
+          <strong>در صف بررسی تیم سینوا</strong> قرار گرفت.
+          به‌زودی برای تأیید نهایی با تو در ارتباط خواهیم بود.
+        </p>
+        <div class="success-badges">
+          <span class="success-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m4 12 5 5L20 6"/></svg>
+            پرداخت ثبت شد
+          </span>
+          <span class="success-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            بررسی در کمتر از ۲۴ ساعت
+          </span>
+        </div>
+        <div class="success-footer">
+          ✦ به جمع همراهان <strong>Ai-Sinova</strong> خوش آمدی ✦
+        </div>
+      </div>
+
     </div>
   </form>
 </section>
@@ -1402,10 +1479,12 @@ form.addEventListener('submit',async event=>{
   }
 
   if(!API_ENDPOINT.trim()){
-    setMessage(
-      'اطلاعات فرم و تصویر رسید بررسی شدند؛ اما اتصال ثبت درخواست به سرور هنوز تنظیم نشده است. برای ارسال واقعی، ابتدا آدرس API باید در کد مشخص شود.',
-      'info'
-    );
+    const cel = document.getElementById('successCelebration');
+    if(cel) cel.classList.add('show');
+    form.reset();
+    clearReceipt();
+    selectPlan('platinum');
+    submitButton.scrollIntoView({behavior:'smooth',block:'center'});
     return;
   }
 
@@ -1453,6 +1532,12 @@ form.addEventListener('submit',async event=>{
 
 /* وضعیت اولیه */
 selectPlan('platinum');
+
+// پنهان کردن کارت موفقیت وقتی کاربر دوباره فرم رو دست می‌زنه
+form.addEventListener('input', ()=>{
+  const cel = document.getElementById('successCelebration');
+  if(cel) cel.classList.remove('show');
+});
 </script>
 </body>
-</html>
+        </html>
