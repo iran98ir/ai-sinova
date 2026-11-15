@@ -1,0 +1,860 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#D95A25">
+<title>راهنمای استفاده | Ai-Sinova</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --orange:#F47B3E;
+  --orange2:#E7652E;
+  --orange3:#B83F1B;
+  --cream:#FFF3E7;
+  --dark:#351C16;
+  --dark2:#512719;
+  --muted:#FFE0C9;
+  --glass:rgba(255,244,232,.13);
+  --border:rgba(255,239,220,.25);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  min-height:100vh;
+  padding-bottom:115px;
+  color:var(--cream);
+  font-family:'Vazirmatn',sans-serif;
+  font-size:18px;
+  overflow-x:hidden;
+  background:
+    radial-gradient(ellipse at 50% -10%,#FFB17C 0%,transparent 45%),
+    radial-gradient(ellipse at 0% 35%,rgba(255,178,117,.65),transparent 38%),
+    radial-gradient(ellipse at 100% 70%,rgba(160,52,22,.42),transparent 40%),
+    linear-gradient(145deg,#F58B4E 0%,#E96D36 35%,#D95527 70%,#B94320 100%);
+  background-attachment:fixed;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  opacity:.13;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+  mix-blend-mode:soft-light;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+button:focus-visible,a:focus-visible{
+  outline:3px solid #FFF5E9;outline-offset:5px
+}
+.container{
+  width:min(100% - 34px,720px);
+  margin:auto;position:relative;z-index:1;
+}
+.ambient{
+  position:fixed;pointer-events:none;z-index:0;
+  border-radius:50%;filter:blur(3px);mix-blend-mode:screen;
+}
+.ambient.one{
+  width:240px;height:240px;top:17%;right:-130px;
+  background:radial-gradient(circle,rgba(255,220,179,.42),transparent 70%);
+}
+.ambient.two{
+  width:300px;height:300px;bottom:8%;left:-170px;
+  background:radial-gradient(circle,rgba(255,174,111,.35),transparent 70%);
+}
+
+/* Header */
+.header{
+  padding:23px 0 18px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-symbol{
+  width:58px;height:58px;position:relative;
+  display:grid;place-items:center;flex-shrink:0;
+  border-radius:19px;
+  background:linear-gradient(145deg,rgba(255,246,229,.35),rgba(255,220,190,.10));
+  border:1px solid rgba(255,245,226,.55);
+  box-shadow:0 9px 30px rgba(110,37,13,.16),inset 0 1px 0 rgba(255,255,255,.5);
+  overflow:hidden;
+}
+.brand-symbol:before{
+  content:"";position:absolute;inset:5px;border-radius:15px;
+  border:1px solid rgba(255,246,226,.28);
+}
+.brand-symbol svg{width:39px;height:39px;position:relative}
+.brand-name{font-size:23px;font-weight:900;letter-spacing:-.8px;line-height:1.2}
+.brand-sub{
+  font-size:10px;letter-spacing:2.3px;font-weight:800;
+  color:#FFE5D0;margin-top:5px;
+}
+.header-right{
+  display:flex;align-items:center;gap:7px;
+  border:1px solid rgba(255,239,220,.3);
+  background:rgba(103,35,14,.13);
+  border-radius:30px;padding:9px 12px;
+  color:#FFF0E3;font-size:12px;font-weight:800;
+  backdrop-filter:blur(10px);
+}
+.header-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:#FFF0D4;box-shadow:0 0 12px #FFF4D8;
+}
+
+/* Signature */
+.signature{
+  display:flex;align-items:center;gap:10px;
+  margin:0 0 19px;color:#FFE5D0;
+}
+.signature-line{
+  height:1px;flex:1;
+  background:linear-gradient(90deg,transparent,rgba(255,241,221,.55));
+}
+.signature-text{
+  font-size:10px;letter-spacing:2px;font-weight:900;white-space:nowrap;
+}
+.signature-star{font-size:15px;color:#FFF0D4}
+
+/* Film strip */
+.film-edge{
+  display:flex;align-items:center;gap:8px;
+  padding:7px 10px;border-radius:12px;
+  background:rgba(79,28,13,.23);
+  border:1px solid rgba(255,232,207,.16);
+  margin-bottom:19px;
+  box-shadow:inset 0 1px 6px rgba(75,25,10,.12);
+}
+.holes{display:flex;gap:6px;flex:1;justify-content:space-between}
+.holes i{
+  display:block;width:9px;height:6px;border-radius:2px;
+  background:rgba(255,230,205,.62);
+}
+.film-label{
+  font-size:9px;letter-spacing:2px;font-weight:900;
+  color:#FFE4CC;white-space:nowrap;
+}
+
+/* Page introduction */
+.intro{
+  position:relative;overflow:hidden;
+  border-radius:29px;padding:25px 23px 23px;
+  background:
+    radial-gradient(circle at 80% 10%,rgba(255,166,104,.25),transparent 30%),
+    linear-gradient(145deg,#48251A 0%,#321C17 52%,#241612 100%);
+  border:1px solid rgba(255,222,195,.30);
+  box-shadow:0 25px 60px rgba(84,26,10,.28),inset 0 1px 0 rgba(255,255,255,.13);
+}
+.intro:before{
+  content:"";position:absolute;width:280px;height:280px;
+  right:-130px;top:-150px;border-radius:50%;
+  border:1px solid rgba(255,183,128,.26);
+  box-shadow:0 0 0 18px rgba(255,183,128,.035),
+             0 0 0 42px rgba(255,183,128,.025),
+             0 0 55px rgba(255,139,80,.15);
+}
+.intro-top{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:10px;position:relative;z-index:1;
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid rgba(255,204,165,.25);
+  background:rgba(255,197,151,.10);
+  border-radius:30px;padding:8px 12px;
+  color:#FFE5D1;font-size:12px;font-weight:800;
+}
+.eyebrow i{
+  width:7px;height:7px;border-radius:50%;
+  background:#FFAC70;box-shadow:0 0 12px #FF9B5C;
+}
+.intro-index{font-size:10px;letter-spacing:2px;color:#CFAF9D;font-weight:800}
+.intro h1{
+  position:relative;z-index:1;
+  font-size:clamp(34px,8vw,47px);
+  font-weight:900;line-height:1.5;
+  margin:24px 0 12px;letter-spacing:-1px;
+}
+.intro h1 span{
+  color:#FF9C62;
+  text-shadow:0 0 20px rgba(255,133,75,.38),0 0 45px rgba(255,112,48,.19);
+}
+.intro-text{
+  position:relative;z-index:1;
+  font-size:16px;line-height:2.15;
+  color:#EBD6C8;margin:0;font-weight:500;
+}
+.intro-decoration{
+  display:flex;align-items:center;gap:12px;
+  margin-top:22px;padding-top:15px;
+  border-top:1px solid rgba(255,229,206,.15);
+  position:relative;z-index:1;
+}
+.intro-icon{
+  width:43px;height:43px;border-radius:14px;
+  display:grid;place-items:center;
+  background:rgba(255,178,125,.12);
+  border:1px solid rgba(255,224,199,.25);
+}
+.intro-icon svg{width:23px;height:23px}
+.intro-decoration strong{font-size:14px;font-weight:900}
+.intro-decoration small{
+  display:block;color:#CFAF9D;font-size:11px;margin-top:3px;
+}
+
+/* Important notice */
+.notice{
+  position:relative;overflow:hidden;
+  margin:17px 0 25px;
+  border-radius:22px;padding:18px 17px;
+  background:linear-gradient(120deg,rgba(255,245,231,.24),rgba(255,227,204,.10));
+  border:1px solid rgba(255,241,224,.37);
+  box-shadow:0 13px 30px rgba(104,37,13,.12),inset 0 1px 0 rgba(255,255,255,.19);
+  backdrop-filter:blur(12px);
+  display:flex;align-items:flex-start;gap:13px;
+}
+.notice-icon{
+  width:43px;height:43px;border-radius:14px;flex-shrink:0;
+  display:grid;place-items:center;
+  background:rgba(255,246,230,.19);
+  border:1px solid rgba(255,242,220,.3);
+}
+.notice-icon svg{width:23px;height:23px}
+.notice-title{font-size:16px;font-weight:900;color:#FFF8EF;margin-bottom:5px}
+.notice p{font-size:14px;line-height:2;color:#FFE6D2;margin:0;font-weight:600}
+
+/* FAQ heading */
+.section-heading{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:10px;margin:29px 0 15px;
+}
+.heading-main{display:flex;align-items:center;gap:12px}
+.heading-icon{
+  width:47px;height:47px;border-radius:15px;
+  display:grid;place-items:center;
+  background:linear-gradient(145deg,rgba(255,245,230,.26),rgba(255,224,199,.10));
+  border:1px solid rgba(255,239,220,.3);
+  box-shadow:0 7px 20px rgba(104,37,13,.12);
+}
+.heading-icon svg{width:24px;height:24px}
+.section-heading h2{
+  font-size:22px;font-weight:900;margin:0;color:#FFF7EE;
+}
+.section-heading p{
+  margin:3px 0 0;font-size:12px;color:#FFE1CA;font-weight:600;
+}
+.faq-count{
+  padding:7px 11px;border-radius:30px;
+  border:1px solid rgba(255,239,220,.25);
+  background:rgba(93,34,15,.17);
+  font-size:12px;font-weight:900;color:#FFF0E3;
+  white-space:nowrap;
+}
+
+/* Accordion */
+.faq-list{display:grid;gap:11px}
+.faq-item{
+  overflow:hidden;border-radius:20px;
+  border:1px solid rgba(255,240,222,.29);
+  background:linear-gradient(120deg,rgba(255,246,234,.20),rgba(255,228,207,.10));
+  box-shadow:0 10px 24px rgba(104,37,13,.10),inset 0 1px 0 rgba(255,255,255,.15);
+  backdrop-filter:blur(12px);
+  transition:background .25s,border-color .25s,transform .25s;
+}
+.faq-item.open{
+  background:linear-gradient(125deg,rgba(255,247,235,.27),rgba(255,225,198,.16));
+  border-color:rgba(255,243,226,.52);
+  box-shadow:0 14px 32px rgba(91,30,10,.17),inset 0 1px 0 rgba(255,255,255,.22);
+}
+.faq-question{
+  width:100%;min-height:75px;
+  display:flex;align-items:center;gap:12px;
+  padding:14px 15px;
+  border:0;background:transparent;color:#FFF7EF;
+  text-align:right;cursor:pointer;
+}
+.question-number{
+  width:36px;height:36px;flex-shrink:0;
+  display:grid;place-items:center;
+  border-radius:12px;
+  background:rgba(255,239,220,.14);
+  border:1px solid rgba(255,238,219,.24);
+  color:#FFE2C9;font-size:13px;font-weight:900;
+  transition:.25s;
+}
+.faq-item.open .question-number{
+  background:#FFF0DF;color:#BD4C22;
+  border-color:#FFF0DF;
+  box-shadow:0 0 17px rgba(255,231,207,.20);
+}
+.question-text{
+  flex:1;font-size:15px;font-weight:900;line-height:1.8;
+}
+.chevron{
+  width:31px;height:31px;flex-shrink:0;
+  border-radius:50%;
+  display:grid;place-items:center;
+  border:1px solid rgba(255,237,216,.27);
+  color:#FFE6D3;
+  transition:transform .3s,background .3s;
+}
+.chevron svg{width:16px;height:16px}
+.faq-item.open .chevron{
+  transform:rotate(180deg);
+  background:rgba(255,239,221,.18);
+}
+.faq-answer{
+  display:grid;
+  grid-template-rows:0fr;
+  transition:grid-template-rows .3s ease;
+}
+.faq-item.open .faq-answer{grid-template-rows:1fr}
+.answer-inner{overflow:hidden;min-height:0}
+.answer-content{
+  margin:0 15px;
+  padding:0 0 17px 0;
+  border-top:1px solid rgba(255,237,216,.18);
+  color:#FFE7D4;
+  font-size:14px;line-height:2.15;
+  font-weight:500;
+}
+.answer-content p{margin:12px 0 0}
+.answer-content strong{color:#FFF8EE;font-weight:900}
+.answer-content ul{padding-right:20px;margin:8px 0}
+.answer-content li{margin:5px 0}
+.answer-highlight{
+  margin-top:12px;padding:11px 13px;
+  border-radius:13px;
+  background:rgba(255,240,221,.10);
+  border:1px solid rgba(255,237,216,.17);
+  color:#FFF3E6;font-weight:700;
+  font-size:13px;
+}
+
+/* Bottom brand signature */
+.brand-signature{
+  margin:25px 0 21px;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  color:#FFE4CE;
+}
+.signature-mark{
+  width:28px;height:28px;display:grid;place-items:center;
+  border:1px solid rgba(255,239,219,.5);border-radius:9px;
+  transform:rotate(45deg);
+  background:rgba(255,238,216,.10);
+  box-shadow:0 0 18px rgba(255,238,216,.12);
+}
+.signature-mark span{transform:rotate(-45deg);font-size:13px;font-weight:900}
+.signature-name{font-size:11px;letter-spacing:2px;font-weight:900}
+.signature-note{font-size:10px;color:#FFE0C7;opacity:.72}
+
+/* Bottom navigation */
+.bottom-nav{
+  position:fixed;z-index:20;bottom:0;left:0;right:0;
+  padding:10px 12px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(102,38,18,.87);
+  backdrop-filter:blur(24px);
+  border-top:1px solid rgba(255,231,208,.24);
+  box-shadow:0 -10px 35px rgba(93,31,12,.17);
+}
+.nav-inner{
+  width:min(100%,720px);margin:auto;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:7px;
+}
+.nav-item{
+  min-height:70px;border-radius:18px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:5px;color:rgba(255,235,218,.70);
+  font-size:13px;font-weight:800;position:relative;
+  transition:.22s;
+}
+.nav-item svg{width:25px;height:25px;stroke-width:1.8}
+.nav-item.active{
+  color:#FFF8F0;
+  background:linear-gradient(145deg,rgba(255,220,190,.22),rgba(255,238,219,.10));
+  border:1px solid rgba(255,230,205,.22);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.15),0 4px 16px rgba(55,17,8,.12);
+}
+.nav-item.active:before{
+  content:"";position:absolute;top:-1px;
+  width:26px;height:3px;border-radius:0 0 6px 6px;
+  background:#FFD4B2;box-shadow:0 0 12px #FFB17D;
+}
+.nav-item.active svg{filter:drop-shadow(0 0 7px rgba(255,208,175,.36));stroke-width:2.3}
+.nav-item:active{transform:scale(.95)}
+
+@media(min-width:650px){
+  .container{width:min(100% - 52px,720px)}
+  .intro{padding:31px 34px}
+  .intro h1{font-size:49px}
+  .question-text{font-size:16px}
+  .answer-content{font-size:15px}
+}
+@media(max-width:380px){
+  .container{width:calc(100% - 24px)}
+  .brand-name{font-size:21px}
+  .header-right{font-size:10px;padding:8px 9px}
+  .intro{padding:22px 18px}
+  .intro h1{font-size:34px}
+  .intro-text{font-size:15px}
+  .question-text{font-size:14px}
+  .faq-question{padding:12px}
+  .answer-content{font-size:13px}
+  .nav-item{font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{transition:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+
+<body>
+
+<div class="ambient one"></div>
+<div class="ambient two"></div>
+
+<div class="container">
+
+<header class="header">
+  <a class="brand" href="./index.html" aria-label="خانه Ai-Sinova">
+    <div class="brand-symbol">
+      <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <path d="M24 5L43 38H5L24 5Z" stroke="#FFF4E7" stroke-width="1.7" stroke-linejoin="round"/>
+        <path d="M24 13L35 33H13L24 13Z" fill="#FFF1E3" fill-opacity=".17" stroke="#FFF4E7" stroke-width="1.2"/>
+        <path d="M19 29H29L24 20L19 29Z" fill="#FFF4E7"/>
+        <circle cx="24" cy="25" r="3" fill="#D95A25"/>
+      </svg>
+    </div>
+    <div>
+      <div class="brand-name">Ai-Sinova</div>
+      <div class="brand-sub">THE CINEMA BEYOND LANGUAGE</div>
+    </div>
+  </a>
+
+  <div class="header-right">
+    <span class="header-dot"></span>
+    راهنمای کاربران
+  </div>
+</header>
+
+<div class="signature">
+  <div class="signature-line"></div>
+  <span class="signature-star">✦</span>
+  <span class="signature-text">YOUR CINEMA EXPERIENCE GUIDE</span>
+  <span class="signature-star">✦</span>
+  <div class="signature-line" style="transform:scaleX(-1)"></div>
+</div>
+
+<div class="film-edge" aria-hidden="true">
+  <div class="holes"><i></i><i></i><i></i><i></i><i></i></div>
+  <span class="film-label">SINOVA ORIGINAL</span>
+  <div class="holes"><i></i><i></i><i></i><i></i><i></i></div>
+</div>
+
+<main>
+
+  <!-- معرفی کلی -->
+  <section class="intro">
+    <div class="intro-top">
+      <div class="eyebrow"><i></i> راهنمای استفاده</div>
+      <div class="intro-index">SINOVA / GUIDE</div>
+    </div>
+
+    <h1>
+      ساده‌تر از<br>
+      چیزی که <span>فکر می‌کنی.</span>
+    </h1>
+
+    <p class="intro-text">
+      استفاده از Ai-Sinova بسیار ساده است. کافی است تنظیمات موردنیاز را فعال کنید و به تماشای محتوای دلخواهتان بپردازید. تجربه دوبله هوشمند با کیفیت صوتی بالا و هماهنگی صدا و تصویر، برای استفاده روی دستگاه‌های اندرویدی، از جمله اندرویدباکس‌ها و تلویزیون‌های هوشمند طراحی شده است.
+    </p>
+
+    <div class="intro-decoration">
+      <div class="intro-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#FFF0E2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7h16M4 12h16M4 17h10"/>
+          <path d="M17 15l2 2 3-4"/>
+        </svg>
+      </div>
+      <div>
+        <strong>راه‌اندازی آسان، تجربه‌ای متفاوت</strong>
+        <small>بدون نیاز به دانش فنی پیچیده</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- هشدار مطالعه -->
+  <section class="notice">
+    <div class="notice-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#FFF4E8" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3L22 20H2L12 3Z"/>
+        <path d="M12 9v5M12 17h.01"/>
+      </svg>
+    </div>
+    <div>
+      <div class="notice-title">لطفاً این بخش را کامل مطالعه کنید</div>
+      <p>
+        برای بهره‌مندی از مزایای اپلیکیشن و آشنایی با امکانات، شرایط استفاده و نحوه فعال‌سازی، حتماً تمام بخش‌های این صفحه را با دقت مطالعه نمایید.
+      </p>
+    </div>
+  </section>
+
+  <!-- سوالات متداول -->
+  <section>
+    <div class="section-heading">
+      <div class="heading-main">
+        <div class="heading-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#FFF1E4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M9.6 9a2.5 2.5 0 1 1 4.2 1.8c-1.1 1-1.8 1.2-1.8 2.7M12 17h.01"/>
+          </svg>
+        </div>
+        <div>
+          <h2>سؤالات متداول</h2>
+          <p>پاسخ پرسش‌های شما درباره Ai-Sinova</p>
+        </div>
+      </div>
+      <div class="faq-count">۱۰ پرسش</div>
+    </div>
+
+    <div class="faq-list" id="faqList">
+
+      <!-- 1 -->
+      <article class="faq-item">
+        <button class="faq-question" type="button" aria-expanded="false">
+          <span class="question-number">۰۱</span>
+          <span class="question-text">نحوه کار اپلیکیشن به چه صورت است؟</span>
+          <span class="chevron">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </span>
+        </button>
+        <div class="faq-answer">
+          <div class="answer-inner">
+            <div class="answer-content">
+              <p>
+                Ai-Sinova برای ساده‌سازی تماشای فیلم و محتوای تصویری به زبان فارسی طراحی شده است. پس از ورود به اپلیکیشن، تنظیمات موردنیاز خود را فعال می‌کنید و سپس می‌توانید به سرویس یا وب‌سایت پخش فیلم موردنظرتان بروید.
+              </p>
+              <p>
+                اپلیکیشن در چارچوب قابلیت‌های فعال‌شده، فرایند ترجمه و دوبله صوتی محتوا را انجام می‌دهد تا بتوانید فیلم را با تجربه‌ای نزدیک‌تر به تماشای محتوای فارسی دنبال کنید.
+              </p>
+              <div class="answer-highlight">
+                هدف اصلی، ساده‌کردن تجربه تماشا است؛ نه اضافه‌کردن مراحل پیچیده به آن.
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2 -->
+      <article class="faq-item">
+        <button class="faq-question" type="button" aria-expanded="false">
+          <span class="question-number">۰۲</span>
+          <span class="question-text">کیفیت صدای دوبله‌شده چگونه است؟</span>
+          <span class="chevron">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </span>
+        </button>
+        <div class="faq-answer">
+          <div class="answer-inner">
+            <div class="answer-content">
+              <p>
+                کیفیت صدا یکی از اولویت‌های اصلی Ai-Sinova است. دوبله با هدف ارائه صدایی شفاف، طبیعی و قابل‌فهم طراحی شده تا مخاطب بتواند دیالوگ‌ها را با وضوح بالا دنبال کند.
+              </p>
+              <p>
+                همچنین هماهنگی صدای دوبله با جریان تصویر اهمیت زیادی دارد. سیستم برای پخش روان و بدون تأخیر محسوس صدا طراحی شده است؛ البته کیفیت نهایی تجربه می‌تواند به سرعت اینترنت، قدرت دستگاه و شرایط پخش محتوا نیز وابسته باشد.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3 -->
+      <article class="faq-item">
+        <button class="faq-question" type="button" aria-expanded="false">
+          <span class="question-number">۰۳</span>
+          <span class="question-text">سایر امکانات اپلیکیشن چیست؟</span>
+          <span class="chevron">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </span>
+        </button>
+        <div class="faq-answer">
+          <div class="answer-inner">
+            <div class="answer-content">
+              <p>
+                Ai-Sinova تنها به ترجمه متنی محدود نیست و امکانات آن برای ایجاد یک تجربه صوتی شخصی‌سازی‌شده طراحی شده است.
+              </p>
+              <ul>
+                <li>ترجمه هوشمند محتوای فیلم</li>
+                <li>دوبله صوتی به زبان فارسی</li>
+                <li>امکان استفاده از صداهای مرجع شخصی</li>
+                <li>ذخیره و مدیریت حداکثر ۱۰ نمونه صدای مرجع، مطابق امکانات طرح فعال</li>
+                <li>استفاده روی دستگاه‌های اندرویدی سازگار، از جمله اندرویدباکس و تلویزیون هوشمند</li>
+              </ul>
+              <div class="answer-highlight">
+                برای آشنایی با امکانات هر سطح اشتراک، بخش فعال‌سازی حساب را بررسی کنید.
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4 -->
+      <article class="faq-item">
+        <button class="faq-question" type="button" aria-expanded="false">
+          <span class="question-number">۰۴</span>
+          <span class="question-text">مزیت دوبله به زبان فارسی چیست؟</span>
+          <span class="chevron">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </span>
+        </button>
+        <div class="faq-answer">
+          <div class="answer-inner">
+            <div class="answer-content">
+              <p>
+                هنگام تماشای فیلم با زبان اصلی، ممکن است بخشی از توجه شما صرف خواندن زیرنویس شود. دوبله فارسی کمک می‌کند بدون وابستگی دائمی به متن زیرنویس، روی تصویر، بازی بازیگران و جزئیات داستان تمرکز کنید.
+              </p>
+              <p>
+                این قابلیت برای تماشای راحت‌تر فیلم‌ها و سریال‌های خارجی، به‌ویژه هنگام استفاده از تلویزیون‌های بزرگ، تجربه‌ای متفاوت فراهم می‌کند.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5 -->
+      <article class="faq-item">
+        <button class="faq-question" type="button" aria-expanded="false">
+          <span class="question-number">۰۵</span>
+          <span class="question-text">پشتیبانی اپلیکیشن به چه صورت است؟</span>
+          <span class="chevron">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </span>
+        </button>
+        <div class="faq-answer">
+          <div class="answer-inner">
+            <div class="answer-content">
+              <p>
+                در صورت بروز مشکل در نصب، فعال‌سازی اشتراک یا استفاده از امکانات، می‌توانید از مسیر پشتیبانی معرفی‌شده در اپلیکیشن یا پنل کاربری درخواست راهنمایی ثبت کنید.
+              </p>
+              <p>
+                برای بررسی سریع‌تر، بهتر است هنگام ارسال درخواست، مدل دستگاه، نسخه اندروید و شرح دقیق مشکل را نیز اعلام کنید.
+              </p>
+              <div class="answer-highlight">
+                لطفاً از ارسال اطلاعات حساس حساب یا رمز عبور خودداری کنید.
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 6 -->
+      <article class="faq-item">
+        <button class="faq-question" type="button" aria-expanded="false">
+          <span class="question-number">۰۶</span>
+          <span class="question-text">نحوه فعال‌سازی اشتراک چگونه است؟</span>
+          <span class="chevron">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </span>
+        </button>
+        <div class="faq-answer">
+          <div class="answer-inner">
+            <div class="answer-content">
+              <p>
+                برای فعال‌سازی امکانات اشتراکی، وارد بخش <strong>فعال‌سازی</strong> در منوی پایین اپلیکیشن شوید.
+              </p>
+              <ul>
+                <li>طرح موردنظر خود را انتخاب کنید.</li>
+                <li>توضیحات، امکانات و مدت اعتبار آن را بررسی کنید.</li>
+                <li>مراحل ثبت و پرداخت را طبق راهنمای همان صفحه انجام دهید.</li>
+                <li>پس از تأیید فعال‌سازی، از امکانات طرح خود استفاده کنید.</li>
+              </ul>
+              <div class="answer-highlight">
+                جزئیات قیمت، مدت اعتبار و شرایط هر طرح در صفحه فعال‌سازی نمایش داده می‌شود.
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 7 -->
+      <article class="faq-item">
+        <button class="faq-question" type="button" aria-expanded="false">
+          <span class="question-number">۰۷</span>
+          <span class="question-text">طرح الماس چیست؟</span>
+          <span class="chevron">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </span>
+        </button>
+        <div class="faq-answer">
+          <div class="answer-inner">
+            <div class="answer-content">
+              <p>
+                طرح الماس، سطح ویژه اشتراک Ai-Sinova است که برای کاربرانی در نظر گرفته شده که می‌خواهند از امکانات کامل‌تر و تجربه شخصی‌سازی‌شده‌تری استفاده کنند.
+              </p>
+              <p>
+                امکانات دقیق، محدودیت‌ها، مدت اعتبار و شرایط استفاده از طرح الماس در صفحه فعال‌سازی حساب درج می‌شود. پیش از خرید، حتماً جزئیات همان صفحه را بررسی کنید تا با امکانات طرح انتخابی خود آشنا باشید.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 8 -->
+      <article class="faq-item">
+        <button class="faq-question" type="button" aria-expanded="false">
+          <span class="question-number">۰۸</span>
+          <span class="question-text">در صورت عدم رضایتمندی از اپلیکیشن چه باید کرد؟</span>
+          <span class="chevron">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </span>
+        </button>
+        <div class="faq-answer">
+          <div class="answer-inner">
+            <div class="answer-content">
+              <p>
+                رضایت کاربران برای Ai-Sinova اهمیت دارد. اگر در استفاده از برنامه با مشکل فنی، اختلال در صدا، ناهماهنگی یا تجربه‌ای متفاوت از انتظار خود مواجه شدید، ابتدا موضوع را از طریق پشتیبانی اعلام کنید.
+              </p>
+              <p>
+                درخواست شما باید همراه با توضیح مشکل و مشخصات دستگاه بررسی شود تا امکان رفع ایراد یا ارائه راهنمایی مناسب وجود داشته باشد.
+              </p>
+              <p>
+                شرایط لغو اشتراک یا بازگشت وجه، در صورت وجود، تابع مقررات اعلام‌شده هنگام خرید و قوانین مربوط به همان سرویس است. لطفاً پیش از خرید، شرایط بازپرداخت را در صفحه فعال‌سازی مطالعه کنید.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 9 -->
+      <article class="faq-item">
+        <button class="faq-question" type="button" aria-expanded="false">
+          <span class="question-number">۰۹</span>
+          <span class="question-text">حق اختصاصی ثبت نوآوری به چه معناست؟</span>
+          <span class="chevron">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </span>
+        </button>
+        <div class="faq-answer">
+          <div class="answer-inner">
+            <div class="answer-content">
+              <p>
+                منظور از حقوق اختصاصی نوآوری، حفاظت از ایده‌ها، طراحی‌ها، روش‌های فنی و بخش‌های خلاقانه‌ای است که در توسعه این محصول به کار رفته‌اند.
+              </p>
+              <p>
+                حقوق مربوط به اختراع یا ثبت رسمی، در حدود موضوع، دامنه و مدت اعتبار گواهی صادرشده و قوانین مرجع ثبت قابل استناد است. بنابراین هرگونه ادعای ثبت رسمی باید بر اساس مستندات و شماره ثبت معتبر بررسی شود.
+              </p>
+              <div class="answer-highlight">
+                استفاده یا بازتولید غیرمجاز از اجزای اختصاصی نرم‌افزار، خارج از مجوزهای قانونی، می‌تواند مشمول پیگیری حقوقی باشد.
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 10 -->
+      <article class="faq-item">
+        <button class="faq-question" type="button" aria-expanded="false">
+          <span class="question-number">۱۰</span>
+          <span class="question-text">آیا این نوآوری با قوانین کپی‌رایت در تضاد است؟</span>
+          <span class="chevron">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </span>
+        </button>
+        <div class="faq-answer">
+          <div class="answer-inner">
+            <div class="answer-content">
+              <p>
+                فناوری ترجمه و دوبله هوشمند، به‌خودی‌خود به معنای مالکیت یا دریافت مجوز انتشار آثار سینمایی نیست. این فناوری یک ابزار برای پردازش و تبدیل صوت و زبان است.
+              </p>
+              <p>
+                رعایت حقوق مؤلفان، تهیه‌کنندگان، صاحبان پخش و سایر دارندگان حقوق اثر همچنان ضروری است. مجاز بودن دسترسی، ترجمه، دوبله، ضبط یا انتشار هر محتوا به نوع استفاده، مجوزهای دریافت‌شده و قوانین کشور مربوط بستگی دارد.
+              </p>
+              <p>
+                کاربران باید از محتوایی استفاده کنند که دسترسی و استفاده از آن برایشان مجاز است. وجود قابلیت ترجمه یا دوبله، مجوز تکثیر یا انتشار عمومی یک فیلم را ایجاد نمی‌کند.
+              </p>
+              <div class="answer-highlight">
+                احترام به حقوق صاحبان آثار، بخشی جدایی‌ناپذیر از استفاده مسئولانه از فناوری است.
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <div class="brand-signature">
+    <div class="signature-mark"><span>A</span></div>
+    <div>
+      <div class="signature-name">Ai-SINOVA</div>
+      <div class="signature-note">A SIGNATURE CINEMA EXPERIENCE</div>
+    </div>
+  </div>
+
+</main>
+</div>
+
+<!-- منوی چهارگانه -->
+<nav class="bottom-nav" aria-label="منوی اصلی">
+  <div class="nav-inner">
+
+    <a class="nav-item" href="./index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="7" width="18" height="14" rx="2"/>
+        <path d="M3 11h18M7 7l3 4M14 7l3 4"/>
+        <path d="M10 14l5 2.5-5 2.5V14Z" fill="currentColor" stroke="none"/>
+      </svg>
+      <span>خانه</span>
+    </a>
+
+    <a class="nav-item active" href="./guide.html" aria-current="page">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21V5.5Z"/>
+        <path d="M4 17a2.5 2.5 0 0 1 2.5-2.5H20M8 7h8M8 10h6"/>
+      </svg>
+      <span>راهنما</span>
+    </a>
+
+    <a class="nav-item" href="./activation.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="9" cy="8" r="4"/>
+        <path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 11l2 2 4-5"/>
+        <path d="M16 3h5v5"/>
+      </svg>
+      <span>فعال‌سازی</span>
+    </a>
+
+    <a class="nav-item" href="./voice.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="2" width="6" height="13" rx="3"/>
+        <path d="M5 11v1a7 7 0 0 0 14 0v-1M12 19v3M8 22h8"/>
+        <path d="M3 8v4M21 8v4"/>
+      </svg>
+      <span>صدای شما</span>
+    </a>
+
+  </div>
+</nav>
+
+<script>
+/* آکاردئون سوالات متداول */
+const faqItems = document.querySelectorAll('.faq-item');
+
+faqItems.forEach(item => {
+  const button = item.querySelector('.faq-question');
+
+  button.addEventListener('click', () => {
+    const isOpen = item.classList.contains('open');
+
+    item.classList.toggle('open', !isOpen);
+    button.setAttribute('aria-expanded', String(!isOpen));
+  });
+});
+</script>
+
+</body>
+</html>
