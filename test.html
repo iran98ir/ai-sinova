@@ -1,1 +1,74 @@
 
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>تست</title>
+<style>
+body{
+  margin:0;min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:24px;padding:24px;
+  font-family:system-ui,sans-serif;
+  background:#111;color:#fff;
+}
+h1{font-size:22px;margin:0;text-align:center}
+#url{
+  width:100%;max-width:600px;
+  padding:20px;border-radius:16px;
+  background:#222;border:2px solid #444;
+  font-size:16px;word-break:break-all;
+  text-align:center;direction:ltr;
+  min-height:80px;
+  display:flex;align-items:center;justify-content:center;
+}
+button{
+  width:100%;max-width:600px;
+  padding:32px;border:none;border-radius:20px;
+  font-size:26px;font-weight:900;
+  background:linear-gradient(135deg,#00e0b8,#0088ff);
+  color:#001;cursor:pointer;
+  box-shadow:0 10px 30px rgba(0,200,180,.4);
+}
+button:active{transform:scale(.97)}
+button.ok{background:linear-gradient(135deg,#4ade80,#22c55e)}
+</style>
+</head>
+<body>
+
+<h1>آدرس صفحه:</h1>
+<div id="url">...</div>
+
+<button id="copyBtn">📋 کپی کن</button>
+
+<script>
+const urlEl = document.getElementById('url');
+const btn = document.getElementById('copyBtn');
+const fullUrl = window.location.href;
+
+urlEl.textContent = fullUrl;
+
+btn.addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText(fullUrl);
+  } catch(e) {
+    const ta = document.createElement('textarea');
+    ta.value = fullUrl;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    ta.remove();
+  }
+  btn.textContent = '✅ کپی شد!';
+  btn.classList.add('ok');
+  setTimeout(() => {
+    btn.textContent = '📋 کپی کن';
+    btn.classList.remove('ok');
+  }, 2000);
+});
+</script>
+
+</body>
+</html>
