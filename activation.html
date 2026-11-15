@@ -511,23 +511,23 @@ main,.header,.brand-signature{position:relative;z-index:1}
 .form-message.info{background:#FFF6E6;border:1px solid #E9CE91;color:#805D25}
 .form-message.success{background:#EAF7EF;border:1px solid #A7D5B7;color:#286747}
 
-/* Success celebration */
+/* Success celebration — هماهنگ با صفحه اصلی */
 .success-celebration{
   display:none;
   margin-top:16px;
-  padding:22px 18px 20px;
+  padding:0;
   border-radius:20px;
   background:
-    radial-gradient(circle at 100% 0%,#FFF8E7E8,transparent 40%),
-    linear-gradient(145deg,#FFFDF9 0%,#FFF3E5 45%,#FFE9D6 100%);
-  border:1.5px solid #E8C79B;
-  box-shadow:
-    0 18px 40px #A85C2A1A,
-    inset 0 1px 0 #FFFFFF,
-    inset 0 -3px 12px #E8B57A1A;
+    radial-gradient(ellipse at 50% -10%,#FFB17C 0%,transparent 45%),
+    radial-gradient(ellipse at 0% 35%,rgba(255,178,117,.65),transparent 38%),
+    radial-gradient(ellipse at 100% 70%,rgba(160,52,22,.42),transparent 40%),
+    linear-gradient(145deg,#F58B4E 0%,#E96D36 35%,#D95527 70%,#B94320 100%);
+  border:1px solid rgba(255,222,195,.55);
+  box-shadow:0 25px 60px #5B220C3D,inset 0 1px 0 rgba(255,255,255,.25);
   position:relative;
   overflow:hidden;
   text-align:center;
+  color:#FFF3E7;
 }
 .success-celebration.show{display:block;animation:successIn .6s cubic-bezier(.2,.8,.2,1)}
 @keyframes successIn{
@@ -536,17 +536,19 @@ main,.header,.brand-signature{position:relative;z-index:1}
 }
 .success-celebration:before{
   content:"";position:absolute;left:0;right:0;top:0;height:4px;
-  background:linear-gradient(90deg,#F9C69F,#F47735,#F9C69F)
+  background:linear-gradient(90deg,#FFD4B2,#FFF3E7,#FFD4B2)
+}
+.success-celebration-inner{
+  padding:26px 20px 22px;
+  position:relative;z-index:2;
 }
 .success-icon-wrap{
-  width:64px;height:64px;margin:0 auto 14px;
+  width:72px;height:72px;margin:0 auto 16px;
   display:grid;place-items:center;border-radius:50%;
-  background:linear-gradient(145deg,#FFB17F,#F47735);
-  box-shadow:
-    0 12px 28px #E96C3550,
-    inset 0 2px 0 #FFFFFF99,
-    0 0 0 6px #FFF3E5;
-  color:white;
+  background:linear-gradient(145deg,rgba(255,246,229,.35),rgba(255,220,190,.10));
+  border:2px solid rgba(255,245,226,.75);
+  box-shadow:0 12px 32px rgba(110,37,13,.35),inset 0 2px 0 rgba(255,255,255,.5);
+  color:#FFF8F0;
   animation:successPop .7s cubic-bezier(.2,1.4,.4,1) .15s both;
 }
 @keyframes successPop{
@@ -554,57 +556,61 @@ main,.header,.brand-signature{position:relative;z-index:1}
   60%{transform:scale(1.15)}
   100%{transform:scale(1);opacity:1}
 }
-.success-icon-wrap svg{width:34px;height:34px}
+.success-icon-wrap svg{width:38px;height:38px;filter:drop-shadow(0 2px 4px rgba(60,20,8,.4))}
 .success-kicker{
-  font-size:11px;letter-spacing:2.4px;font-weight:900;
-  color:#C2643B;margin-bottom:8px;
-  display:inline-flex;align-items:center;gap:7px;
+  font-size:11px;letter-spacing:2.6px;font-weight:900;
+  color:#FFF0D4;margin-bottom:10px;
+  display:inline-flex;align-items:center;gap:8px;
+  opacity:.92;
 }
 .success-kicker:before,.success-kicker:after{
-  content:"";width:18px;height:1.5px;background:#E5B99D;border-radius:2px
+  content:"";width:20px;height:1.5px;background:rgba(255,240,212,.55);border-radius:2px
 }
 .success-title{
-  font-size:clamp(20px,5.4vw,26px);
+  font-size:clamp(22px,5.6vw,28px);
   font-weight:900;line-height:1.5;
-  color:#2F3142;
-  margin:0 0 10px;
-  letter-spacing:-.6px;
+  color:#FFF8F0;
+  margin:0 0 12px;
+  letter-spacing:-.7px;
+  text-shadow:0 2px 10px rgba(80,25,10,.35);
 }
 .success-title .accent{
-  color:var(--orange-deep);
+  color:#FFD4A8;
   position:relative;white-space:nowrap;
+  text-shadow:0 0 22px rgba(255,180,120,.55)
 }
 .success-title .accent:after{
   content:"";position:absolute;right:0;bottom:-2px;
   height:3px;width:100%;border-radius:6px;
-  background:linear-gradient(90deg,#FFC69F,#F47735)
+  background:linear-gradient(90deg,transparent,#FFD4A8,transparent)
 }
 .success-text{
-  font-size:14.5px;line-height:2.05;font-weight:700;
-  color:#6A6672;margin:0 0 16px;
-  max-width:420px;margin-left:auto;margin-right:auto;
+  font-size:15px;line-height:2.05;font-weight:600;
+  color:#FFE8D5;margin:0 0 18px;
+  max-width:430px;margin-left:auto;margin-right:auto;
 }
-.success-text strong{color:#B9512A;font-weight:900}
+.success-text strong{color:#FFF8F0;font-weight:900}
 .success-badges{
   display:flex;justify-content:center;gap:8px;flex-wrap:wrap;
-  margin-bottom:14px;
+  margin-bottom:16px;
 }
 .success-badge{
   display:inline-flex;align-items:center;gap:6px;
-  padding:7px 12px;border-radius:30px;
-  background:#FFFFFFB8;
-  border:1px solid #F1D8C6;
-  color:#80543B;font-size:12px;font-weight:900;
-  box-shadow:0 4px 12px #9D5D350A;
+  padding:8px 13px;border-radius:30px;
+  background:rgba(103,35,14,.28);
+  border:1px solid rgba(255,239,220,.35);
+  color:#FFF3E7;font-size:12px;font-weight:900;
+  backdrop-filter:blur(10px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.15);
 }
-.success-badge svg{width:14px;height:14px;color:#E96B34}
+.success-badge svg{width:14px;height:14px;color:#FFD4A8}
 .success-footer{
-  padding-top:14px;
-  border-top:1px dashed #E9C6A7;
-  color:#8A7A72;font-size:12.5px;font-weight:800;
+  padding-top:15px;
+  border-top:1px dashed rgba(255,235,218,.32);
+  color:#FFE0C9;font-size:12.5px;font-weight:800;
   line-height:1.9;
 }
-.success-footer strong{color:#B9522A;font-weight:900}
+.success-footer strong{color:#FFF8F0;font-weight:900}
 
 /* Footer */
 .footer-signature{
@@ -1073,33 +1079,35 @@ main,.header,.brand-signature{position:relative;z-index:1}
       <div class="form-message" id="formMessage" role="status" aria-live="polite"></div>
 
       <div class="success-celebration" id="successCelebration" role="status" aria-live="polite">
-        <div class="success-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m4 12 5 5L20 6"/>
-          </svg>
-        </div>
-        <div class="success-kicker">MEMBERSHIP REQUESTED</div>
-        <h3 class="success-title">
-          انتخاب <span class="accent">هوشمندانه‌ات</span><br>
-          ثبت شد.
-        </h3>
-        <p class="success-text">
-          درخواست فعال‌سازی اشتراکت با موفقیت ثبت شد و
-          <strong>در صف بررسی تیم سینوا</strong> قرار گرفت.
-          به‌زودی برای تأیید نهایی با تو در ارتباط خواهیم بود.
-        </p>
-        <div class="success-badges">
-          <span class="success-badge">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m4 12 5 5L20 6"/></svg>
-            پرداخت ثبت شد
-          </span>
-          <span class="success-badge">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-            بررسی در کمتر از ۲۴ ساعت
-          </span>
-        </div>
-        <div class="success-footer">
-          ✦ به جمع همراهان <strong>Ai-Sinova</strong> خوش آمدی ✦
+        <div class="success-celebration-inner">
+          <div class="success-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m4 12 5 5L20 6"/>
+            </svg>
+          </div>
+          <div class="success-kicker">MEMBERSHIP REQUESTED</div>
+          <h3 class="success-title">
+            انتخاب <span class="accent">هوشمندانه‌ات</span><br>
+            ثبت شد.
+          </h3>
+          <p class="success-text">
+            درخواست فعال‌سازی اشتراکت با موفقیت ثبت شد و
+            <strong>در صف بررسی تیم سینوا</strong> قرار گرفت.
+            به‌زودی برای تأیید نهایی با تو در ارتباط خواهیم بود.
+          </p>
+          <div class="success-badges">
+            <span class="success-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m4 12 5 5L20 6"/></svg>
+              پرداخت ثبت شد
+            </span>
+            <span class="success-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              بررسی در کمتر از ۲۴ ساعت
+            </span>
+          </div>
+          <div class="success-footer">
+            ✦ به جمع همراهان <strong>Ai-Sinova</strong> خوش آمدی ✦
+          </div>
         </div>
       </div>
 
@@ -1589,4 +1597,4 @@ form.addEventListener('input', ()=>{
 });
 </script>
 </body>
-  </html>
+          </html>
