@@ -604,18 +604,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #FFF5E9;outline-offset:5p
 }
 .rec-limit{
   font-size:12px;color:#FFE2CB;font-weight:700;
-  margin:0 0 18px;
-}
-.rec-live-wave{
-  display:flex;align-items:center;justify-content:center;gap:3px;
-  height:36px;margin:0 0 24px;
-  opacity:.3;transition:opacity .3s;
-}
-.rec-modal.recording .rec-live-wave{opacity:1}
-.rec-live-wave i{
-  display:block;width:3px;border-radius:3px;
-  background:linear-gradient(to top,#FFD4B2,#FFF0D4);
-  height:6px;transition:height .15s;
+  margin:0 0 24px;
 }
 .rec-actions{
   display:flex;gap:10px;
@@ -823,7 +812,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #FFF5E9;outline-offset:5p
 
     <h1 class="voice-title">
       فیلم رو با <span class="glow">صدای خودت</span><br>
-      و رفیقات ببین <span class="emoji">🎬</span>
+      و دوستان یا خانوادت ببین <span class="emoji">🎬</span>
     </h1>
 
     <p class="voice-desc">
@@ -849,7 +838,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #FFF5E9;outline-offset:5p
       <div class="info-title">چطوری کار می‌کنه؟ 🤔</div>
       <p class="info-desc">
         صدات توسط <strong>هوش مصنوعی</strong> آنالیز می‌شه و ما اون رو برای دوبله نگه می‌داریم.
-        بعدش هر شخصیت فیلم، یکی از این صداها رو می‌گیره و فیلم با صدای تو و دوستات پخش می‌شه. جملات مهم نیستن — <strong>خود صداست که مهمه</strong>.
+        بعدش هر شخصیت فیلم، یکی از این صداها رو می‌گیره و فیلم با صدای تو و دوستانت پخش می‌شه. جملات مهم نیستن — <strong>خود صداست که مهمه</strong>.
       </p>
     </div>
   </div>
@@ -924,10 +913,6 @@ button:focus-visible,a:focus-visible{outline:3px solid #FFF5E9;outline-offset:5p
 
     <p class="rec-time" id="recTime">۰۰:۰۰</p>
     <p class="rec-limit">حداکثر ۳۰ ثانیه</p>
-
-    <div class="rec-live-wave" id="recWave">
-      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-    </div>
 
     <div class="rec-actions">
       <button class="rec-btn cancel" id="recCancel" type="button">
@@ -1032,7 +1017,6 @@ const recBackdrop = document.getElementById('recBackdrop');
 const recCancel = document.getElementById('recCancel');
 const recStart = document.getElementById('recStart');
 const recTime = document.getElementById('recTime');
-const recWave = document.getElementById('recWave');
 const recStatus = document.getElementById('recStatus');
 const recStatusText = document.getElementById('recStatusText');
 const recSub = document.getElementById('recSub');
@@ -1048,7 +1032,6 @@ let elapsed = 0;
 let isRecording = false;
 let currentSlot = null;
 let toastTimer = null;
-let waveTimer = null;
 
 function loadSlots(){
   try{
@@ -1214,24 +1197,12 @@ function startRecording(){
       finalizeRecording();
     }
   }, 1000);
-
-  // موج زنده شبیه‌سازی
-  waveTimer = setInterval(() => {
-    const bars = recWave.querySelectorAll('i');
-    bars.forEach(b => {
-      const h = 6 + Math.random() * 30;
-      b.style.height = h + 'px';
-    });
-  }, 120);
 }
 
 function stopRecording(){
   if(timer){ clearInterval(timer); timer = null; }
-  if(waveTimer){ clearInterval(waveTimer); waveTimer = null; }
   isRecording = false;
   recModal.classList.remove('recording');
-  const bars = recWave.querySelectorAll('i');
-  bars.forEach(b => b.style.height = '6px');
 }
 
 function finalizeRecording(){
@@ -1294,4 +1265,4 @@ updateProgress();
 </script>
 
 </body>
-  </html>
+</html>
