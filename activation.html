@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#17100C">
+<meta name="theme-color" content="#E96D36">
 <title>فعال‌سازی اشتراک | Ai-Sinova</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,728 +13,1548 @@
 
 <style>
 :root{
-  --bg:#17100c;
-  --bg2:#21140e;
-  --orange:#ff762e;
-  --orange2:#ff9a51;
-  --cream:#fff1df;
-  --muted:#c4a995;
-  --line:rgba(255,207,165,.13);
-  --gold:#f5c77d;
-  --green:#80d7a3;
+  --orange:#F47B3E;
+  --orange2:#E7652E;
+  --orange3:#B83F1B;
+  --cream:#FFF3E7;
+  --cream2:#FFE3CD;
+  --dark:#351C16;
+  --dark2:#512719;
+  --ink:#46271D;
+  --muted:#956E5D;
+  --paper:#FFF9F3;
+  --white:#FFFFFF;
+  --line:#F1D9C8;
+  --shadow:0 18px 50px rgba(116,55,28,.13);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
   margin:0;
-  font-family:Vazirmatn,sans-serif;
-  color:#fff7ef;
-  background:
-    radial-gradient(ellipse at 50% -10%,rgba(255,112,37,.27),transparent 42%),
-    radial-gradient(ellipse at 100% 42%,rgba(180,68,24,.12),transparent 35%),
-    radial-gradient(ellipse at 0% 75%,rgba(255,125,46,.08),transparent 35%),
-    linear-gradient(160deg,#21140e 0%,#140e0a 52%,#1d100b 100%);
   min-height:100vh;
-  padding-bottom:105px;
+  color:var(--ink);
+  font-family:'Vazirmatn',sans-serif;
+  font-size:17px;
   overflow-x:hidden;
+  padding-bottom:112px;
+  background:
+    radial-gradient(ellipse at 50% -8%,#FFE4CE 0%,transparent 42%),
+    radial-gradient(ellipse at 0% 40%,rgba(255,205,165,.65),transparent 38%),
+    radial-gradient(ellipse at 100% 75%,rgba(255,185,139,.38),transparent 42%),
+    linear-gradient(145deg,#FFF8F0 0%,#FFF0E4 48%,#FFE7D5 100%);
 }
 body:before{
   content:"";
   position:fixed;inset:0;pointer-events:none;z-index:0;
-  opacity:.12;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.24'/%3E%3C/svg%3E");
+  opacity:.10;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
 }
-button,input{font:inherit}
+button,input,select{font:inherit}
 button{cursor:pointer}
-.page{position:relative;z-index:1;width:min(100% - 28px,850px);margin:auto}
-header{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:23px 2px 20px;
+a{color:inherit;text-decoration:none}
+button:focus-visible,a:focus-visible,input:focus-visible{
+  outline:3px solid var(--orange2);outline-offset:4px
 }
-.brand{display:flex;align-items:center;gap:11px}
-.brand-mark{
-  width:43px;height:43px;border-radius:15px;
-  display:grid;place-items:center;
-  background:linear-gradient(145deg,#ffb36d,#f15b1e);
-  color:#29130a;font-size:22px;font-weight:900;
-  box-shadow:0 7px 24px #f56c2d55,inset 0 1px 1px #fff8;
+.container{width:min(100% - 30px,760px);margin:auto;position:relative;z-index:1}
+
+/* Atmosphere */
+.ambient{
+  position:fixed;pointer-events:none;z-index:0;border-radius:50%;
+  filter:blur(5px);mix-blend-mode:multiply;opacity:.55
 }
-.brand-name{font-size:19px;font-weight:900;letter-spacing:-.6px}
-.brand-sub{font-size:10px;color:#c8a38a;margin-top:-3px}
-.header-tag{
-  border:1px solid #ff9b5844;
-  color:#ffc18f;background:#ff8a2510;
+.ambient.one{
+  width:260px;height:260px;top:16%;right:-170px;
+  background:radial-gradient(circle,rgba(255,174,119,.40),transparent 70%)
+}
+.ambient.two{
+  width:300px;height:300px;bottom:8%;left:-190px;
+  background:radial-gradient(circle,rgba(244,123,62,.17),transparent 70%)
+}
+
+/* Header */
+.header{
+  padding:22px 0 15px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px
+}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-symbol{
+  width:56px;height:56px;position:relative;display:grid;place-items:center;
+  flex-shrink:0;border-radius:19px;
+  background:linear-gradient(145deg,#F7A16E,#E45E2C);
+  border:1px solid rgba(255,255,255,.7);
+  box-shadow:0 9px 24px rgba(171,73,34,.22),inset 0 1px 0 #ffffff88;
+  overflow:hidden
+}
+.brand-symbol:before{
+  content:"";position:absolute;inset:5px;border-radius:15px;
+  border:1px solid rgba(255,255,255,.4)
+}
+.brand-symbol svg{width:39px;height:39px;position:relative}
+.brand-name{font-size:23px;font-weight:900;letter-spacing:-.8px;line-height:1.2;color:var(--dark)}
+.brand-sub{
+  font-size:9px;letter-spacing:2px;font-weight:900;
+  color:#A85B3C;margin-top:5px
+}
+.header-status{
+  display:flex;align-items:center;gap:7px;
+  border:1px solid #F0D5C2;background:#FFFFFFA8;
+  border-radius:30px;padding:9px 12px;
+  color:#9B5535;font-size:12px;font-weight:900;
+  box-shadow:0 5px 18px rgba(130,67,38,.06)
+}
+.header-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:#E8793F;box-shadow:0 0 10px #F4A16F
+}
+
+/* Signature */
+.signature{
+  display:flex;align-items:center;gap:10px;margin:0 0 17px;color:#B56A49
+}
+.signature-line{
+  height:1px;flex:1;
+  background:linear-gradient(90deg,transparent,#D9A184)
+}
+.signature-text{
+  font-size:10px;letter-spacing:2px;font-weight:900;white-space:nowrap
+}
+.signature-star{font-size:14px;color:var(--orange2)}
+
+/* Film strip */
+.film-edge{
+  display:flex;align-items:center;gap:8px;padding:7px 10px;
+  border-radius:12px;background:#5B2A1C;
+  border:1px solid rgba(255,255,255,.25);
+  margin-bottom:19px;box-shadow:0 8px 20px rgba(73,31,18,.12)
+}
+.holes{display:flex;gap:6px;flex:1;justify-content:space-between}
+.holes i{display:block;width:9px;height:6px;border-radius:2px;background:#F9C6A5}
+.film-label{font-size:9px;letter-spacing:2px;font-weight:900;color:#FFE5D1;white-space:nowrap}
+
+/* Hero */
+.hero{
+  position:relative;overflow:hidden;isolation:isolate;
+  border-radius:30px;padding:26px 23px 24px;
+  background:
+    radial-gradient(circle at 90% 10%,rgba(255,169,112,.25),transparent 32%),
+    linear-gradient(145deg,#FFFDF9 0%,#FFF0E4 100%);
+  border:1px solid #F0D5C2;
+  box-shadow:0 20px 55px rgba(122,57,29,.10),inset 0 1px 0 #fff
+}
+.hero:before{
+  content:"";position:absolute;z-index:-1;
+  width:260px;height:260px;left:-125px;top:-135px;border-radius:50%;
+  border:1px solid #EFB58F;
+  box-shadow:0 0 0 18px #F5C5A01c,0 0 0 42px #F5C5A014
+}
+.hero-kicker{
+  display:inline-flex;align-items:center;gap:8px;
   padding:8px 12px;border-radius:30px;
-  font-size:11px;font-weight:700;
+  background:#FCE5D5;border:1px solid #F3C7AA;
+  color:#A84D29;font-size:12px;font-weight:900
 }
-.hero{text-align:center;padding:24px 5px 27px}
-.eyebrow{
-  display:inline-flex;align-items:center;gap:7px;
-  border:1px solid #ff9b5844;
-  border-radius:30px;padding:7px 13px;
-  color:#ffc18e;background:#ff7a2410;
-  font-size:11px;font-weight:700;
+.hero-kicker i{
+  width:7px;height:7px;border-radius:50%;background:#E96D36;
+  box-shadow:0 0 9px #E96D36
 }
-.eyebrow i{
-  width:7px;height:7px;border-radius:50%;
-  background:#ff9b54;box-shadow:0 0 12px #ff8b39;
+.hero-title{
+  margin:20px 0 9px;font-size:clamp(34px,8vw,48px);
+  line-height:1.55;font-weight:900;letter-spacing:-1.3px;color:#49271C
 }
-.hero h1{
-  margin:17px 0 10px;
-  font-size:clamp(29px,7vw,49px);
-  line-height:1.45;font-weight:900;letter-spacing:-1.6px;
+.hero-title .accent{
+  color:#E7652E;
+  text-shadow:0 5px 18px rgba(231,101,46,.16);
+  position:relative;white-space:nowrap
 }
-.hero h1 span{
-  background:linear-gradient(90deg,#ffd2a5,#ff813b,#ffc18b);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
+.hero-title .accent:after{
+  content:"";position:absolute;bottom:1px;right:0;left:0;height:8px;
+  border-radius:20px;background:#F6B68F;opacity:.48;z-index:-1
 }
-.hero p{
-  max-width:590px;margin:0 auto;
-  color:#d2b9a6;font-size:14px;line-height:2.1;
+.hero-desc{
+  margin:0;max-width:540px;color:#795849;
+  font-size:16px;line-height:2.05;font-weight:600
 }
-.hero-note{
-  display:inline-block;margin-top:16px;
-  color:#ffe2c8;font-size:12px;font-weight:700;
-  padding:9px 14px;border-radius:12px;
-  background:rgba(255,131,53,.09);
-  border:1px solid rgba(255,153,86,.18);
+.hero-desc strong{color:#B84C26;font-weight:900}
+.hero-bottom{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:10px;margin-top:22px;padding-top:15px;
+  border-top:1px solid #F0D9C8
 }
-.section-heading{text-align:center;margin:15px 0 20px}
-.section-heading h2{font-size:22px;font-weight:900;margin:0 0 7px}
-.section-heading p{font-size:12px;color:#bda18e;margin:0;line-height:1.9}
-.plans{display:grid;gap:21px;margin:0 auto 36px}
-.plan{
-  position:relative;isolation:isolate;
-  border-radius:25px;padding:25px 22px 21px;
-  overflow:hidden;cursor:pointer;
-  border:1px solid rgba(255,190,139,.22);
+.hero-bottom strong{font-size:13px;color:#79442D;font-weight:900}
+.hero-bottom span{font-size:9px;letter-spacing:1.4px;color:#B27A60;font-weight:900}
+
+/* Trust ribbon */
+.trust-ribbon{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:15px 0 28px
+}
+.trust-item{
+  min-height:76px;padding:11px 7px;border-radius:17px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+  background:#FFFFFFA8;border:1px solid #F1DCCB;
+  box-shadow:0 7px 20px rgba(114,57,29,.045);
+  text-align:center
+}
+.trust-item svg{width:22px;height:22px;color:#D96636}
+.trust-item strong{font-size:11px;color:#75412B;font-weight:900}
+.trust-item span{font-size:9px;color:#A27A66;font-weight:600}
+
+/* Section heading */
+.section-heading{margin:27px 0 15px}
+.section-eyebrow{
+  display:flex;align-items:center;gap:8px;
+  color:#C45B32;font-size:11px;font-weight:900;letter-spacing:.7px
+}
+.section-eyebrow:before{
+  content:"";width:22px;height:2px;background:#E87945;border-radius:5px
+}
+.section-heading h2{
+  margin:7px 0 4px;font-size:27px;line-height:1.55;
+  font-weight:900;color:#48271C
+}
+.section-heading p{
+  margin:0;color:#94715F;font-size:13px;line-height:1.9;font-weight:600
+}
+.section-heading h2 em{font-style:normal;color:#E7652E}
+
+/* Plan cards */
+.plans{display:grid;gap:17px}
+.plan-card{
+  position:relative;isolation:isolate;overflow:hidden;
+  border-radius:25px;padding:21px 19px 18px;
+  cursor:pointer;transition:transform .25s,box-shadow .25s,border-color .25s;
+  border:2px solid transparent;
+  box-shadow:0 14px 30px rgba(83,42,24,.12);
+  -webkit-tap-highlight-color:transparent
+}
+.plan-card:active{transform:scale(.988)}
+.plan-card:focus-visible{outline:3px solid #B94B25;outline-offset:4px}
+.plan-card.platinum{
+  color:#FFF7F0;
   background:
-    radial-gradient(ellipse at 85% 0%,rgba(255,158,83,.18),transparent 42%),
-    linear-gradient(145deg,#392116 0%,#24150f 50%,#1b100c 100%);
-  box-shadow:
-    0 18px 38px #0008,
-    0 7px 0 #110b08,
-    inset 0 1px 1px #ffdfc033,
-    inset 0 -1px 0 #0008;
-  transform:perspective(1000px) rotateX(1deg);
-  transition:.25s ease;
+    radial-gradient(circle at 88% 8%,rgba(255,255,255,.19),transparent 32%),
+    linear-gradient(145deg,#A75A39 0%,#6F3929 55%,#47251D 100%);
+  border-color:#C98D6D;
+  box-shadow:0 17px 35px rgba(89,42,25,.22),inset 0 1px 0 #ffffff55
 }
-.plan:before{
-  content:"";position:absolute;inset:0;z-index:-1;
-  background:linear-gradient(125deg,transparent 20%,#ffffff08 42%,transparent 64%);
-  pointer-events:none;
-}
-.plan:after{
-  content:"";position:absolute;width:190px;height:190px;
-  border-radius:50%;top:-120px;left:-60px;
-  background:#ff8c3b22;filter:blur(35px);z-index:-1;
-}
-.plan.selected{
-  border-color:#ffad71;
-  box-shadow:0 0 0 2px #ff873b44,0 22px 48px #0009,
-  0 7px 0 #110b08,0 0 35px #ff782b24,inset 0 1px 1px #fff5;
-  transform:perspective(1000px) translateY(-3px);
-}
-.plan.diamond{
+.plan-card.diamond{
+  color:#FFF9F1;
   background:
-    radial-gradient(ellipse at 90% 0%,rgba(255,206,132,.23),transparent 45%),
-    linear-gradient(145deg,#45301b 0%,#2c1d11 52%,#1b120b 100%);
-  border-color:#d9ad6a66;
+    radial-gradient(circle at 90% 8%,rgba(255,221,173,.35),transparent 33%),
+    radial-gradient(circle at 0% 100%,rgba(255,154,87,.18),transparent 40%),
+    linear-gradient(145deg,#693322 0%,#3D2119 55%,#281713 100%);
+  border-color:#D99A68;
+  box-shadow:0 20px 42px rgba(75,34,19,.26),inset 0 1px 0 #ffffff40
 }
-.plan.diamond.selected{
-  border-color:#f4ce8b;
-  box-shadow:0 0 0 2px #e8bd7544,0 22px 48px #0009,
-  0 7px 0 #110b08,0 0 40px #e8b85c22,inset 0 1px 1px #fff7;
+.plan-card.selected{
+  border-color:#FFB37F;
+  box-shadow:0 0 0 3px #F28A5233,0 22px 48px rgba(92,42,20,.24),inset 0 1px 0 #ffffff55;
+  transform:translateY(-3px)
 }
-.plan-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.plan-label{display:flex;align-items:center;gap:10px}
+.plan-card:before{
+  content:"";position:absolute;z-index:-1;
+  width:210px;height:210px;border-radius:50%;left:-90px;bottom:-130px;
+  border:1px solid #ffffff25;
+  box-shadow:0 0 0 18px #ffffff08,0 0 0 38px #ffffff06
+}
+.plan-card:after{
+  content:"";position:absolute;z-index:-1;
+  width:130px;height:130px;border-radius:50%;right:-65px;top:-80px;
+  background:#ffffff0b
+}
+.plan-top{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:12px
+}
+.plan-type{display:flex;align-items:center;gap:11px}
 .plan-icon{
-  width:45px;height:45px;border-radius:15px;
-  display:grid;place-items:center;font-size:22px;
-  color:#2a150b;background:linear-gradient(145deg,#ffc18b,#f56d2a);
-  box-shadow:0 7px 20px #f77b343b,inset 0 1px 2px #fff8;
+  width:48px;height:48px;border-radius:16px;display:grid;place-items:center;
+  background:#FFFFFF1B;border:1px solid #FFFFFF35;
+  box-shadow:inset 0 1px 0 #ffffff44
 }
-.diamond .plan-icon{
-  background:linear-gradient(145deg,#fff0c4,#c99a4c);
-  color:#36220c;box-shadow:0 7px 20px #d9ad6a38;
+.plan-icon svg{width:27px;height:27px}
+.plan-name{font-size:22px;font-weight:900;line-height:1.35}
+.plan-tagline{font-size:11px;color:#FFE0CA;font-weight:600;margin-top:3px}
+.plan-label{
+  font-size:10px;font-weight:900;padding:7px 10px;border-radius:30px;
+  background:#FFFFFF20;border:1px solid #FFFFFF3A;color:#FFF0E4;white-space:nowrap
 }
-.plan-title{font-size:20px;font-weight:900}
-.plan-subtitle{font-size:11px;color:#d0ad94;margin-top:1px}
-.plan-badge{
-  border-radius:30px;padding:7px 11px;
-  font-size:10px;font-weight:800;
-  color:#ffcfaa;background:#ff873b19;border:1px solid #ffad7140;
-  white-space:nowrap;
+.diamond .plan-label{
+  background:#F5B56F;color:#482719;border-color:#FFD6A4
 }
-.diamond .plan-badge{color:#ffe2a9;background:#e9bd6318;border-color:#e9bd6345}
-.plan-description{
-  color:#e2c9b5;font-size:13px;line-height:2;
-  margin:18px 0 15px;
+.plan-price-area{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  gap:12px;margin:21px 0 15px
 }
+.plan-price{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.plan-price strong{
+  font-size:clamp(30px,8vw,39px);font-weight:900;line-height:1.2;
+  letter-spacing:-1px;color:#FFF9F1
+}
+.plan-price small{font-size:12px;color:#F8D8C3;font-weight:800}
+.plan-duration{
+  text-align:left;color:#FFE4D1;font-size:11px;font-weight:800;line-height:1.8
+}
+.plan-duration b{display:block;font-size:17px;color:white;font-weight:900}
+.diamond .old-price{
+  display:block;color:#E8BFA4;text-decoration:line-through;
+  font-size:13px;font-weight:700;margin-bottom:3px
+}
+.diamond .special-price{color:#FFD39E}
+.limited{
+  display:flex;align-items:center;gap:7px;
+  background:linear-gradient(90deg,#FFE1B6,#F5B66E);
+  color:#59301D;border-radius:12px;padding:10px 12px;
+  font-size:12px;font-weight:900;margin:13px 0
+}
+.limited svg{width:18px;height:18px;flex-shrink:0}
 .plan-features{
-  display:grid;grid-template-columns:1fr 1fr;gap:10px;
-  padding:14px 0;border-top:1px solid #ffffff15;
-  border-bottom:1px solid #ffffff15;
+  display:grid;grid-template-columns:1fr 1fr;gap:10px 8px;
+  padding:14px 0 15px;border-top:1px solid #FFFFFF26;
+  border-bottom:1px solid #FFFFFF26
 }
-.feature{display:flex;align-items:center;gap:8px;color:#f1ddcc;font-size:12px}
-.check{
-  width:18px;height:18px;flex:0 0 18px;border-radius:50%;
-  display:grid;place-items:center;background:#78c99420;
-  color:#8ce0a7;font-size:11px;font-weight:900;
+.feature{
+  display:flex;align-items:center;gap:7px;
+  font-size:11px;color:#FFF0E4;font-weight:700;line-height:1.7
 }
-.price-row{
-  display:flex;align-items:end;justify-content:space-between;
-  gap:12px;margin-top:17px;
+.feature svg{width:16px;height:16px;flex-shrink:0;color:#FFD2AC}
+.plan-bottom{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  margin-top:15px
 }
-.price-caption{font-size:11px;color:#c4a38b}
-.price{font-size:31px;font-weight:900;line-height:1.4;color:#fff0df;letter-spacing:-1px}
-.price small{font-size:12px;color:#d8b69d;font-weight:600;letter-spacing:0}
-.old-price{font-size:13px;color:#b99b84;text-decoration:line-through;margin-bottom:1px}
-.discount-price{font-size:33px;font-weight:900;color:#ffd38e;line-height:1.4}
-.choose{
-  min-width:115px;text-align:center;
-  padding:12px 14px;border-radius:13px;
-  color:#281309;font-size:12px;font-weight:900;
-  background:linear-gradient(135deg,#ffc18c,#f97832);
-  box-shadow:0 5px 0 #a94419,0 9px 18px #0005;
+.plan-bottom-text{font-size:11px;color:#F7D8C5;font-weight:700;line-height:1.8}
+.select-plan{
+  display:flex;align-items:center;gap:7px;white-space:nowrap;
+  border:1px solid #FFFFFF5A;border-radius:30px;
+  padding:9px 13px;color:#FFF9F2;font-size:11px;font-weight:900;
+  background:#FFFFFF17;transition:.2s
 }
-.diamond .choose{
-  background:linear-gradient(135deg,#fff0c5,#d6a451);
-  box-shadow:0 5px 0 #8d642d,0 9px 18px #0005;
+.select-plan .radio-dot{
+  width:15px;height:15px;border-radius:50%;border:1.5px solid #FFE5D2;
+  display:grid;place-items:center
 }
-.plan.selected .choose{filter:brightness(1.08)}
-.selected-mark{
-  display:none;position:absolute;top:13px;left:14px;
-  width:25px;height:25px;border-radius:50%;
-  background:#8ee0a7;color:#173321;
-  place-items:center;font-size:14px;font-weight:900;
+.plan-card.selected .select-plan{background:#FFF1E4;color:#713A25;border-color:#FFF1E4}
+.plan-card.selected .radio-dot{background:#E7652E;border-color:#E7652E}
+.plan-card.selected .radio-dot:after{
+  content:"";width:5px;height:5px;background:white;border-radius:50%
 }
-.plan.selected .selected-mark{display:grid}
-.support-strip{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
-  margin:28px 0 37px;
+.plan-card.platinum .plan-price strong{color:#FFF4E9}
+
+/* Diamond urgency note */
+.urgency-note{
+  position:relative;margin:15px 0 26px;padding:15px 16px 15px 14px;
+  border-radius:18px;background:linear-gradient(110deg,#FFF0E2,#FFE4D0);
+  border:1px solid #F0C6A8;overflow:hidden
 }
-.support-item{
-  text-align:center;padding:15px 7px;
-  border:1px solid #ffbb8120;border-radius:15px;
-  background:linear-gradient(145deg,#ffffff09,#ffffff03);
+.urgency-note:before{
+  content:"";position:absolute;right:0;top:0;bottom:0;width:4px;background:#E7652E
 }
-.support-icon{font-size:21px;margin-bottom:7px}
-.support-item strong{display:block;font-size:11px;color:#ffe4cd}
-.support-item span{display:block;font-size:9px;color:#bda18e;margin-top:4px;line-height:1.7}
-.form-section{
-  border:1px solid #ffb77b2c;border-radius:25px;
-  background:
-    radial-gradient(ellipse at 100% 0%,#ff8c3212,transparent 40%),
-    linear-gradient(145deg,#2a1a12,#1c120d);
-  padding:23px 18px;
-  box-shadow:0 20px 50px #0007,inset 0 1px 1px #fff1;
+.urgency-title{font-size:14px;font-weight:900;color:#A74625;margin-bottom:5px}
+.urgency-note p{font-size:12px;color:#855A45;line-height:2;margin:0;font-weight:600}
+.urgency-note strong{color:#B84724;font-weight:900}
+
+/* Checkout */
+.checkout{
+  margin-top:30px;border-radius:28px;padding:20px 17px 19px;
+  background:linear-gradient(145deg,#FFFFFF 0%,#FFF8F1 100%);
+  border:1px solid #F0D7C6;
+  box-shadow:0 18px 45px rgba(109,53,27,.11),inset 0 1px 0 white
 }
-.form-heading{text-align:center;margin-bottom:22px}
-.form-heading .step{
-  display:inline-block;padding:6px 12px;border-radius:20px;
-  color:#ffc18e;background:#ff873b16;border:1px solid #ff873b30;
-  font-size:10px;font-weight:800;
+.checkout-heading{
+  display:flex;align-items:center;gap:12px;margin-bottom:17px
 }
-.form-heading h2{font-size:23px;font-weight:900;margin:12px 0 5px}
-.form-heading p{font-size:12px;color:#c4a995;line-height:1.9;margin:0}
-.field{margin:17px 0}
-.field label{display:block;font-size:13px;font-weight:800;color:#f8e4d2;margin-bottom:9px}
-.required{color:#ff9a5c}
-.input{
-  width:100%;height:53px;border-radius:13px;
-  padding:0 14px;color:#fff2e6;
-  background:#120c09;border:1px solid #ffcb9b26;
-  outline:none;transition:.2s;
+.checkout-icon{
+  width:47px;height:47px;display:grid;place-items:center;border-radius:16px;
+  color:#FFF6EC;background:linear-gradient(145deg,#F48B50,#D95627);
+  box-shadow:0 8px 18px #D95A2533
 }
-.input:focus{border-color:#ff9656;box-shadow:0 0 0 3px #ff873b18}
-.input::placeholder{color:#927967}
-.field-hint{font-size:10px;color:#d1a17d;line-height:1.9;margin:8px 2px 0}
-.email-optional{font-size:10px;color:#a98c77;font-weight:500}
-.selected-plan-box{
-  padding:15px;border-radius:15px;
-  background:#ff873b12;border:1px solid #ff873b30;
-  margin:20px 0;
+.checkout-icon svg{width:25px;height:25px}
+.checkout-heading h2{margin:0;font-size:21px;font-weight:900;color:#48271C}
+.checkout-heading p{margin:3px 0 0;color:#A27A65;font-size:11px;font-weight:600}
+.form-intro{
+  background:#FFF0E5;border:1px solid #F3D5C1;border-radius:15px;
+  padding:12px 13px;color:#85563E;font-size:12px;line-height:1.9;
+  font-weight:600;margin-bottom:18px
 }
-.selected-plan-title{font-size:14px;font-weight:900;color:#ffd0a7}
-.selected-plan-details{font-size:12px;line-height:2.1;color:#d8bba5;margin-top:7px}
-.bank-box{
-  margin:22px 0;padding:19px 15px;border-radius:17px;
-  border:1px solid #ffbc7a38;
-  background:linear-gradient(135deg,#3a2416,#24160e);
-  box-shadow:inset 0 1px 1px #fff2,0 8px 20px #0004;
+.form-intro strong{color:#B84D27;font-weight:900}
+.field{margin:0 0 16px}
+.field label,.field-label{
+  display:block;margin-bottom:8px;font-size:13px;
+  font-weight:900;color:#583425
 }
-.bank-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.bank-top strong{font-size:14px}
-.bank-top span{font-size:10px;color:#d3a87d}
+.required{color:#E7652E}
+.optional{
+  color:#A78470;font-size:10px;font-weight:700;margin-right:5px
+}
+.input-wrap{position:relative}
+.input-wrap input,.field select{
+  width:100%;height:55px;border-radius:15px;
+  border:1.5px solid #EBD8C9;background:#FFFCF9;
+  padding:0 15px;color:#48271C;font-size:15px;font-weight:700;
+  outline:none;transition:.2s
+}
+.input-wrap input::placeholder{color:#B99A88;font-weight:500}
+.input-wrap input:focus,.field select:focus{
+  border-color:#E9824D;box-shadow:0 0 0 4px #F47B3E18;background:#fff
+}
+.input-wrap input.invalid{border-color:#D84F3D;background:#FFF8F6}
+.input-help{font-size:10px;color:#A17C67;margin:7px 3px 0;line-height:1.8;font-weight:600}
+.two-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.phone-input{direction:ltr;text-align:left;letter-spacing:.5px}
+.email-input{direction:ltr;text-align:left}
+
+/* Form plan selector */
+.form-plan-select{
+  display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:9px 0 12px
+}
+.form-plan-option{
+  min-height:62px;border-radius:15px;border:1.5px solid #EBD8C9;
+  background:#FFFCF9;color:#744A36;padding:10px;
+  display:flex;align-items:center;gap:9px;text-align:right;
+  transition:.2s
+}
+.form-plan-option.active{
+  border-color:#E77B46;background:#FFF0E5;
+  box-shadow:0 0 0 3px #F47B3E13
+}
+.option-radio{
+  width:17px;height:17px;border-radius:50%;border:1.5px solid #C8A18A;
+  display:grid;place-items:center;flex-shrink:0
+}
+.form-plan-option.active .option-radio{border-color:#E7652E;background:#E7652E}
+.form-plan-option.active .option-radio:after{
+  content:"";width:6px;height:6px;border-radius:50%;background:#fff
+}
+.option-name{font-size:12px;font-weight:900}
+.option-price{font-size:10px;color:#A06C50;font-weight:800;margin-top:3px}
+.selected-plan-info{
+  border-radius:15px;padding:13px 14px;background:#FFF3E9;
+  border:1px solid #F0D4C0;margin-bottom:20px
+}
+.selected-plan-info .info-title{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  font-size:13px;color:#9F4828;font-weight:900;margin-bottom:7px
+}
+.selected-plan-info ul{
+  margin:0;padding:0 17px 0 0;color:#805C49;
+  font-size:11px;line-height:2.1;font-weight:700
+}
+
+/* Payment details */
+.payment-box{
+  margin-top:21px;padding:16px 14px;border-radius:19px;
+  background:linear-gradient(145deg,#FFF3E8,#FFE7D5);
+  border:1px solid #F0CDB4
+}
+.payment-title{
+  display:flex;align-items:center;gap:9px;
+  color:#633824;font-size:15px;font-weight:900;margin-bottom:12px
+}
+.payment-title svg{width:22px;height:22px;color:#D96536}
+.card-number-box{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:14px 12px;border-radius:14px;
+  background:#FFFFFFD9;border:1px solid #EED4C2
+}
 .card-number{
-  direction:ltr;text-align:center;
-  font-size:clamp(19px,5.5vw,25px);font-weight:900;
-  letter-spacing:1.5px;color:#ffe2c5;
-  padding:17px 0 12px;
-  font-variant-numeric:tabular-nums;
+  direction:ltr;text-align:left;letter-spacing:1px;
+  font-family:monospace;font-size:clamp(17px,4.6vw,22px);
+  color:#48271C;font-weight:900;white-space:nowrap
 }
-.bank-bottom{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.account-name{font-size:12px;color:#e8cdb5}
-.copy-btn{
-  border:1px solid #ffb47755;border-radius:10px;
-  background:#ff873b17;color:#ffd0a7;
-  padding:8px 12px;font-size:11px;font-weight:800;
+.copy-button{
+  display:flex;align-items:center;gap:5px;flex-shrink:0;
+  border:0;border-radius:10px;padding:9px 11px;
+  color:white;background:#D96332;font-size:11px;font-weight:900;
+  box-shadow:0 5px 12px #D9633233
 }
-.upload-area{
-  display:block;position:relative;
-  border:1px dashed #ffb47777;border-radius:17px;
-  padding:22px 14px;text-align:center;
-  background:#ff873b09;cursor:pointer;
-  transition:.2s;
+.copy-button svg{width:15px;height:15px}
+.owner-line{
+  display:flex;justify-content:space-between;align-items:center;gap:8px;
+  padding:12px 2px 0;font-size:12px;color:#90664F;font-weight:700
 }
-.upload-area:hover{background:#ff873b13;border-color:#ffc18c}
+.owner-line strong{color:#593522;font-weight:900}
+.payment-warning{
+  display:flex;align-items:flex-start;gap:8px;margin-top:12px;
+  color:#946B54;font-size:10px;line-height:1.9;font-weight:600
+}
+.payment-warning svg{width:17px;height:17px;flex-shrink:0;color:#D76A39;margin-top:2px}
+
+/* Receipt upload */
+.upload-section{margin-top:21px}
+.upload-heading{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  margin-bottom:8px
+}
+.upload-heading label{font-size:14px;font-weight:900;color:#563322}
+.upload-heading span{
+  font-size:10px;color:#A17B66;font-weight:700;
+  background:#FFF0E5;padding:5px 8px;border-radius:20px
+}
+.upload-description{
+  color:#92705D;font-size:11px;line-height:1.9;font-weight:600;margin:0 0 12px
+}
+.upload-description strong{color:#B84D27}
+.upload-box{
+  position:relative;border:2px dashed #E7B99B;border-radius:19px;
+  background:linear-gradient(145deg,#FFFCF9,#FFF2E8);
+  min-height:155px;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:18px;transition:.2s
+}
+.upload-box.dragover{border-color:#D85E2D;background:#FFE9D8}
+.upload-box.has-file{border-style:solid;border-color:#D99A72}
+.upload-content{display:flex;flex-direction:column;align-items:center;gap:7px}
 .upload-icon{
-  width:53px;height:53px;margin:0 auto 11px;
-  border-radius:17px;display:grid;place-items:center;
-  background:#ff873b20;color:#ffb47d;font-size:25px;
+  width:48px;height:48px;border-radius:16px;
+  display:grid;place-items:center;color:#D96536;
+  background:#FCE4D3;border:1px solid #F3CDB5
 }
-.upload-area strong{display:block;font-size:13px;color:#ffe4ce}
-.upload-area small{display:block;font-size:10px;color:#b99a83;margin-top:6px;line-height:1.8}
-.upload-area input{position:absolute;width:1px;height:1px;opacity:0}
-.upload-guidance{
-  margin-top:11px;font-size:11px;line-height:2.1;
-  color:#d5b9a3;background:#ffffff08;
-  border-radius:11px;padding:11px 12px;
+.upload-icon svg{width:25px;height:25px}
+.upload-content strong{font-size:14px;color:#77442D;font-weight:900}
+.upload-content span{font-size:10px;color:#A17B65;font-weight:600}
+.upload-button{
+  border:0;border-radius:30px;padding:9px 17px;
+  background:#E96D36;color:white;font-size:12px;font-weight:900;
+  box-shadow:0 6px 15px #E96D3633;margin-top:4px
 }
-.preview-wrap{display:none;margin-top:13px;text-align:center}
-.preview-wrap img{
-  max-width:100%;max-height:240px;object-fit:contain;
-  border-radius:12px;border:1px solid #ffb47744;
+#receiptInput{display:none}
+.receipt-preview{
+  display:none;align-items:center;gap:12px;width:100%;text-align:right
 }
-.remove-file{
-  margin-top:9px;border:0;background:none;color:#ffae83;
-  font-size:11px;font-weight:700;
+.receipt-preview.visible{display:flex}
+.receipt-thumb{
+  width:75px;height:85px;object-fit:cover;border-radius:12px;
+  border:1px solid #E9CBB8;background:#fff;flex-shrink:0
 }
-.submit-btn{
-  width:100%;border:0;border-radius:15px;
-  padding:16px 14px;margin-top:19px;
-  color:#2b150a;font-size:15px;font-weight:900;
-  background:linear-gradient(120deg,#ffd0a3,#ff873e 60%,#f46b2a);
-  box-shadow:0 6px 0 #a84319,0 13px 25px #0006;
-  transition:.18s;
+.receipt-meta{min-width:0;flex:1}
+.receipt-meta strong{
+  display:block;font-size:12px;color:#623A27;font-weight:900;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap
 }
-.submit-btn:active{transform:translateY(3px);box-shadow:0 3px 0 #a84319}
-.submit-note{text-align:center;color:#a98c77;font-size:10px;line-height:1.9;margin:13px 0 0}
+.receipt-meta span{display:block;font-size:10px;color:#9C7964;margin-top:5px}
+.receipt-actions{display:flex;gap:7px;margin-top:9px}
+.receipt-actions button{
+  border:1px solid #E8CDBB;background:#fff;border-radius:9px;
+  padding:7px 10px;color:#8B5134;font-size:10px;font-weight:900
+}
+.receipt-actions button.remove{color:#B83F32;border-color:#EAC6C0}
+.file-error{display:none;color:#C33F32;font-size:11px;font-weight:800;margin-top:8px}
+.file-error.show{display:block}
+
+/* Technical note */
 .technical-note{
-  margin:22px 2px 25px;padding:15px;
-  border-radius:14px;background:#ffffff06;
-  border:1px solid #ffffff12;
-  color:#cbb19c;font-size:11px;line-height:2.1;text-align:center;
+  display:flex;align-items:flex-start;gap:10px;
+  margin:17px 0 0;padding:13px;border-radius:14px;
+  background:#F8F2EC;border:1px solid #EAE0D7;
+  color:#826B5C;font-size:10px;line-height:2;font-weight:600
 }
-.technical-note b{color:#ffbd8c}
-.footer{text-align:center;color:#856e5c;font-size:10px;padding:5px 0 15px}
+.technical-note svg{width:19px;height:19px;color:#B66B49;flex-shrink:0;margin-top:2px}
+.technical-note strong{color:#65432F;font-weight:900}
+
+/* Submit */
+.submit-area{margin-top:20px}
+.submit-button{
+  position:relative;width:100%;min-height:61px;border:0;border-radius:17px;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  color:white;font-size:16px;font-weight:900;
+  background:linear-gradient(110deg,#F58A4E 0%,#E7652E 55%,#C64A22 100%);
+  box-shadow:0 12px 25px rgba(199,75,34,.25),inset 0 1px 0 #ffffff66;
+  transition:.2s;overflow:hidden
+}
+.submit-button:before{
+  content:"";position:absolute;top:-50%;bottom:-50%;width:35px;
+  background:#ffffff25;transform:rotate(25deg);right:-60px;
+  transition:right .55s
+}
+.submit-button:hover:before{right:110%}
+.submit-button:active{transform:scale(.99)}
+.submit-button:disabled{opacity:.65;cursor:wait}
+.submit-button svg{width:21px;height:21px}
+.submit-sub{
+  text-align:center;color:#A18472;font-size:10px;
+  font-weight:600;line-height:1.9;margin:10px 5px 0
+}
+.form-message{
+  display:none;margin-top:13px;padding:13px 14px;border-radius:13px;
+  font-size:12px;font-weight:800;line-height:1.9
+}
+.form-message.show{display:block}
+.form-message.error{background:#FFF0ED;border:1px solid #EFC5BE;color:#A83D31}
+.form-message.success{background:#EDF8EF;border:1px solid #C6E4CC;color:#286A3B}
+.form-message.info{background:#FFF4E9;border:1px solid #F0D1B9;color:#90512F}
+
+/* Brand signature */
+.brand-signature{
+  margin:25px 0 21px;display:flex;align-items:center;justify-content:center;gap:10px;
+  color:#A66A4C
+}
+.signature-mark{
+  width:29px;height:29px;display:grid;place-items:center;
+  border:1px solid #DCA88A;border-radius:9px;transform:rotate(45deg);
+  background:#FFFFFF75
+}
+.signature-mark span{transform:rotate(-45deg);font-size:13px;font-weight:900}
+.signature-name{font-size:11px;letter-spacing:2px;font-weight:900}
+.signature-note{font-size:9px;color:#B58C75;letter-spacing:.4px}
+
+/* Bottom nav */
 .bottom-nav{
-  position:fixed;z-index:10;bottom:0;left:0;right:0;
+  position:fixed;z-index:20;bottom:0;left:0;right:0;
   padding:10px 12px calc(10px + env(safe-area-inset-bottom));
-  background:rgba(23,15,10,.94);
-  backdrop-filter:blur(18px);
-  border-top:1px solid #ffb77b22;
-  display:flex;justify-content:center;
+  background:rgba(102,38,18,.91);backdrop-filter:blur(24px);
+  border-top:1px solid rgba(255,231,208,.24);
+  box-shadow:0 -10px 35px rgba(93,31,12,.17)
 }
-.nav-inner{width:min(100%,520px);display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+.nav-inner{
+  width:min(100%,760px);margin:auto;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:7px
+}
 .nav-item{
-  text-decoration:none;color:#9f8876;
-  display:flex;flex-direction:column;align-items:center;gap:4px;
-  padding:7px 3px;border-radius:12px;font-size:10px;font-weight:700;
+  min-height:70px;border-radius:18px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:5px;color:rgba(255,235,218,.70);
+  font-size:13px;font-weight:800;position:relative;transition:.22s
 }
-.nav-item .nav-icon{font-size:21px;line-height:1.2}
-.nav-item.active{color:#ffb47d;background:#ff873b13}
+.nav-item svg{width:25px;height:25px;stroke-width:1.8}
+.nav-item.active{
+  color:#FFF8F0;
+  background:linear-gradient(145deg,rgba(255,220,190,.22),rgba(255,238,219,.10));
+  border:1px solid rgba(255,230,205,.22);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.15),0 4px 16px rgba(55,17,8,.12)
+}
+.nav-item.active:before{
+  content:"";position:absolute;top:-1px;width:26px;height:3px;
+  border-radius:0 0 6px 6px;background:#FFD4B2;box-shadow:0 0 12px #FFB17D
+}
+.nav-item.active svg{filter:drop-shadow(0 0 7px rgba(255,208,175,.36));stroke-width:2.3}
+.nav-item:active{transform:scale(.95)}
+
+/* Toast */
 .toast{
-  position:fixed;z-index:30;bottom:100px;left:50%;
-  transform:translate(-50%,15px);opacity:0;pointer-events:none;
-  background:#f6d2ae;color:#28150d;
-  border-radius:12px;padding:11px 17px;
-  font-size:12px;font-weight:800;transition:.25s;
-  width:max-content;max-width:90%;
+  position:fixed;z-index:60;bottom:105px;left:50%;
+  transform:translate(-50%,15px);
+  background:#351C16;color:#FFF3E7;border:1px solid #ffffff30;
+  padding:13px 19px;border-radius:15px;font-size:13px;font-weight:800;
+  box-shadow:0 12px 35px rgba(63,23,10,.3);
+  opacity:0;pointer-events:none;transition:.25s;
+  width:max-content;max-width:calc(100% - 35px);text-align:center
 }
 .toast.show{opacity:1;transform:translate(-50%,0)}
-@media(min-width:700px){
-  .plans{grid-template-columns:1fr 1fr;align-items:stretch;gap:17px}
-  .plan{padding:24px 18px}
-  .plan-title{font-size:18px}
-  .plan-description{min-height:78px}
-  .price{font-size:27px}
-  .discount-price{font-size:29px}
-  .choose{min-width:95px}
-  .form-section{padding:30px}
-  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 15px}
-  .field.full{grid-column:1/-1}
-}
-@media(max-width:370px){
-  .plan{padding:20px 15px}
-  .plan-badge{font-size:9px;padding:6px 8px}
-  .plan-title{font-size:17px}
+
+@media(min-width:650px){
+  .container{width:min(100% - 52px,760px)}
+  .plans{grid-template-columns:1fr 1fr;align-items:stretch;gap:14px}
+  .plan-card{padding:20px 16px 17px}
+  .plan-name{font-size:20px}
+  .plan-price-area{align-items:flex-start;flex-direction:column;gap:5px}
+  .plan-duration{text-align:right}
   .plan-features{grid-template-columns:1fr}
-  .price{font-size:27px}
+  .hero{padding:31px 34px}
+  .checkout{padding:25px 24px}
+}
+@media(max-width:390px){
+  .container{width:calc(100% - 22px)}
+  .brand-name{font-size:21px}
+  .header-status{font-size:10px;padding:8px 9px}
+  .hero{padding:22px 18px}
+  .hero-title{font-size:34px}
+  .hero-desc{font-size:14px}
+  .plan-card{padding:17px 14px}
+  .plan-name{font-size:19px}
+  .plan-label{font-size:9px;padding:6px 8px}
+  .plan-features{gap:8px 5px}
+  .feature{font-size:10px}
+  .trust-item strong{font-size:10px}
+  .two-fields{grid-template-columns:1fr}
+  .nav-item{font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{transition:none!important;scroll-behavior:auto!important}
 }
 </style>
 </head>
 
 <body>
-<div class="page">
+<div class="ambient one"></div>
+<div class="ambient two"></div>
 
-<header>
-  <div class="brand">
-    <div class="brand-mark">S</div>
+<div class="container">
+
+<header class="header">
+  <a class="brand" href="./index.html" aria-label="خانه Ai-Sinova">
+    <div class="brand-symbol">
+      <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <path d="M24 5L43 38H5L24 5Z" stroke="#FFF4E7" stroke-width="1.7" stroke-linejoin="round"/>
+        <path d="M24 13L35 33H13L24 13Z" fill="#FFF1E3" fill-opacity=".17" stroke="#FFF4E7" stroke-width="1.2"/>
+        <path d="M19 29L29 29L24 20L19 29Z" fill="#FFF4E7"/>
+        <circle cx="24" cy="25" r="3" fill="#D95A25"/>
+      </svg>
+    </div>
     <div>
       <div class="brand-name">Ai-Sinova</div>
-      <div class="brand-sub">THE NEXT LEVEL OF CINEMA</div>
+      <div class="brand-sub">THE CINEMA BEYOND LANGUAGE</div>
     </div>
-  </div>
-  <div class="header-tag">مرکز اختصاصی اشتراک</div>
+  </a>
+  <div class="header-status"><span class="header-dot"></span> مرکز اشتراک سینوا</div>
 </header>
 
+<div class="signature">
+  <div class="signature-line"></div>
+  <span class="signature-star">✦</span>
+  <span class="signature-text">YOUR NEXT CINEMA EXPERIENCE</span>
+  <span class="signature-star">✦</span>
+  <div class="signature-line" style="transform:scaleX(-1)"></div>
+</div>
+
+<div class="film-edge" aria-hidden="true">
+  <div class="holes"><i></i><i></i><i></i><i></i><i></i></div>
+  <span class="film-label">SINOVA ORIGINAL</span>
+  <div class="holes"><i></i><i></i><i></i><i></i><i></i></div>
+</div>
+
+<main>
+
 <section class="hero">
-  <div class="eyebrow"><i></i> تجربه سینما، با زبان و صدای شما</div>
-  <h1>فقط تماشا نکنید؛<br><span>به زبان خودتان تجربه کنید.</span></h1>
-  <p>
-    با فعال‌سازی اشتراک Ai-Sinova، تجربه تماشای محتوای تصویری را
-    با ترجمه و صدای فارسی وارد مرحله‌ای تازه کنید.
+  <div class="hero-kicker"><i></i> عضویت ویژه در دنیای سینوا</div>
+  <h1 class="hero-title">
+    وقتشه سینما رو<br>
+    <span class="accent">بدون محدودیت زبان</span><br>
+    تجربه کنی.
+  </h1>
+  <p class="hero-desc">
+    یک انتخاب هوشمندانه، برای تماشای فیلم‌ها با تجربه‌ای متفاوت.
+    <strong>اشتراک مناسب خودت رو انتخاب کن</strong> و قدم بعدی رو بردار.
   </p>
-  <div class="hero-note">یک انتخاب ویژه؛ برای سال‌ها تماشای متفاوت</div>
+  <div class="hero-bottom">
+    <strong>دو انتخاب ویژه؛ یک تجربه متفاوت</strong>
+    <span>CHOOSE YOUR PRIVILEGE</span>
+  </div>
+</section>
+
+<section class="trust-ribbon" aria-label="مزایای خرید">
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3l7 3v5c0 4.5-3 7.5-7 10-4-2.5-7-5.5-7-10V6l7-3Z"/>
+      <path d="m8.5 12 2.2 2.2 4.8-5"/>
+    </svg>
+    <strong>ضمانت کیفیت</strong>
+    <span>با خیال آسوده انتخاب کن</span>
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 7V4h3M20 7V4h-3M4 17v3h3M20 17v3h-3"/>
+      <path d="M7 12h10M12 7v10"/>
+    </svg>
+    <strong>پشتیبانی و به‌روزرسانی</strong>
+    <span>همراه با توسعه سینوا</span>
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3v18M17 7.5c0-1.7-2.2-3-5-3s-5 1.3-5 3 2.2 3 5 3 5 1.3 5 3-2.2 3-5 3-5-1.3-5-3"/>
+    </svg>
+    <strong>ضمانت بازگشت وجه</strong>
+    <span>طبق شرایط اعلام‌شده</span>
+  </div>
 </section>
 
 <div class="section-heading">
-  <h2>اشتراک اختصاصی خود را انتخاب کنید</h2>
-  <p>دو مسیر برای ورود به تجربه کامل Ai-Sinova</p>
+  <div class="section-eyebrow">THE MEMBERSHIP COLLECTION</div>
+  <h2>کدوم سطح از <em>سینوا</em> برای توئه؟</h2>
+  <p>دو طرح اختصاصی با مدت اعتبار و امکانات متفاوت؛ انتخاب با توست.</p>
 </div>
 
-<section class="plans">
+<section class="plans" aria-label="انتخاب اشتراک">
 
-  <article class="plan selected" data-plan="platinum" onclick="selectPlan('platinum')">
-    <div class="selected-mark">✓</div>
+  <article class="plan-card platinum selected" data-plan-card="platinum"
+           role="button" tabindex="0" aria-pressed="true"
+           aria-label="انتخاب اشتراک پلاتینیوم">
     <div class="plan-top">
-      <div class="plan-label">
-        <div class="plan-icon">✦</div>
+      <div class="plan-type">
+        <div class="plan-icon">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M16 3 19.5 11.5 29 12.5 22 19 24 28 16 23.5 8 28 10 19 3 12.5 12.5 11.5 16 3Z" stroke="#FFF1E5" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="m16 9 2.2 5 5.3.5-4 3.6 1.1 5.1-4.6-2.6-4.6 2.6 1.1-5.1-4-3.6 5.3-.5L16 9Z" fill="#FFE3CF" fill-opacity=".35"/>
+          </svg>
+        </div>
         <div>
-          <div class="plan-title">پلاتینیوم</div>
-          <div class="plan-subtitle">اشتراک یک‌ساله ویژه</div>
+          <div class="plan-name">پلاتینیوم</div>
+          <div class="plan-tagline">انتخاب هوشمندانه و اقتصادی</div>
         </div>
       </div>
-      <div class="plan-badge">انتخاب حرفه‌ای</div>
+      <span class="plan-label">MEMBER PLAN 01</span>
     </div>
 
-    <p class="plan-description">
-      یک سال همراهی با Ai-Sinova؛ برای تماشای محتوای موردعلاقه‌تان
-      با تجربه ترجمه و صدای فارسی، بدون نیاز به تنظیمات پیچیده.
-    </p>
+    <div class="plan-price-area">
+      <div class="plan-price">
+        <strong>۲۹٬۰۰۰</strong>
+        <small>تومان</small>
+      </div>
+      <div class="plan-duration"><b>۱ سال</b>اعتبار اشتراک</div>
+    </div>
 
     <div class="plan-features">
-      <div class="feature"><span class="check">✓</span> اعتبار یک‌ساله</div>
-      <div class="feature"><span class="check">✓</span> فعال‌سازی روی ۳ نمایشگر</div>
-      <div class="feature"><span class="check">✓</span> پشتیبانی از سرویس‌های سازگار</div>
-      <div class="feature"><span class="check">✓</span> به‌روزرسانی‌های نسخه</div>
-      <div class="feature"><span class="check">✓</span> پشتیبانی و راهنمایی</div>
-      <div class="feature"><span class="check">✓</span> تجربه صدای فارسی</div>
+      <div class="feature">
+        <svg viewBox="0 0 20 20" fill="none"><path d="m4 10 4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        فعال‌سازی روی ۳ نمایشگر
+      </div>
+      <div class="feature">
+        <svg viewBox="0 0 20 20" fill="none"><path d="m4 10 4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        تضمین کیفیت خدمات
+      </div>
+      <div class="feature">
+        <svg viewBox="0 0 20 20" fill="none"><path d="m4 10 4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        به‌روزرسانی‌های اشتراک
+      </div>
+      <div class="feature">
+        <svg viewBox="0 0 20 20" fill="none"><path d="m4 10 4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        ضمانت بازگشت وجه
+      </div>
     </div>
 
-    <div class="price-row">
-      <div>
-        <div class="price-caption">هزینه اشتراک یک‌ساله</div>
-        <div class="price">۲۹٬۰۰۰ <small>تومان</small></div>
-      </div>
-      <div class="choose">انتخاب طرح</div>
+    <div class="plan-bottom">
+      <div class="plan-bottom-text">یک سال همراهی با تجربه سینمایی سینوا</div>
+      <div class="select-plan"><span class="radio-dot"></span> انتخاب طرح</div>
     </div>
   </article>
 
-  <article class="plan diamond" data-plan="diamond" onclick="selectPlan('diamond')">
-    <div class="selected-mark">✓</div>
+  <article class="plan-card diamond" data-plan-card="diamond"
+           role="button" tabindex="0" aria-pressed="false"
+           aria-label="انتخاب اشتراک الماس">
     <div class="plan-top">
-      <div class="plan-label">
-        <div class="plan-icon">◆</div>
+      <div class="plan-type">
+        <div class="plan-icon">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M7 10 12 4h8l5 6-9 18L7 10Z" stroke="#FFE4BE" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M7 10h18M12 4l4 24 4-24M7 10l9 18 9-18" stroke="#FFE4BE" stroke-width="1.2" stroke-linejoin="round"/>
+            <path d="m16 8 2 4-2 4-2-4 2-4Z" fill="#FFD69D"/>
+          </svg>
+        </div>
         <div>
-          <div class="plan-title">الماس</div>
-          <div class="plan-subtitle">اشتراک پنج‌ساله ممتاز</div>
+          <div class="plan-name">الماس</div>
+          <div class="plan-tagline">امتیاز ویژه برای همراهان سینوا</div>
         </div>
       </div>
-      <div class="plan-badge">فرصت محدود</div>
+      <span class="plan-label">LIMITED EDITION</span>
     </div>
 
-    <p class="plan-description">
-      انتخابی بلندمدت برای کسانی که می‌خواهند با خیال آسوده
-      همراه Ai-Sinova بمانند و از امکانات و قابلیت‌های تکمیلی این نسخه بهره‌مند شوند.
-    </p>
+    <div class="plan-price-area">
+      <div class="plan-price">
+        <div>
+          <span class="old-price">۱۴۵٬۰۰۰ تومان</span>
+          <strong class="special-price">۹۹٬۰۰۰</strong>
+          <small>تومان</small>
+        </div>
+      </div>
+      <div class="plan-duration"><b>۵ سال</b>اعتبار اشتراک</div>
+    </div>
+
+    <div class="limited">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 8v5l3 2M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z"/>
+      </svg>
+      فرصت محدود؛ این طرح قرار است از فهرست فروش حذف شود.
+    </div>
 
     <div class="plan-features">
-      <div class="feature"><span class="check">✓</span> اعتبار پنج‌ساله</div>
-      <div class="feature"><span class="check">✓</span> امکانات مضاعف نسخه الماس</div>
-      <div class="feature"><span class="check">✓</span> به‌روزرسانی‌های بیشتر</div>
-      <div class="feature"><span class="check">✓</span> پشتیبانی و راهنمایی</div>
-      <div class="feature"><span class="check">✓</span> تجربه صدای فارسی</div>
-      <div class="feature"><span class="check">✓</span> پیشنهاد ویژه حمایتی</div>
+      <div class="feature">
+        <svg viewBox="0 0 20 20" fill="none"><path d="m4 10 4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        پنج سال اعتبار اشتراک
+      </div>
+      <div class="feature">
+        <svg viewBox="0 0 20 20" fill="none"><path d="m4 10 4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        امکانات و قابلیت‌های ویژه
+      </div>
+      <div class="feature">
+        <svg viewBox="0 0 20 20" fill="none"><path d="m4 10 4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        به‌روزرسانی‌ها و توسعه بیشتر
+      </div>
+      <div class="feature">
+        <svg viewBox="0 0 20 20" fill="none"><path d="m4 10 4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        ضمانت کیفیت و بازگشت وجه
+      </div>
     </div>
 
-    <div class="price-row">
-      <div>
-        <div class="price-caption">قیمت ویژه فرصت محدود</div>
-        <div class="old-price">۱۴۵٬۰۰۰ تومان</div>
-        <div class="discount-price">۹۹٬۰۰۰ <small>تومان</small></div>
-      </div>
-      <div class="choose">انتخاب طرح</div>
+    <div class="plan-bottom">
+      <div class="plan-bottom-text">یک انتخاب بلندمدت با قیمت ویژه</div>
+      <div class="select-plan"><span class="radio-dot"></span> انتخاب طرح</div>
     </div>
   </article>
 
 </section>
 
-<section class="support-strip">
-  <div class="support-item">
-    <div class="support-icon">♛</div>
-    <strong>تعهد کیفیت</strong>
-    <span>پشتیبانی از کیفیت تجربه ارائه‌شده</span>
-  </div>
-  <div class="support-item">
-    <div class="support-icon">↺</div>
-    <strong>ضمانت بازگشت وجه</strong>
-    <span>طبق شرایط و ضوابط بازپرداخت</span>
-  </div>
-  <div class="support-item">
-    <div class="support-icon">✧</div>
-    <strong>امکانات اختصاصی</strong>
-    <span>قابلیت‌ها و به‌روزرسانی‌های بیشتر</span>
-  </div>
-</section>
+<div class="urgency-note">
+  <div class="urgency-title">✦ یک فرصت ویژه برای همراهی با سینوا</div>
+  <p>
+    توسعه یک تجربه سینمایی مستقل، به همراهی کاربرانش نیاز دارد.
+    با انتخاب طرح الماس، علاوه بر بهره‌مندی از <strong>پنج سال اشتراک با قیمت ویژه</strong>،
+    از ادامه مسیر توسعه و بهتر شدن سینوا نیز حمایت می‌کنی.
+    این پیشنهاد دائمی نیست.
+  </p>
+</div>
 
-<section class="form-section" id="activation-form">
-  <div class="form-heading">
-    <div class="step">مرحله نهایی خرید</div>
-    <h2>اشتراک خود را فعال کنید</h2>
-    <p>اطلاعات را با دقت وارد کنید تا درخواست فعال‌سازی شما بررسی شود.</p>
-  </div>
-
-  <form id="purchaseForm">
-    <div class="form-grid">
-
-      <div class="field">
-        <label for="fullname">نام و نام خانوادگی <span class="required">*</span></label>
-        <input class="input" id="fullname" name="fullname" type="text"
-          placeholder="نام کامل خود را وارد کنید" autocomplete="name" required>
-      </div>
-
-      <div class="field">
-        <label for="phone">شماره موبایل <span class="required">*</span></label>
-        <input class="input" id="phone" name="phone" type="tel"
-          inputmode="tel" placeholder="مثلاً ۰۹۱۲۱۲۳۴۵۶۷"
-          autocomplete="tel" required>
-        <div class="field-hint">
-          شماره موبایل را با دقت وارد کنید؛ اشتراک برای همین شماره ثبت و فعال خواهد شد.
-        </div>
-      </div>
-
-      <div class="field full">
-        <label for="email">آدرس ایمیل <span class="email-optional">(اختیاری)</span></label>
-        <input class="input" id="email" name="email" type="email"
-          placeholder="example@email.com" autocomplete="email">
-      </div>
-
+<section class="checkout" id="checkout">
+  <div class="checkout-heading">
+    <div class="checkout-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="16" rx="3"/>
+        <circle cx="9" cy="10" r="2.5"/>
+        <path d="M5 17c.8-2 2.1-3 4-3s3.2 1 4 3M15 9h3M15 13h3"/>
+      </svg>
     </div>
-
-    <div class="selected-plan-box" aria-live="polite">
-      <div class="selected-plan-title" id="chosenTitle">اشتراک طرح پلاتینیوم</div>
-      <div class="selected-plan-details" id="chosenDetails">
-        • اعتبار یک‌ساله اشتراک<br>
-        • فعال‌سازی روی ۳ نمایشگر<br>
-        • مبلغ قابل پرداخت: ۲۹٬۰۰۰ تومان
-      </div>
+    <div>
+      <h2>ثبت درخواست فعال‌سازی</h2>
+      <p>اطلاعاتت رو وارد کن تا درخواستت برای بررسی آماده بشه.</p>
     </div>
+  </div>
 
-    <div class="bank-box">
-      <div class="bank-top">
-        <strong>اطلاعات پرداخت اشتراک</strong>
-        <span>پرداخت کارت‌به‌کارت</span>
-      </div>
-      <div class="card-number" id="cardNumber">5022 2910 9895 3217</div>
-      <div class="bank-bottom">
-        <div class="account-name">به نام: <b>حمیدرضا سلیمی</b></div>
-        <button type="button" class="copy-btn" onclick="copyCard()">کپی شماره کارت</button>
+  <div class="form-intro">
+    <strong>فقط چند قدم تا تکمیل درخواست باقی مونده.</strong>
+    طرح موردنظرت رو انتخاب کن، اطلاعات رو دقیق وارد کن و تصویر رسید پرداخت رو بارگذاری کن.
+  </div>
+
+  <form id="activationForm" novalidate>
+
+    <div class="field">
+      <label for="fullName">نام و نام خانوادگی <span class="required">*</span></label>
+      <div class="input-wrap">
+        <input id="fullName" name="full_name" type="text" autocomplete="name"
+               placeholder="نام و نام خانوادگی خودت رو بنویس" required>
       </div>
     </div>
 
     <div class="field">
-      <label>تصویر رسید پرداخت <span class="required">*</span></label>
-      <label class="upload-area" for="receipt">
-        <div class="upload-icon">⇧</div>
-        <strong id="uploadTitle">تصویر رسید را از گالری انتخاب کنید</strong>
-        <small>فقط یک تصویر قابل بارگذاری است · JPG، PNG یا WEBP</small>
-        <input id="receipt" name="receipt" type="file"
-          accept="image/jpeg,image/png,image/webp" required>
-      </label>
-
-      <div class="preview-wrap" id="previewWrap">
-        <img id="receiptPreview" alt="پیش‌نمایش رسید پرداخت">
-        <br>
-        <button type="button" class="remove-file" onclick="removeReceipt()">حذف تصویر و انتخاب مجدد</button>
+      <label for="mobile">شماره موبایل <span class="required">*</span></label>
+      <div class="input-wrap">
+        <input id="mobile" name="mobile" class="phone-input" type="tel"
+               inputmode="tel" autocomplete="tel"
+               placeholder="09123456789" required>
       </div>
+      <p class="input-help">
+        شماره رو با دقت وارد کن؛ اشتراک برای همین شماره موبایل فعال می‌شه.
+      </p>
+    </div>
 
-      <div class="upload-guidance">
-        لطفاً تصویر پیامک بانکی یا رسید واریز اشتراک را ارسال کنید؛
-        تصویری که تاریخ و ساعت پرداخت و کد رهگیری در آن مشخص باشد.
-        پس از بررسی و تأیید پرداخت، فرایند فعال‌سازی اشتراک شما در سریع‌ترین زمان انجام خواهد شد.
+    <div class="field">
+      <label for="email">آدرس ایمیل <span class="optional">اختیاری</span></label>
+      <div class="input-wrap">
+        <input id="email" name="email" class="email-input" type="email"
+               inputmode="email" autocomplete="email"
+               placeholder="example@email.com">
       </div>
     </div>
 
-    <button type="submit" class="submit-btn">ثبت درخواست و ارسال رسید اشتراک ←</button>
-    <p class="submit-note">
-      پس از ثبت درخواست، اطلاعات پرداخت و شماره اعلام‌شده برای بررسی و فعال‌سازی استفاده خواهد شد.
-    </p>
+    <div class="field">
+      <span class="field-label">انتخاب نهایی اشتراک</span>
+      <div class="form-plan-select">
+        <button type="button" class="form-plan-option active" data-form-plan="platinum" aria-pressed="true">
+          <span class="option-radio"></span>
+          <span>
+            <span class="option-name">پلاتینیوم</span>
+            <span class="option-price">۲۹٬۰۰۰ تومان</span>
+          </span>
+        </button>
+        <button type="button" class="form-plan-option" data-form-plan="diamond" aria-pressed="false">
+          <span class="option-radio"></span>
+          <span>
+            <span class="option-name">الماس</span>
+            <span class="option-price">۹۹٬۰۰۰ تومان</span>
+          </span>
+        </button>
+      </div>
+
+      <input type="hidden" id="selectedPlan" name="plan" value="platinum">
+
+      <div class="selected-plan-info" id="selectedPlanInfo" aria-live="polite">
+        <div class="info-title">
+          <span id="infoPlanName">اشتراک پلاتینیوم</span>
+          <span id="infoPlanPrice">۲۹٬۰۰۰ تومان</span>
+        </div>
+        <ul id="infoPlanDetails">
+          <li>اعتبار اشتراک: یک سال</li>
+          <li>قابلیت فعال‌سازی روی ۳ نمایشگر</li>
+          <li>شامل ضمانت کیفیت و بازگشت وجه طبق شرایط</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="payment-box">
+      <div class="payment-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2.5" y="5" width="19" height="14" rx="2.5"/>
+          <path d="M3 10h18M7 15h3"/>
+        </svg>
+        اطلاعات پرداخت کارت‌به‌کارت
+      </div>
+
+      <div class="card-number-box">
+        <div class="card-number" id="cardNumber">5022 2910 9895 3217</div>
+        <button class="copy-button" type="button" id="copyCard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="8" y="8" width="12" height="12" rx="2"/>
+            <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
+          </svg>
+          کپی شماره کارت
+        </button>
+      </div>
+
+      <div class="owner-line">
+        <span>به نام صاحب حساب</span>
+        <strong>حمیدرضا سلیمی</strong>
+      </div>
+
+      <div class="payment-warning">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M12 8v4M12 16h.01"/>
+        </svg>
+        پیش از پرداخت، مبلغ متناسب با طرح انتخابی رو بررسی کن. پس از پرداخت، تصویر رسید رو در بخش زیر بارگذاری کن.
+      </div>
+    </div>
+
+    <div class="upload-section">
+      <div class="upload-heading">
+        <label for="receiptInput">تصویر رسید پرداخت <span class="required">*</span></label>
+        <span>حداکثر ۸ مگابایت</span>
+      </div>
+
+      <p class="upload-description">
+        تصویر پیامک بانکی یا رسید انتقال وجه رو ارسال کن؛
+        <strong>تاریخ و ساعت پرداخت و کد رهگیری</strong> باید در تصویر کاملاً خوانا باشن.
+      </p>
+
+      <div class="upload-box" id="uploadBox">
+        <input type="file" id="receiptInput" name="receipt"
+               accept="image/jpeg,image/png,image/webp">
+        <div class="upload-content" id="uploadContent">
+          <div class="upload-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 16V4M7 9l5-5 5 5"/>
+              <path d="M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/>
+            </svg>
+          </div>
+          <strong>رسید پرداخت رو اینجا بارگذاری کن</strong>
+          <span>JPG ،PNG یا WEBP · حداکثر ۸ مگابایت</span>
+          <button type="button" class="upload-button" id="chooseReceipt">انتخاب تصویر از گالری</button>
+        </div>
+
+        <div class="receipt-preview" id="receiptPreview">
+          <img class="receipt-thumb" id="receiptThumb" alt="پیش‌نمایش رسید پرداخت">
+          <div class="receipt-meta">
+            <strong id="receiptName">تصویر رسید</strong>
+            <span id="receiptSize"></span>
+            <div class="receipt-actions">
+              <button type="button" id="changeReceipt">انتخاب مجدد</button>
+              <button type="button" class="remove" id="removeReceipt">حذف تصویر</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="file-error" id="fileError" role="alert"></div>
+    </div>
+
+    <div class="technical-note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="5" y="3" width="14" height="18" rx="2.5"/>
+        <path d="M9 7h6M9 11h6M10 17h4"/>
+      </svg>
+      <div>
+        این اپلیکیشن با دانش متخصصان فناوری توسعه یافته است.
+        فعال‌سازی اشتراک با استفاده از شناسه اختصاصی دستگاه
+        <strong>Android ID</strong> و برای شماره موبایل اعلام‌شده انجام می‌شود.
+      </div>
+    </div>
+
+    <div class="submit-area">
+      <button type="submit" class="submit-button" id="submitButton">
+        <span>ارسال درخواست فعال‌سازی</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M13 6l6 6-6 6"/>
+        </svg>
+      </button>
+      <p class="submit-sub">
+        پس از ارسال موفق درخواست به سرور، اطلاعات برای بررسی و پیگیری در اختیار پشتیبانی قرار می‌گیره.
+      </p>
+      <div class="form-message" id="formMessage" role="status" aria-live="polite"></div>
+    </div>
+
   </form>
 </section>
 
-<div class="technical-note">
-  <b>فناوری فعال‌سازی Ai-Sinova</b><br>
-  این اپلیکیشن با بهره‌گیری از دانش متخصصان فناوری توسعه یافته است.
-  ثبت و فعال‌سازی اشتراک با استفاده از شناسه اختصاصی دستگاه
-  <b>Android ID</b> و شماره موبایل اعلام‌شده انجام می‌شود.
+<div class="brand-signature">
+  <div class="signature-mark"><span>A</span></div>
+  <div>
+    <div class="signature-name">Ai-SINOVA</div>
+    <div class="signature-note">A SIGNATURE CINEMA EXPERIENCE</div>
+  </div>
 </div>
 
-<div class="footer">Ai-Sinova · تجربه‌ای فراتر از تماشای معمولی</div>
+</main>
 </div>
 
-<nav class="bottom-nav">
+<nav class="bottom-nav" aria-label="منوی اصلی">
   <div class="nav-inner">
+
     <a class="nav-item" href="./index.html">
-      <span class="nav-icon">⌂</span><span>خانه</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="7" width="18" height="14" rx="2"/>
+        <path d="M3 11h18M7 7l3 4M14 7l3 4"/>
+        <path d="M10 14l5 2.5-5 2.5V14Z" fill="currentColor" stroke="none"/>
+      </svg>
+      <span>خانه</span>
     </a>
+
     <a class="nav-item" href="./guide.html">
-      <span class="nav-icon">▤</span><span>راهنما</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21V5.5Z"/>
+        <path d="M4 17a2.5 2.5 0 0 1 2.5-2.5H20M8 7h8M8 10h6"/>
+      </svg>
+      <span>راهنما</span>
     </a>
-    <a class="nav-item active" href="./activation.html">
-      <span class="nav-icon">♛</span><span>فعال‌سازی</span>
+
+    <a class="nav-item active" href="./activation.html" aria-current="page">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="9" cy="8" r="4"/>
+        <path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 11l2 2 4-5"/>
+        <path d="M16 3h5v5"/>
+      </svg>
+      <span>فعال‌سازی</span>
     </a>
+
     <a class="nav-item" href="./voice.html">
-      <span class="nav-icon">♫</span><span>صدای شما</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="2" width="6" height="13" rx="3"/>
+        <path d="M5 11v1a7 7 0 0 0 14 0v-1M12 19v3M8 22h8"/>
+        <path d="M3 8v4M21 8v4"/>
+      </svg>
+      <span>صدای شما</span>
     </a>
+
   </div>
 </nav>
 
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
-let selectedPlan = "platinum";
-let receiptFile = null;
-let previewURL = null;
+/* =========================================================
+   تنظیم اتصال سرور
+   آدرس واقعی API ثبت سفارش را اینجا قرار بده.
+   تا وقتی این مقدار خالی است، فرم فقط اعتبارسنجی می‌کند
+   و هیچ ادعای ثبت سفارش یا فعال‌سازی نخواهد داشت.
 
-const plans = {
+   نمونه:
+   const API_ENDPOINT = 'https://your-domain.com/api/activation';
+========================================================= */
+const API_ENDPOINT = '';
+
+const PLAN_DATA = {
   platinum:{
-    title:"اشتراک طرح پلاتینیوم",
-    details:"• اعتبار یک‌ساله اشتراک<br>• فعال‌سازی روی ۳ نمایشگر<br>• مبلغ قابل پرداخت: ۲۹٬۰۰۰ تومان"
+    name:'اشتراک پلاتینیوم',
+    price:'۲۹٬۰۰۰ تومان',
+    details:[
+      'اعتبار اشتراک: یک سال',
+      'قابلیت فعال‌سازی روی ۳ نمایشگر',
+      'شامل ضمانت کیفیت و بازگشت وجه طبق شرایط'
+    ]
   },
   diamond:{
-    title:"اشتراک طرح الماس",
-    details:"• اعتبار پنج‌ساله اشتراک<br>• بهره‌مندی از امکانات و به‌روزرسانی‌های مضاعف<br>• مبلغ ویژه فرصت محدود: ۹۹٬۰۰۰ تومان"
+    name:'اشتراک الماس',
+    price:'۹۹٬۰۰۰ تومان',
+    details:[
+      'اعتبار اشتراک: پنج سال',
+      'قیمت ویژه نسبت به قیمت اصلی ۱۴۵٬۰۰۰ تومان',
+      'امکانات ویژه و به‌روزرسانی‌های بیشتر'
+    ]
   }
 };
 
-function selectPlan(plan){
-  selectedPlan=plan;
-  document.querySelectorAll(".plan").forEach(card=>{
-    card.classList.toggle("selected",card.dataset.plan===plan);
-  });
-  document.getElementById("chosenTitle").textContent=plans[plan].title;
-  document.getElementById("chosenDetails").innerHTML=plans[plan].details;
-}
+const form = document.getElementById('activationForm');
+const planCards = document.querySelectorAll('[data-plan-card]');
+const formPlanButtons = document.querySelectorAll('[data-form-plan]');
+const selectedPlanInput = document.getElementById('selectedPlan');
+const infoPlanName = document.getElementById('infoPlanName');
+const infoPlanPrice = document.getElementById('infoPlanPrice');
+const infoPlanDetails = document.getElementById('infoPlanDetails');
+const receiptInput = document.getElementById('receiptInput');
+const uploadBox = document.getElementById('uploadBox');
+const uploadContent = document.getElementById('uploadContent');
+const receiptPreview = document.getElementById('receiptPreview');
+const receiptThumb = document.getElementById('receiptThumb');
+const receiptName = document.getElementById('receiptName');
+const receiptSize = document.getElementById('receiptSize');
+const fileError = document.getElementById('fileError');
+const formMessage = document.getElementById('formMessage');
+const submitButton = document.getElementById('submitButton');
+const toast = document.getElementById('toast');
+
+let selectedFile = null;
+let previewUrl = null;
+let toastTimer = null;
+let isSubmitting = false;
 
 function showToast(message){
-  const toast=document.getElementById("toast");
-  toast.textContent=message;
-  toast.classList.add("show");
-  clearTimeout(window.toastTimer);
-  window.toastTimer=setTimeout(()=>toast.classList.remove("show"),2600);
+  toast.textContent = message;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>toast.classList.remove('show'),2600);
 }
 
-async function copyCard(){
-  const number="5022291098953217";
+function setFormMessage(message,type='info'){
+  formMessage.textContent = message;
+  formMessage.className = 'form-message show ' + type;
+}
+
+function clearFormMessage(){
+  formMessage.textContent = '';
+  formMessage.className = 'form-message';
+}
+
+function selectPlan(plan){
+  if(!PLAN_DATA[plan]) return;
+
+  selectedPlanInput.value = plan;
+
+  planCards.forEach(card=>{
+    const active = card.dataset.planCard === plan;
+    card.classList.toggle('selected',active);
+    card.setAttribute('aria-pressed',String(active));
+  });
+
+  formPlanButtons.forEach(button=>{
+    const active = button.dataset.formPlan === plan;
+    button.classList.toggle('active',active);
+    button.setAttribute('aria-pressed',String(active));
+  });
+
+  const data = PLAN_DATA[plan];
+  infoPlanName.textContent = data.name;
+  infoPlanPrice.textContent = data.price;
+  infoPlanDetails.innerHTML = '';
+
+  data.details.forEach(detail=>{
+    const li = document.createElement('li');
+    li.textContent = detail;
+    infoPlanDetails.appendChild(li);
+  });
+}
+
+planCards.forEach(card=>{
+  card.addEventListener('click',()=>{
+    selectPlan(card.dataset.planCard);
+  });
+
+  card.addEventListener('keydown',event=>{
+    if(event.key === 'Enter' || event.key === ' '){
+      event.preventDefault();
+      selectPlan(card.dataset.planCard);
+    }
+  });
+});
+
+formPlanButtons.forEach(button=>{
+  button.addEventListener('click',()=>{
+    selectPlan(button.dataset.formPlan);
+  });
+});
+
+/* Copy bank card */
+document.getElementById('copyCard').addEventListener('click',async()=>{
+  const cardNumber = '5022291098953217';
+
   try{
-    await navigator.clipboard.writeText(number);
-    showToast("شماره کارت کپی شد");
-  }catch(e){
-    const area=document.createElement("textarea");
-    area.value=number;
-    document.body.appendChild(area);
-    area.select();
-    document.execCommand("copy");
-    area.remove();
-    showToast("شماره کارت کپی شد");
+    if(navigator.clipboard && window.isSecureContext){
+      await navigator.clipboard.writeText(cardNumber);
+    }else{
+      const temporary = document.createElement('textarea');
+      temporary.value = cardNumber;
+      temporary.style.position = 'fixed';
+      temporary.style.opacity = '0';
+      document.body.appendChild(temporary);
+      temporary.select();
+      const copied = document.execCommand('copy');
+      temporary.remove();
+      if(!copied) throw new Error('Copy failed');
+    }
+    showToast('شماره کارت کپی شد');
+  }catch(error){
+    showToast('کپی خودکار انجام نشد؛ شماره کارت را دستی انتخاب کن.');
   }
-}
-
-document.getElementById("receipt").addEventListener("change",function(){
-  const file=this.files[0];
-  if(!file)return;
-
-  if(!["image/jpeg","image/png","image/webp"].includes(file.type)){
-    showToast("لطفاً یک تصویر معتبر انتخاب کنید");
-    this.value="";
-    return;
-  }
-
-  if(file.size>8*1024*1024){
-    showToast("حجم تصویر باید کمتر از ۸ مگابایت باشد");
-    this.value="";
-    return;
-  }
-
-  receiptFile=file;
-  if(previewURL)URL.revokeObjectURL(previewURL);
-  previewURL=URL.createObjectURL(file);
-
-  document.getElementById("receiptPreview").src=previewURL;
-  document.getElementById("previewWrap").style.display="block";
-  document.getElementById("uploadTitle").textContent=file.name;
 });
 
-function removeReceipt(){
-  const input=document.getElementById("receipt");
-  input.value="";
-  receiptFile=null;
-  if(previewURL)URL.revokeObjectURL(previewURL);
-  previewURL=null;
-  document.getElementById("receiptPreview").src="";
-  document.getElementById("previewWrap").style.display="none";
-  document.getElementById("uploadTitle").textContent="تصویر رسید را از گالری انتخاب کنید";
+/* Receipt upload */
+document.getElementById('chooseReceipt').addEventListener('click',()=>{
+  receiptInput.click();
+});
+
+document.getElementById('changeReceipt').addEventListener('click',()=>{
+  receiptInput.click();
+});
+
+receiptInput.addEventListener('change',()=>{
+  if(receiptInput.files && receiptInput.files[0]){
+    handleReceipt(receiptInput.files[0]);
+  }
+});
+
+function formatFileSize(bytes){
+  return (bytes / (1024 * 1024)).toFixed(2) + ' مگابایت';
 }
 
-document.getElementById("purchaseForm").addEventListener("submit",function(e){
-  e.preventDefault();
+function showFileError(message){
+  fileError.textContent = message;
+  fileError.classList.add('show');
+}
 
-  const fullname=document.getElementById("fullname").value.trim();
-  const phone=document.getElementById("phone").value.trim();
-  const email=document.getElementById("email").value.trim();
+function clearFileError(){
+  fileError.textContent = '';
+  fileError.classList.remove('show');
+}
 
-  if(fullname.length<3){
-    showToast("لطفاً نام و نام خانوادگی را کامل وارد کنید");
+function clearReceipt(){
+  selectedFile = null;
+  receiptInput.value = '';
+
+  if(previewUrl){
+    URL.revokeObjectURL(previewUrl);
+    previewUrl = null;
+  }
+
+  receiptThumb.removeAttribute('src');
+  receiptPreview.classList.remove('visible');
+  uploadContent.style.display = 'flex';
+  uploadBox.classList.remove('has-file');
+  clearFileError();
+}
+
+function handleReceipt(file){
+  clearFileError();
+
+  const allowedTypes = ['image/jpeg','image/png','image/webp'];
+  const maxSize = 8 * 1024 * 1024;
+
+  if(!allowedTypes.includes(file.type)){
+    clearReceipt();
+    showFileError('فرمت تصویر معتبر نیست. فقط JPG، PNG و WEBP پذیرفته می‌شود.');
     return;
   }
 
-  const normalizedPhone=phone.replace(/[۰-۹]/g,d=>"۰۱۲۳۴۵۶۷۸۹".indexOf(d)).replace(/[٠-٩]/g,d=>"٠١٢٣٤٥٦٧٨٩".indexOf(d));
-  if(!/^09\d{9}$/.test(normalizedPhone)){
-    showToast("شماره موبایل معتبر وارد کنید");
+  if(file.size > maxSize){
+    clearReceipt();
+    showFileError('حجم تصویر بیشتر از ۸ مگابایت است. لطفاً تصویر کوچک‌تری انتخاب کن.');
     return;
   }
 
-  if(email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-    showToast("آدرس ایمیل معتبر نیست");
+  if(file.size === 0){
+    clearReceipt();
+    showFileError('فایل انتخاب‌شده معتبر نیست.');
     return;
   }
 
-  if(!receiptFile){
-    showToast("لطفاً تصویر رسید پرداخت را انتخاب کنید");
-    return;
-  }
+  if(previewUrl) URL.revokeObjectURL(previewUrl);
 
-  /*
-    اتصال به سرور:
-    در این قسمت باید اطلاعات فرم و فایل رسید با FormData
-    به نشانی API واقعی پنل ارسال شوند.
-    تا پیش از تعیین API، فرم فقط اعتبارسنجی سمت مرورگر انجام می‌دهد.
-  */
-  showToast("فرم آماده است؛ برای ارسال نهایی باید به سرور متصل شود.");
+  selectedFile = file;
+  previewUrl = URL.createObjectURL(file);
+
+  receiptThumb.src = previewUrl;
+  receiptName.textContent = file.name;
+  receiptSize.textContent = formatFileSize(file.size);
+
+  uploadContent.style.display = 'none';
+  receiptPreview.classList.add('visible');
+  uploadBox.classList.add('has-file');
+}
+
+document.getElementById('removeReceipt').addEventListener('click',()=>{
+  clearReceipt();
+  showToast('تصویر رسید حذف شد');
 });
+
+/* Drag and drop */
+['dragenter','dragover'].forEach(eventName=>{
+  uploadBox.addEventListener(eventName,event=>{
+    event.preventDefault();
+    uploadBox.classList.add('dragover');
+  });
+});
+
+['dragleave','drop'].forEach(eventName=>{
+  uploadBox.addEventListener(eventName,event=>{
+    event.preventDefault();
+    uploadBox.classList.remove('dragover');
+  });
+});
+
+uploadBox.addEventListener('drop',event=>{
+  const files = event.dataTransfer.files;
+  if(files && files.length){
+    if(files.length > 1){
+      showFileError('فقط امکان انتخاب یک تصویر رسید وجود دارد.');
+      return;
+    }
+    handleReceipt(files[0]);
+  }
+});
+
+/* Validation helpers */
+function normalizeDigits(value){
+  const persian = '۰۱۲۳۴۵۶۷۸۹';
+  const arabic = '٠١٢٣٤٥٦٧٨٩';
+
+  return String(value)
+    .replace(/[۰-۹]/g,d=>persian.indexOf(d))
+    .replace(/[٠-٩]/g,d=>arabic.indexOf(d))
+    .replace(/[\s\-()]/g,'');
+}
+
+function normalizeMobile(value){
+  let mobile = normalizeDigits(value);
+
+  if(mobile.startsWith('+98')) mobile = '0' + mobile.slice(3);
+  if(mobile.startsWith('0098')) mobile = '0' + mobile.slice(4);
+  if(mobile.startsWith('98') && mobile.length === 12) mobile = '0' + mobile.slice(2);
+
+  return mobile;
+}
+
+function setInvalid(element){
+  element.classList.add('invalid');
+  element.setAttribute('aria-invalid','true');
+}
+
+function clearInvalid(element){
+  element.classList.remove('invalid');
+  element.removeAttribute('aria-invalid');
+}
+
+const fullName = document.getElementById('fullName');
+const mobile = document.getElementById('mobile');
+const email = document.getElementById('email');
+
+[fullName,mobile,email].forEach(input=>{
+  input.addEventListener('input',()=>{
+    clearInvalid(input);
+    clearFormMessage();
+  });
+});
+
+function validateForm(){
+  let valid = true;
+  clearFormMessage();
+
+  const nameValue = fullName.value.trim();
+  const mobileValue = normalizeMobile(mobile.value);
+  const emailValue = email.value.trim();
+
+  if(nameValue.length < 3 || !/\s/.test(nameValue)){
+    setInvalid(fullName);
+    valid = false;
+  }else{
+    clearInvalid(fullName);
+  }
+
+  if(!/^09\d{9}$/.test(mobileValue)){
+    setInvalid(mobile);
+    valid = false;
+  }else{
+    clearInvalid(mobile);
+    mobile.value = mobileValue;
+  }
+
+  if(emailValue && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(emailValue)){
+    setInvalid(email);
+    valid = false;
+  }else{
+    clearInvalid(email);
+  }
+
+  if(!selectedFile){
+    showFileError('برای ارسال درخواست، تصویر رسید پرداخت را انتخاب کن.');
+    valid = false;
+  }else{
+    clearFileError();
+  }
+
+  if(!valid){
+    setFormMessage('بعضی از اطلاعات ناقص یا نادرست هستند. موارد مشخص‌شده را بررسی کن.','error');
+
+    const firstInvalid = form.querySelector('.invalid');
+    if(firstInvalid){
+      firstInvalid.scrollIntoView({behavior:'smooth',block:'center'});
+      firstInvalid.focus({preventScroll:true});
+    }else if(!selectedFile){
+      uploadBox.scrollIntoView({behavior:'smooth',block:'center'});
+    }
+  }
+
+  return valid;
+}
+
+/* Submission */
+form.addEventListener('submit',async event=>{
+  event.preventDefault();
+
+  if(isSubmitting) return;
+  if(!validateForm()) return;
+
+  if(!API_ENDPOINT.trim()){
+    setFormMessage(
+      'فرم از نظر اطلاعات و فایل رسید بررسی شد؛ اما اتصال ثبت سفارش به سرور هنوز پیکربندی نشده است. برای ارسال واقعی درخواست، ابتدا آدرس API در کد تنظیم شود.',
+      'info'
+    );
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append('full_name',fullName.value.trim());
+  formData.append('mobile',normalizeMobile(mobile.value));
+  formData.append('email',email.value.trim());
+  formData.append('plan',selectedPlanInput.value);
+  formData.append('receipt',selectedFile);
+
+  isSubmitting = true;
+  submitButton.disabled = true;
+  submitButton.querySelector('span').textContent = 'در حال ارسال درخواست...';
+
+  try{
+    const response = await fetch(API_ENDPOINT,{
+      method:'POST',
+      body:formData
+    });
+
+    let result = {};
+    try{
+      result = await response.json();
+    }catch(parseError){
+      result = {};
+    }
+
+    if(!response.ok){
+      throw new Error(result.message || 'ارتباط با سرور با خطا مواجه شد.');
+    }
+
+    if(result.success === true){
+      setFormMessage(
+        result.message || 'درخواست شما با موفقیت به سرور ارسال شد و برای بررسی در صف پیگیری قرار گرفت.',
+        'success'
+      );
+      form.reset();
+      clearReceipt();
+      selectPlan('platinum');
+    }else{
+      throw new Error(result.message || 'سرور دریافت موفق درخواست را تأیید نکرد. لطفاً دوباره تلاش کن.');
+    }
+
+  }catch(error){
+    setFormMessage(
+      error.message || 'ارسال درخواست انجام نشد. اتصال اینترنت و وضعیت سرور را بررسی کن.',
+      'error'
+    );
+  }finally{
+    isSubmitting = false;
+    submitButton.disabled = false;
+    submitButton.querySelector('span').textContent = 'ارسال درخواست فعال‌سازی';
+  }
+});
+
+/* Initial state */
+selectPlan('platinum');
 </script>
+
 </body>
 </html>
