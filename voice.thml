@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#D95A25">
+<title>صدای شما | Ai-Sinova</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --orange:#F47B3E;
+  --orange2:#E7652E;
+  --orange3:#B83F1B;
+  --cream:#FFF3E7;
+  --cream2:#FFE3CD;
+  --dark:#351C16;
+  --dark2:#512719;
+  --muted:#FFE0C9;
+  --glass:rgba(255,244,232,.13);
+  --glass-border:rgba(255,239,220,.25);
+  --shadow:0 22px 65px rgba(91,34,12,.24);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  min-height:100vh;
+  color:var(--cream);
+  font-family:'Vazirmatn',sans-serif;
+  font-size:18px;
+  overflow-x:hidden;
+  padding-bottom:112px;
+  background:
+    radial-gradient(ellipse at 50% -10%,#FFB17C 0%,transparent 45%),
+    radial-gradient(ellipse at 0% 35%,rgba(255,178,117,.65),transparent 38%),
+    radial-gradient(ellipse at 100% 70%,rgba(160,52,22,.42),transparent 40%),
+    linear-gradient(145deg,#F58B4E 0%,#E96D36 35%,#D95527 70%,#B94320 100%);
+  background-attachment:fixed;
+}
+body:before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:0;
+  opacity:.13;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+  mix-blend-mode:soft-light;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:3px solid #FFF5E9;outline-offset:5px}
+.container{width:min(100% - 34px,720px);margin:auto;position:relative;z-index:1}
+
+/* Ambient */
+.ambient{
+  position:fixed;pointer-events:none;z-index:0;border-radius:50%;
+  filter:blur(3px);mix-blend-mode:screen;
+}
+.ambient.one{
+  width:240px;height:240px;top:17%;right:-130px;
+  background:radial-gradient(circle,rgba(255,220,179,.42),transparent 70%);
+}
+.ambient.two{
+  width:300px;height:300px;bottom:8%;left:-170px;
+  background:radial-gradient(circle,rgba(255,174,111,.35),transparent 70%);
+}
+.ambient.three{
+  width:170px;height:170px;top:48%;left:25%;
+  background:radial-gradient(circle,rgba(255,228,191,.18),transparent 70%);
+}
+
+/* Header */
+.header{
+  padding:23px 0 18px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-symbol{
+  width:58px;height:58px;position:relative;
+  display:grid;place-items:center;flex-shrink:0;
+  border-radius:19px;
+  background:linear-gradient(145deg,rgba(255,246,229,.35),rgba(255,220,190,.10));
+  border:1px solid rgba(255,245,226,.55);
+  box-shadow:0 9px 30px rgba(110,37,13,.16),inset 0 1px 0 rgba(255,255,255,.5);
+  overflow:hidden;
+}
+.brand-symbol:before{
+  content:"";position:absolute;inset:5px;border-radius:15px;
+  border:1px solid rgba(255,246,226,.28);
+}
+.brand-symbol svg{width:39px;height:39px;position:relative;filter:drop-shadow(0 3px 6px #8C351F55)}
+.brand-name{font-size:23px;font-weight:900;letter-spacing:-.8px;line-height:1.2}
+.brand-sub{
+  font-size:10px;letter-spacing:2.3px;font-weight:800;
+  color:#FFE5D0;margin-top:5px;
+}
+.header-right{
+  display:flex;align-items:center;gap:7px;
+  border:1px solid rgba(255,239,220,.3);
+  background:rgba(103,35,14,.13);
+  border-radius:30px;padding:9px 12px;
+  color:#FFF0E3;font-size:12px;font-weight:800;
+  backdrop-filter:blur(10px);
+}
+.header-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:#FFF0D4;box-shadow:0 0 12px #FFF4D8;
+}
+
+/* Signature */
+.signature{
+  display:flex;align-items:center;gap:10px;
+  margin:0 0 19px;color:#FFE5D0;
+}
+.signature-line{
+  height:1px;flex:1;
+  background:linear-gradient(90deg,transparent,rgba(255,241,221,.55));
+}
+.signature-text{
+  font-size:10px;letter-spacing:2.5px;font-weight:900;white-space:nowrap;opacity:.88;
+}
+.signature-star{font-size:15px;color:#FFF0D4}
+
+/* Film edge */
+.film-edge{
+  display:flex;align-items:center;gap:8px;
+  padding:7px 10px;border-radius:12px;
+  background:rgba(79,28,13,.23);
+  border:1px solid rgba(255,232,207,.16);
+  margin-bottom:18px;
+  box-shadow:inset 0 1px 6px rgba(75,25,10,.12);
+}
+.film-edge .holes{display:flex;gap:6px;flex:1;justify-content:space-between}
+.film-edge .holes i{
+  display:block;width:9px;height:6px;border-radius:2px;
+  background:rgba(255,230,205,.62);
+}
+.film-edge .film-label{
+  font-size:9px;letter-spacing:2px;font-weight:900;
+  color:#FFE4CC;white-space:nowrap;
+}
+
+/* Hero — Voice fun */
+.voice-hero{
+  position:relative;isolation:isolate;overflow:hidden;
+  border-radius:31px;
+  padding:28px 24px 24px;
+  background:
+    radial-gradient(circle at 80% 15%,rgba(255,166,104,.32),transparent 40%),
+    radial-gradient(circle at 10% 90%,rgba(255,128,68,.28),transparent 40%),
+    linear-gradient(145deg,#47251B 0%,#321C17 48%,#211512 100%);
+  border:1px solid rgba(255,222,195,.30);
+  box-shadow:0 27px 65px rgba(84,26,10,.31),inset 0 1px 0 rgba(255,255,255,.13);
+  margin-bottom:22px;
+}
+.voice-hero:before{
+  content:"";position:absolute;z-index:-1;
+  width:340px;height:340px;right:-140px;top:-160px;border-radius:50%;
+  border:1px solid rgba(255,183,128,.28);
+  box-shadow:0 0 0 17px rgba(255,183,128,.035),
+             0 0 0 40px rgba(255,183,128,.025),
+             0 0 70px rgba(255,139,80,.18);
+}
+.voice-hero:after{
+  content:"";position:absolute;z-index:-1;
+  width:260px;height:260px;left:-130px;bottom:-140px;border-radius:50%;
+  background:radial-gradient(circle,rgba(242,111,55,.28),transparent 70%);
+}
+.hero-top{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:8px;position:relative;z-index:2;
+}
+.hero-kicker{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid rgba(255,204,165,.28);
+  background:rgba(255,197,151,.12);
+  border-radius:30px;padding:8px 13px;
+  color:#FFE5D1;font-size:12px;font-weight:800;
+  backdrop-filter:blur(8px);
+}
+.hero-kicker i{
+  width:7px;height:7px;border-radius:50%;
+  background:#FFAC70;box-shadow:0 0 12px #FF9B5C;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(255,172,112,.5)}
+  50%{box-shadow:0 0 0 8px rgba(255,172,112,0)}
+}
+.hero-index{
+  font-size:10px;letter-spacing:2px;color:#CFAF9D;font-weight:800;
+}
+.voice-title{
+  position:relative;z-index:2;
+  margin:22px 0 12px;
+  font-size:clamp(30px,7.5vw,44px);
+  line-height:1.4;font-weight:900;
+  letter-spacing:-1.5px;
+}
+.voice-title .glow{
+  color:#FF9C62;
+  text-shadow:0 0 20px rgba(255,133,75,.42),0 0 45px rgba(255,112,48,.22);
+}
+.voice-title .emoji{
+  font-size:.85em;
+  display:inline-block;
+  transform:rotate(-8deg);
+  filter:drop-shadow(0 4px 8px rgba(0,0,0,.3));
+}
+.voice-desc{
+  position:relative;z-index:2;
+  margin:0;
+  font-size:15.5px;line-height:2.05;
+  color:#EBD6C8;font-weight:500;
+}
+.voice-desc strong{color:#FFE5D1;font-weight:900}
+.hero-chips{
+  display:flex;gap:8px;margin-top:18px;
+  position:relative;z-index:2;flex-wrap:wrap;
+}
+.hero-chip{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:7px 12px;border-radius:30px;
+  background:rgba(103,35,14,.28);
+  border:1px solid rgba(255,239,220,.25);
+  color:#FFE5D1;font-size:11.5px;font-weight:800;
+  backdrop-filter:blur(8px);
+}
+
+/* Info card */
+.info-card{
+  position:relative;overflow:hidden;
+  border-radius:22px;
+  padding:18px 18px;
+  margin-bottom:20px;
+  background:linear-gradient(110deg,rgba(255,245,231,.22),rgba(255,227,204,.10));
+  border:1px solid rgba(255,241,224,.34);
+  backdrop-filter:blur(16px);
+  box-shadow:0 12px 30px rgba(104,37,13,.12),inset 0 1px 0 rgba(255,255,255,.20);
+  display:flex;align-items:flex-start;gap:14px;
+}
+.info-icon{
+  width:48px;height:48px;border-radius:15px;flex-shrink:0;
+  display:grid;place-items:center;
+  background:linear-gradient(145deg,rgba(255,255,255,.28),rgba(255,255,255,.10));
+  border:1px solid rgba(255,241,224,.34);
+  color:#FFF2E5;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.24);
+}
+.info-icon svg{width:26px;height:26px}
+.info-text{flex:1}
+.info-title{font-size:15px;font-weight:900;color:#FFF8F0;margin-bottom:5px;line-height:1.5}
+.info-desc{font-size:13px;color:#FFE2CB;font-weight:600;line-height:1.9;margin:0}
+.info-desc strong{color:#FFF8F0;font-weight:900}
+
+/* Toggle card — همون چک‌باکس صفحه اصلی */
+.toggle-card{
+  position:relative;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;padding:15px 16px;
+  border:1px solid rgba(255,241,224,.34);
+  border-radius:20px;
+  background:
+    linear-gradient(110deg,rgba(255,245,231,.22),rgba(255,227,204,.09));
+  backdrop-filter:blur(16px);
+  box-shadow:0 12px 30px rgba(104,37,13,.12),inset 0 1px 0 rgba(255,255,255,.20);
+  margin-bottom:22px;
+  transition:.25s;
+}
+.toggle-card:hover{transform:translateY(-2px);background:rgba(255,245,231,.25)}
+.toggle-main{display:flex;align-items:center;gap:13px;flex:1}
+.toggle-icon{
+  width:46px;height:46px;border-radius:15px;
+  display:grid;place-items:center;flex-shrink:0;
+  color:#FFF2E5;
+  background:linear-gradient(145deg,rgba(255,255,255,.24),rgba(255,255,255,.08));
+  border:1px solid rgba(255,241,224,.27);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22);
+}
+.toggle-icon svg{width:24px;height:24px}
+.toggle-title{font-size:16px;font-weight:900;color:#FFF8F0}
+.toggle-desc{font-size:11.5px;color:#FFE2CB;margin-top:3px;font-weight:500;line-height:1.6}
+.switch{
+  width:57px;height:33px;border:1px solid rgba(255,244,231,.28);
+  border-radius:30px;padding:3px;position:relative;flex-shrink:0;
+  background:rgba(84,35,20,.38);
+  transition:.25s;cursor:pointer;
+}
+.switch:after{
+  content:"";position:absolute;width:25px;height:25px;
+  top:3px;right:3px;border-radius:50%;
+  background:linear-gradient(145deg,#FFFDF8,#FFE4CC);
+  box-shadow:0 2px 8px rgba(74,27,12,.3);
+  transition:.25s;
+}
+.switch[aria-checked="true"]{
+  background:linear-gradient(110deg,#FFE1BE,#FFF4E7);
+  border-color:#FFF3E6;
+  box-shadow:0 0 18px rgba(255,241,220,.35);
+}
+.switch[aria-checked="true"]:after{
+  right:27px;background:linear-gradient(145deg,#E9652D,#B94320);
+}
+
+/* Progress */
+.progress-wrap{
+  margin-bottom:18px;
+}
+.progress-head{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;margin-bottom:10px;
+}
+.progress-title{
+  font-size:15px;font-weight:900;color:#FFF8F0;
+  display:flex;align-items:center;gap:8px;
+}
+.progress-title svg{width:20px;height:20px;color:#FFD4B2}
+.progress-count{
+  font-size:14px;font-weight:900;color:#FFD4B2;
+  padding:4px 10px;border-radius:20px;
+  background:rgba(103,35,14,.28);
+  border:1px solid rgba(255,212,178,.3);
+}
+.progress-bar{
+  height:10px;border-radius:10px;overflow:hidden;
+  background:rgba(103,35,14,.32);
+  box-shadow:inset 0 1px 3px rgba(0,0,0,.2);
+  position:relative;
+}
+.progress-fill{
+  height:100%;border-radius:10px;
+  background:linear-gradient(90deg,#FFD4B2,#FFAC70,#FF8B4C);
+  box-shadow:0 0 12px rgba(255,180,120,.5),inset 0 1px 0 rgba(255,255,255,.5);
+  width:0%;transition:width .5s cubic-bezier(.2,.8,.2,1);
+}
+
+/* Slots grid */
+.slots-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:12px;
+  margin-bottom:20px;
+}
+.slot{
+  position:relative;
+  min-height:150px;
+  border-radius:22px;
+  padding:16px 14px;
+  border:1.5px dashed rgba(255,241,224,.35);
+  background:linear-gradient(145deg,rgba(255,245,231,.14),rgba(255,227,204,.06));
+  backdrop-filter:blur(12px);
+  box-shadow:0 10px 24px rgba(104,37,13,.1),inset 0 1px 0 rgba(255,255,255,.15);
+  display:flex;flex-direction:column;justify-content:space-between;
+  align-items:center;
+  cursor:pointer;
+  transition:.3s cubic-bezier(.2,.8,.2,1);
+  overflow:hidden;
+  text-align:center;
+  color:#FFE5D1;
+}
+.slot:hover{
+  transform:translateY(-4px);
+  border-color:rgba(255,241,224,.6);
+  background:linear-gradient(145deg,rgba(255,245,231,.2),rgba(255,227,204,.1));
+  box-shadow:0 18px 40px rgba(104,37,13,.2),inset 0 1px 0 rgba(255,255,255,.25);
+}
+.slot.empty:active{transform:scale(.97)}
+.slot-num{
+  position:absolute;top:10px;left:12px;
+  font-size:11px;font-weight:900;
+  color:#FFE5D1;opacity:.7;
+  letter-spacing:1px;
+}
+.slot-mic{
+  width:58px;height:58px;border-radius:50%;
+  display:grid;place-items:center;
+  background:linear-gradient(145deg,rgba(255,246,229,.28),rgba(255,220,190,.12));
+  border:1.5px solid rgba(255,245,226,.45);
+  box-shadow:0 6px 16px rgba(110,37,13,.2),inset 0 1px 0 rgba(255,255,255,.3);
+  color:#FFF2E5;
+  margin-top:8px;
+  transition:.3s;
+}
+.slot:hover .slot-mic{
+  transform:scale(1.08);
+  box-shadow:0 10px 24px rgba(110,37,13,.3),inset 0 1px 0 rgba(255,255,255,.4),0 0 24px rgba(255,180,120,.4);
+}
+.slot-mic svg{width:26px;height:26px}
+.slot-label{
+  font-size:13px;font-weight:900;color:#FFF8F0;
+  margin-top:6px;
+}
+.slot-hint{
+  font-size:11px;color:#FFE2CB;font-weight:600;
+  margin-top:2px;
+}
+
+/* Filled slot */
+.slot.filled{
+  border-style:solid;
+  border-color:rgba(255,212,178,.5);
+  background:linear-gradient(145deg,rgba(255,230,200,.22),rgba(255,180,120,.1));
+  box-shadow:0 14px 32px rgba(104,37,13,.2),inset 0 1px 0 rgba(255,255,255,.25),0 0 0 1px rgba(255,212,178,.15);
+}
+.slot.filled .slot-mic{
+  background:linear-gradient(145deg,#FFD4B2,#FFAC70);
+  border-color:#FFF0D4;
+  color:#5B220C;
+  box-shadow:0 6px 18px rgba(255,140,70,.4),inset 0 1px 0 rgba(255,255,255,.5);
+}
+.slot-wave{
+  display:flex;align-items:center;gap:2px;height:22px;
+  margin-top:6px;
+}
+.slot-wave i{
+  display:block;width:2.5px;border-radius:2px;
+  background:linear-gradient(to top,#FFD4B2,#FFF0D4);
+  height:100%;
+  animation:wave 1.2s ease-in-out infinite;
+}
+.slot-wave i:nth-child(1){height:40%;animation-delay:0s}
+.slot-wave i:nth-child(2){height:70%;animation-delay:.1s}
+.slot-wave i:nth-child(3){height:100%;animation-delay:.2s}
+.slot-wave i:nth-child(4){height:75%;animation-delay:.3s}
+.slot-wave i:nth-child(5){height:55%;animation-delay:.4s}
+.slot-wave i:nth-child(6){height:80%;animation-delay:.15s}
+.slot-wave i:nth-child(7){height:45%;animation-delay:.25s}
+@keyframes wave{
+  0%,100%{transform:scaleY(.5)}
+  50%{transform:scaleY(1)}
+}
+.slot-actions{
+  display:flex;gap:6px;margin-top:8px;
+}
+.slot-actions button{
+  border:1px solid rgba(255,241,224,.35);
+  background:rgba(103,35,14,.25);
+  color:#FFF2E5;
+  width:32px;height:32px;border-radius:50%;
+  display:grid;place-items:center;
+  transition:.2s;
+  backdrop-filter:blur(8px);
+}
+.slot-actions button:hover{
+  background:rgba(103,35,14,.45);
+  border-color:rgba(255,241,224,.6);
+  transform:scale(1.08);
+}
+.slot-actions button svg{width:14px;height:14px}
+.slot-actions .del{color:#FFC8B8}
+
+/* FAB */
+.fab{
+  position:fixed;
+  bottom:calc(88px + env(safe-area-inset-bottom));
+  left:50%;transform:translateX(-50%);
+  z-index:40;
+  width:78px;height:78px;border-radius:50%;
+  border:none;
+  background:
+    radial-gradient(circle at 30% 25%,#FFD4A8,#FF8B4C 45%,#E7652E 90%);
+  color:#5B220C;
+  display:grid;place-items:center;
+  cursor:pointer;
+  box-shadow:
+    0 18px 38px rgba(80,25,10,.45),
+    0 0 0 6px rgba(255,240,212,.15),
+    0 0 32px rgba(255,140,70,.5),
+    inset 0 2px 0 rgba(255,255,255,.55);
+  transition:.3s cubic-bezier(.2,.8,.2,1);
+  animation:fabPulse 2.5s ease-in-out infinite;
+}
+@keyframes fabPulse{
+  0%,100%{box-shadow:0 18px 38px rgba(80,25,10,.45),0 0 0 6px rgba(255,240,212,.15),0 0 32px rgba(255,140,70,.5),inset 0 2px 0 rgba(255,255,255,.55)}
+  50%{box-shadow:0 18px 38px rgba(80,25,10,.45),0 0 0 12px rgba(255,240,212,.08),0 0 48px rgba(255,140,70,.65),inset 0 2px 0 rgba(255,255,255,.55)}
+}
+.fab:hover{transform:translateX(-50%) scale(1.06)}
+.fab:active{transform:translateX(-50%) scale(.95)}
+.fab svg{width:36px;height:36px;filter:drop-shadow(0 2px 3px rgba(80,25,10,.3))}
+
+/* Modal */
+.rec-modal{
+  position:fixed;inset:0;z-index:200;
+  display:flex;align-items:flex-end;justify-content:center;
+  padding:0;
+  opacity:0;pointer-events:none;
+  transition:opacity .35s ease;
+}
+.rec-modal.show{opacity:1;pointer-events:auto}
+.rec-backdrop{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 50% 0%,#FFB17C 0%,transparent 45%),
+    radial-gradient(ellipse at 0% 40%,rgba(255,178,117,.55),transparent 40%),
+    radial-gradient(ellipse at 100% 80%,rgba(160,52,22,.55),transparent 40%),
+    linear-gradient(145deg,#F58B4E 0%,#E96D36 35%,#D95527 70%,#B94320 100%);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+.rec-backdrop:before{
+  content:"";position:absolute;inset:0;
+  opacity:.13;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+  mix-blend-mode:soft-light;pointer-events:none;
+}
+.rec-card{
+  position:relative;z-index:2;
+  width:min(100%,520px);
+  max-height:92vh;overflow-y:auto;
+  border-radius:32px 32px 0 0;
+  padding:28px 24px calc(28px + env(safe-area-inset-bottom));
+  background:
+    radial-gradient(circle at 10% 0%,rgba(255,255,255,.18),transparent 40%),
+    linear-gradient(145deg,rgba(255,246,234,.35),rgba(255,224,199,.2));
+  border:1px solid rgba(255,245,226,.5);
+  border-bottom:none;
+  box-shadow:0 -30px 80px rgba(60,20,5,.5),inset 0 2px 0 rgba(255,255,255,.35);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  text-align:center;
+  color:#FFF3E7;
+  transform:translateY(100%);
+  transition:transform .45s cubic-bezier(.2,.9,.3,1);
+}
+.rec-modal.show .rec-card{transform:none}
+.rec-handle{
+  width:44px;height:4px;border-radius:4px;
+  background:rgba(255,240,212,.4);
+  margin:0 auto 20px;
+}
+.rec-title{
+  font-size:20px;font-weight:900;color:#FFF8F0;
+  margin:0 0 8px;line-height:1.5;
+  letter-spacing:-.4px;
+}
+.rec-sub{
+  font-size:13px;color:#FFE2CB;font-weight:600;
+  margin:0 0 22px;line-height:1.8;
+}
+.rec-visual{
+  position:relative;
+  width:140px;height:140px;
+  margin:0 auto 20px;
+  display:grid;place-items:center;
+}
+.rec-ring{
+  position:absolute;inset:0;border-radius:50%;
+  border:1.5px solid rgba(255,212,178,.3);
+  animation:ringPulse 2s ease-out infinite;
+}
+.rec-ring:nth-child(2){animation-delay:.5s}
+.rec-ring:nth-child(3){animation-delay:1s}
+@keyframes ringPulse{
+  0%{transform:scale(.7);opacity:1;border-color:rgba(255,212,178,.5)}
+  100%{transform:scale(1.4);opacity:0;border-color:rgba(255,212,178,0)}
+}
+.rec-modal:not(.recording) .rec-ring{animation-play-state:paused;opacity:.2}
+.rec-circle{
+  width:90px;height:90px;border-radius:50%;
+  background:
+    radial-gradient(circle at 35% 30%,#FFD4A8,#FF8B4C 50%,#C94C26 100%);
+  border:2px solid rgba(255,245,226,.65);
+  box-shadow:
+    0 12px 32px rgba(200,70,30,.4),
+    inset 0 2px 0 rgba(255,255,255,.4);
+  display:grid;place-items:center;
+  color:#5B220C;
+  transition:.3s;
+}
+.rec-circle svg{width:42px;height:42px;filter:drop-shadow(0 2px 3px rgba(80,25,10,.3))}
+.rec-time{
+  font-size:32px;font-weight:900;
+  color:#FFF8F0;margin:0 0 4px;
+  font-variant-numeric:tabular-nums;
+  letter-spacing:1px;
+  text-shadow:0 2px 10px rgba(80,25,10,.3);
+}
+.rec-limit{
+  font-size:12px;color:#FFE2CB;font-weight:700;
+  margin:0 0 20px;
+}
+.rec-live-wave{
+  display:flex;align-items:center;justify-content:center;gap:3px;
+  height:36px;margin:0 0 24px;
+  opacity:.3;transition:opacity .3s;
+}
+.rec-modal.recording .rec-live-wave{opacity:1}
+.rec-live-wave i{
+  display:block;width:3px;border-radius:3px;
+  background:linear-gradient(to top,#FFD4B2,#FFF0D4);
+  height:6px;transition:height .15s;
+}
+.rec-actions{
+  display:flex;gap:10px;
+}
+.rec-btn{
+  flex:1;
+  min-height:56px;border-radius:16px;
+  border:1px solid rgba(255,255,255,.3);
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  font-size:15px;font-weight:900;
+  cursor:pointer;
+  transition:.2s;
+  font-family:inherit;
+}
+.rec-btn.cancel{
+  background:rgba(103,35,14,.3);color:#FFE2CB;
+}
+.rec-btn.cancel:hover{background:rgba(103,35,14,.45)}
+.rec-btn.start{
+  background:linear-gradient(105deg,#FFD4B2 0%,#FFAC70 52%,#FF8B4C 100%);
+  color:#5B220C;
+  border-color:rgba(255,255,255,.5);
+  box-shadow:0 12px 28px rgba(80,25,10,.3),inset 0 2px 0 rgba(255,255,255,.6);
+}
+.rec-btn.start:hover{transform:translateY(-1px)}
+.rec-btn.stop{
+  background:linear-gradient(105deg,#FF6B6B 0%,#E64A4A 52%,#C83030 100%);
+  color:white;
+  border-color:rgba(255,255,255,.4);
+  box-shadow:0 12px 28px rgba(180,40,40,.4),inset 0 2px 0 rgba(255,255,255,.35);
+}
+.rec-btn.stop:hover{transform:translateY(-1px)}
+.rec-btn:active{transform:scale(.97)}
+.rec-btn svg{width:20px;height:20px}
+.rec-btn:disabled{opacity:.5;cursor:not-allowed;transform:none!important}
+
+/* Loading overlay */
+.loading-overlay{
+  position:fixed;inset:0;z-index:300;
+  display:none;align-items:center;justify-content:center;
+  background:
+    radial-gradient(ellipse at 50% 0%,#FFB17C 0%,transparent 45%),
+    linear-gradient(145deg,#F58B4E 0%,#E96D36 35%,#D95527 70%,#B94320 100%);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  opacity:0;transition:opacity .3s;
+}
+.loading-overlay.show{display:flex;opacity:1}
+.loading-content{
+  text-align:center;color:#FFF3E7;
+}
+.loading-spinner{
+  width:70px;height:70px;
+  border-radius:50%;
+  border:4px solid rgba(255,240,212,.2);
+  border-top-color:#FFD4B2;
+  border-right-color:#FFAC70;
+  margin:0 auto 22px;
+  animation:spin 1s linear infinite;
+  box-shadow:0 0 30px rgba(255,180,120,.3);
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-text{
+  font-size:17px;font-weight:900;color:#FFF8F0;
+  margin:0 0 6px;
+}
+.loading-sub{
+  font-size:13px;color:#FFE2CB;font-weight:600;
+  margin:0;
+}
+
+/* Toast */
+.toast{
+  position:fixed;z-index:350;
+  bottom:calc(180px + env(safe-area-inset-bottom));
+  left:50%;transform:translate(-50%,20px);
+  background:rgba(53,28,22,.98);
+  color:#FFF3E7;
+  border:1px solid rgba(255,230,206,.3);
+  padding:14px 22px;border-radius:16px;
+  font-size:14px;font-weight:800;
+  box-shadow:0 14px 38px rgba(63,23,10,.5),0 0 20px rgba(255,180,120,.2);
+  opacity:0;pointer-events:none;transition:.3s;
+  width:max-content;max-width:calc(100% - 40px);
+  text-align:center;
+  display:flex;align-items:center;gap:10px;
+  backdrop-filter:blur(16px);
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast svg{width:18px;height:18px;flex-shrink:0;color:#FFD4B2}
+
+/* Bottom nav */
+.bottom-nav{
+  position:fixed;z-index:20;bottom:0;left:0;right:0;
+  padding:10px 12px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(102,38,18,.83);
+  backdrop-filter:blur(24px);
+  border-top:1px solid rgba(255,231,208,.24);
+  box-shadow:0 -10px 35px rgba(93,31,12,.17);
+}
+.nav-inner{
+  width:min(100%,720px);margin:auto;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:7px;
+}
+.nav-item{
+  min-height:70px;border-radius:18px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:5px;color:rgba(255,235,218,.70);
+  font-size:13px;font-weight:800;position:relative;
+  transition:.22s;
+}
+.nav-item svg{width:25px;height:25px;stroke-width:1.8}
+.nav-item.active{
+  color:#FFF8F0;
+  background:linear-gradient(145deg,rgba(255,220,190,.22),rgba(255,238,219,.10));
+  border:1px solid rgba(255,230,205,.22);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.15),0 4px 16px rgba(55,17,8,.12);
+}
+.nav-item.active:before{
+  content:"";position:absolute;top:-1px;
+  width:26px;height:3px;border-radius:0 0 6px 6px;
+  background:#FFD4B2;box-shadow:0 0 12px #FFB17D;
+}
+.nav-item.active svg{filter:drop-shadow(0 0 7px rgba(255,208,175,.36));stroke-width:2.3}
+.nav-item:active{transform:scale(.95)}
+
+@media(min-width:650px){
+  .container{width:min(100% - 52px,720px)}
+  .slots-grid{grid-template-columns:repeat(3,1fr)}
+  .voice-hero{padding:32px 34px 28px}
+}
+@media(max-width:380px){
+  .container{width:calc(100% - 24px)}
+  .brand-name{font-size:21px}
+  .header-right{font-size:10px;padding:8px 9px}
+  .voice-hero{padding:22px 18px}
+  .voice-title{font-size:28px}
+  .voice-desc{font-size:14px}
+  .slot{min-height:135px;padding:12px 10px}
+  .slot-mic{width:50px;height:50px}
+  .slot-mic svg{width:22px;height:22px}
+  .slot-label{font-size:12px}
+  .nav-item{font-size:12px}
+  .fab{width:68px;height:68px}
+  .fab svg{width:30px;height:30px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+
+<body>
+
+<div class="ambient one"></div>
+<div class="ambient two"></div>
+<div class="ambient three"></div>
+
+<div class="container">
+
+<header class="header">
+  <a class="brand" href="index.html" aria-label="خانه Ai-Sinova">
+    <div class="brand-symbol">
+      <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <path d="M24 5L43 38H5L24 5Z" stroke="#FFF4E7" stroke-width="1.7" stroke-linejoin="round"/>
+        <path d="M24 13L35 33H13L24 13Z" fill="#FFF1E3" fill-opacity=".17" stroke="#FFF4E7" stroke-width="1.2"/>
+        <path d="M19 29L29 29L24 20L19 29Z" fill="#FFF4E7"/>
+        <circle cx="24" cy="25" r="3" fill="#D95A25"/>
+      </svg>
+    </div>
+    <div>
+      <div class="brand-name">Ai-Sinova</div>
+      <div class="brand-sub">THE CINEMA BEYOND LANGUAGE</div>
+    </div>
+  </a>
+  <div class="header-right">
+    <span class="header-dot"></span>
+    استودیوی صدا
+  </div>
+</header>
+
+<div class="signature">
+  <div class="signature-line"></div>
+  <span class="signature-star">✦</span>
+  <span class="signature-text">YOUR VOICE · YOUR CINEMA</span>
+  <span class="signature-star">✦</span>
+  <div class="signature-line" style="transform:scaleX(-1)"></div>
+</div>
+
+<div class="film-edge" aria-hidden="true">
+  <div class="holes"><i></i><i></i><i></i><i></i><i></i></div>
+  <span class="film-label">VOICE STUDIO · S01</span>
+  <div class="holes"><i></i><i></i><i></i><i></i><i></i></div>
+</div>
+
+<main>
+
+  <section class="voice-hero">
+    <div class="hero-top">
+      <div class="hero-kicker"><i></i> صدای تو، سینمای تو</div>
+      <div class="hero-index">VOICE / 001</div>
+    </div>
+
+    <h1 class="voice-title">
+      فیلم رو با <span class="glow">صدای خودت</span><br>
+      و رفیقات ببین <span class="emoji">🎬</span>
+    </h1>
+
+    <p class="voice-desc">
+      صداتو ضبط کن، بعدش مثلاً <strong>رابرت داونی جونیور</strong> با صدای تو حرف می‌زنه!
+      یا خودت جای شخصیت اصلی فیلم دیالوگ بگو. حتی <strong>کلیپ خنده‌دار</strong> گوشیت هم می‌تونه با صدای تو پخش بشه!
+    </p>
+
+    <div class="hero-chips">
+      <span class="hero-chip">✨ ۱۰ صدا</span>
+      <span class="hero-chip">🎭 هر کاراکتر یه صدا</span>
+      <span class="hero-chip">🎙️ تحلیل هوشمند</span>
+    </div>
+  </section>
+
+  <div class="info-card">
+    <div class="info-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>
+        <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3M8 22h8"/>
+      </svg>
+    </div>
+    <div class="info-text">
+      <div class="info-title">چطوری کار می‌کنه؟ 🤔</div>
+      <p class="info-desc">
+        صدات توسط <strong>هوش مصنوعی</strong> آنالیز می‌شه و ما اون رو برای دوبله نگه می‌داریم.
+        بعدش هر کاراکتر فیلم، یکی از این صداها رو می‌گیره و فیلم با صدای تو و دوستات پخش می‌شه. جملات مهم نیستن — <strong>خود صداست که مهمه</strong>.
+      </p>
+    </div>
+  </div>
+
+  <div class="toggle-card">
+    <div class="toggle-main">
+      <div class="toggle-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>
+          <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3"/>
+        </svg>
+      </div>
+      <div>
+        <div class="toggle-title">صدای من جای کاراکترها</div>
+        <div class="toggle-desc">با روشن کردن این، فیلم‌ها با صدای تو پخش می‌شن</div>
+      </div>
+    </div>
+    <button class="switch" type="button" role="switch" aria-checked="false" aria-label="صدای من جای کاراکترها" data-voice-toggle></button>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-head">
+      <div class="progress-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 12h3l3-9 4 18 3-9h5"/>
+        </svg>
+        صدای ذخیره‌شده
+      </div>
+      <div class="progress-count" id="progressCount">۰ از ۱۰</div>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <div class="slots-grid" id="slotsGrid"></div>
+
+</main>
+</div>
+
+<button class="fab" id="fabRecord" aria-label="ضبط صدا">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="9" y="2" width="6" height="13" rx="3"/>
+    <path d="M5 11v1a7 7 0 0 0 14 0v-1M12 19v3M8 22h8"/>
+  </svg>
+</button>
+
+<!-- Recording Modal -->
+<div class="rec-modal" id="recModal" role="dialog" aria-modal="true" aria-labelledby="recTitle" aria-hidden="true">
+  <div class="rec-backdrop" id="recBackdrop"></div>
+  <div class="rec-card">
+    <div class="rec-handle"></div>
+    <h3 class="rec-title" id="recTitle">صداتو ضبط کن 🎙️</h3>
+    <p class="rec-sub">یه جمله کوتاه با لحن طبیعی بگو. مهم نیست چی می‌گی — فقط صداتو می‌خوایم!</p>
+
+    <div class="rec-visual">
+      <div class="rec-ring"></div>
+      <div class="rec-ring"></div>
+      <div class="rec-ring"></div>
+      <div class="rec-circle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="2" width="6" height="13" rx="3"/>
+          <path d="M5 11v1a7 7 0 0 0 14 0v-1M12 19v3M8 22h8"/>
+        </svg>
+      </div>
+    </div>
+
+    <p class="rec-time" id="recTime">۰۰:۰۰</p>
+    <p class="rec-limit">حداکثر ۳۰ ثانیه</p>
+
+    <div class="rec-live-wave" id="recWave">
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    </div>
+
+    <div class="rec-actions">
+      <button class="rec-btn cancel" id="recCancel" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6 6 18M6 6l12 12"/>
+        </svg>
+        انصراف
+      </button>
+      <button class="rec-btn start" id="recStart" type="button">
+        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+          <circle cx="12" cy="12" r="6"/>
+        </svg>
+        شروع ضبط
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Loading Overlay -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-content">
+    <div class="loading-spinner"></div>
+    <p class="loading-text">در حال تحلیل صدات...</p>
+    <p class="loading-sub">هوش مصنوعی داره صداتو می‌شنوه 🎧</p>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m4 12 5 5L20 6"/>
+  </svg>
+  <span id="toastText">صدای شما ذخیره شد!</span>
+</div>
+
+<nav class="bottom-nav" aria-label="منوی اصلی">
+  <div class="nav-inner">
+
+    <a class="nav-item" href="index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="7" width="18" height="14" rx="2"/>
+        <path d="M3 11h18M7 7l3 4M14 7l3 4"/>
+        <path d="M10 14l5 2.5-5 2.5V14Z" fill="currentColor" stroke="none"/>
+      </svg>
+      <span>خانه</span>
+    </a>
+
+    <a class="nav-item" href="guide.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21V5.5Z"/>
+        <path d="M4 17a2.5 2.5 0 0 1 2.5-2.5H20M8 7h8M8 10h6"/>
+      </svg>
+      <span>راهنما</span>
+    </a>
+
+    <a class="nav-item" href="activation.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="9" cy="8" r="4"/>
+        <path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 11l2 2 4-5"/>
+        <path d="M16 3h5v5"/>
+      </svg>
+      <span>فعال‌سازی</span>
+    </a>
+
+    <a class="nav-item active" href="voice.html" aria-current="page">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="2" width="6" height="13" rx="3"/>
+        <path d="M5 11v1a7 7 0 0 0 14 0v-1M12 19v3M8 22h8"/>
+        <path d="M3 8v4M21 8v4"/>
+      </svg>
+      <span>صدای شما</span>
+    </a>
+
+  </div>
+</nav>
+
+<script>
+const MAX_SLOTS = 10;
+const MAX_DURATION = 30;
+const STORAGE_KEY = 'aisinova_voice_slots';
+const TOGGLE_KEY = 'aisinova_voice_toggle';
+
+const slotsGrid = document.getElementById('slotsGrid');
+const progressCount = document.getElementById('progressCount');
+const progressFill = document.getElementById('progressFill');
+const fabRecord = document.getElementById('fabRecord');
+const recModal = document.getElementById('recModal');
+const recBackdrop = document.getElementById('recBackdrop');
+const recCancel = document.getElementById('recCancel');
+const recStart = document.getElementById('recStart');
+const recTime = document.getElementById('recTime');
+const recWave = document.getElementById('recWave');
+const loadingOverlay = document.getElementById('loadingOverlay');
+const toast = document.getElementById('toast');
+const toastText = document.getElementById('toastText');
+const voiceToggle = document.querySelector('[data-voice-toggle]');
+
+let slots = [];
+let recorder = null;
+let chunks = [];
+let timer = null;
+let elapsed = 0;
+let isRecording = false;
+let mediaStream = null;
+let currentSlot = null;
+let toastTimer = null;
+
+function loadSlots(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    slots = raw ? JSON.parse(raw) : [];
+    if(!Array.isArray(slots)) slots = [];
+    slots = slots.slice(0, MAX_SLOTS);
+  }catch(e){ slots = []; }
+}
+function saveSlots(){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(slots)); }catch(e){}
+}
+
+function toPersianNum(n){
+  const map = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+  return String(n).replace(/\d/g, d => map[+d]);
+}
+
+function formatTime(sec){
+  const m = Math.floor(sec / 60);
+  const s = sec % 60;
+  return toPersianNum(String(m).padStart(2,'0')) + ':' + toPersianNum(String(s).padStart(2,'0'));
+}
+
+function showToast(message){
+  toastText.textContent = message;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 3200);
+}
+
+function renderSlots(){
+  slotsGrid.innerHTML = '';
+  for(let i = 0; i < MAX_SLOTS; i++){
+    const data = slots[i];
+    const slot = document.createElement('div');
+    slot.className = 'slot ' + (data ? 'filled' : 'empty');
+    slot.dataset.index = i;
+
+    if(data){
+      slot.innerHTML = `
+        <div class="slot-num">${toPersianNum(String(i+1).padStart(2,'0'))}</div>
+        <div class="slot-mic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="2" width="6" height="13" rx="3"/>
+            <path d="M5 11v1a7 7 0 0 0 14 0v-1M12 19v3M8 22h8"/>
+          </svg>
+        </div>
+        <div class="slot-wave">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+        <div>
+          <div class="slot-label">صدای ${toPersianNum(i+1)}</div>
+          <div class="slot-hint">${formatTime(data.duration || 0)}</div>
+        </div>
+        <div class="slot-actions">
+          <button type="button" data-action="play" aria-label="پخش">
+            <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+          <button type="button" class="del" data-action="del" aria-label="حذف">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+      `;
+    }else{
+      slot.innerHTML = `
+        <div class="slot-num">${toPersianNum(String(i+1).padStart(2,'0'))}</div>
+        <div class="slot-mic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="2" width="6" height="13" rx="3"/>
+            <path d="M5 11v1a7 7 0 0 0 14 0v-1M12 19v3M8 22h8"/>
+          </svg>
+        </div>
+        <div>
+          <div class="slot-label">ضبط کن</div>
+          <div class="slot-hint">اسلات خالی</div>
+        </div>
+        <div style="height:34px"></div>
+      `;
+    }
+
+    slot.addEventListener('click', (e) => {
+      const action = e.target.closest('[data-action]')?.dataset.action;
+      if(action === 'del'){
+        e.stopPropagation();
+        slots.splice(i, 1);
+        saveSlots();
+        renderSlots();
+        updateProgress();
+        showToast('صدا حذف شد');
+        return;
+      }
+      if(action === 'play'){
+        e.stopPropagation();
+        showToast('در حال پخش صدای ' + toPersianNum(i+1));
+        return;
+      }
+      if(!data){
+        openRecording(i);
+      }
+    });
+
+    slotsGrid.appendChild(slot);
+  }
+}
+
+function updateProgress(){
+  const count = slots.length;
+  progressCount.textContent = toPersianNum(count) + ' از ' + toPersianNum(MAX_SLOTS);
+  progressFill.style.width = ((count / MAX_SLOTS) * 100) + '%';
+}
+
+function openRecording(index){
+  if(slots.length >= MAX_SLOTS && index === undefined){
+    showToast('۱۰ صدا پر شده! اول یکی رو حذف کن.');
+    return;
+  }
+  currentSlot = index;
+  elapsed = 0;
+  isRecording = false;
+  recTime.textContent = '۰۰:۰۰';
+  recModal.classList.add('show');
+  recModal.classList.remove('recording');
+  recModal.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+  recStart.innerHTML = `
+    <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="12" cy="12" r="6"/></svg>
+    شروع ضبط
+  `;
+  recStart.className = 'rec-btn start';
+  recStart.disabled = false;
+}
+
+function closeRecording(){
+  recModal.classList.remove('show');
+  recModal.classList.remove('recording');
+  recModal.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+  stopRecorder();
+}
+
+async function startRecorder(){
+  try{
+    mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    chunks = [];
+    const mimeType = MediaRecorder.isTypeSupported('audio/webm;codecs=opus') ? 'audio/webm;codecs=opus' : 'audio/webm';
+    recorder = new MediaRecorder(mediaStream, { mimeType });
+    recorder.ondataavailable = (e) => { if(e.data.size > 0) chunks.push(e.data); };
+    recorder.onstop = () => {
+      const blob = new Blob(chunks, { type: mimeType });
+      finalizeRecording(blob);
+    };
+    recorder.start();
+    isRecording = true;
+    recModal.classList.add('recording');
+    recStart.innerHTML = `
+      <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
+      توقف و ذخیره
+    `;
+    recStart.className = 'rec-btn stop';
+
+    elapsed = 0;
+    timer = setInterval(() => {
+      elapsed++;
+      recTime.textContent = formatTime(elapsed);
+      animateWave();
+      if(elapsed >= MAX_DURATION){
+        stopRecorder();
+      }
+    }, 1000);
+
+  }catch(err){
+    showToast('دسترسی به میکروفون داده نشد');
+  }
+}
+
+function animateWave(){
+  const bars = recWave.querySelectorAll('i');
+  bars.forEach(b => {
+    const h = 6 + Math.random() * 30;
+    b.style.height = h + 'px';
+  });
+}
+
+function stopRecorder(){
+  if(timer){ clearInterval(timer); timer = null; }
+  if(recorder && recorder.state !== 'inactive'){
+    recorder.stop();
+  }
+  if(mediaStream){
+    mediaStream.getTracks().forEach(t => t.stop());
+    mediaStream = null;
+  }
+  isRecording = false;
+  recModal.classList.remove('recording');
+}
+
+function finalizeRecording(blob){
+  closeRecording();
+  loadingOverlay.classList.add('show');
+
+  setTimeout(() => {
+    loadingOverlay.classList.remove('show');
+    const duration = elapsed || 1;
+    if(currentSlot !== null && currentSlot !== undefined && currentSlot < MAX_SLOTS){
+      slots[currentSlot] = { duration, ts: Date.now() };
+    }else{
+      slots.push({ duration, ts: Date.now() });
+    }
+    if(slots.length > MAX_SLOTS) slots = slots.slice(0, MAX_SLOTS);
+    saveSlots();
+    renderSlots();
+    updateProgress();
+    showToast('صدای شما ذخیره شد! ✨ حالا تو فیلم‌ها می‌پیچه');
+  }, 2000);
+}
+
+recStart.addEventListener('click', () => {
+  if(isRecording){
+    stopRecorder();
+  }else{
+    startRecorder();
+  }
+});
+
+recCancel.addEventListener('click', closeRecording);
+recBackdrop.addEventListener('click', closeRecording);
+fabRecord.addEventListener('click', () => {
+  if(slots.length >= MAX_SLOTS){
+    showToast('۱۰ صدا پر شده! اول یکی رو حذف کن.');
+    return;
+  }
+  const emptyIndex = slots.length;
+  openRecording(emptyIndex);
+});
+
+// Toggle
+function loadToggle(){
+  const saved = localStorage.getItem(TOGGLE_KEY);
+  voiceToggle.setAttribute('aria-checked', saved === '1' ? 'true' : 'false');
+}
+voiceToggle.addEventListener('click', () => {
+  const isOn = voiceToggle.getAttribute('aria-checked') === 'true';
+  const next = !isOn;
+  voiceToggle.setAttribute('aria-checked', String(next));
+  localStorage.setItem(TOGGLE_KEY, next ? '1' : '0');
+  showToast(next ? 'صدای تو جای کاراکترها فعال شد ✨' : 'حالت عادی برگشت');
+});
+
+// Init
+loadSlots();
+loadToggle();
+renderSlots();
+updateProgress();
+</script>
+
+</body>
+</html>
