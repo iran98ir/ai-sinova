@@ -3,327 +3,517 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<meta name="theme-color" content="#08080C" />
-<title>Ai-Sinova | سینمای هوشمند</title>
+<meta name="theme-color" content="#06060A" />
+<title>Ai-Sinova — سینمای هوشمند</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#08080C;
-    --bg-2:#0E0E15;
-    --card:rgba(255,255,255,.04);
-    --card-2:rgba(255,255,255,.06);
-    --stroke:rgba(255,255,255,.08);
-    --stroke-2:rgba(255,255,255,.14);
-    --txt:#F2F3F7;
-    --txt-dim:#9AA0AE;
-    --txt-mute:#6B7280;
-    --accent:#2EE6C5;
-    --accent-2:#5B8CFF;
-    --accent-glow:rgba(46,230,197,.35);
-    --grad:linear-gradient(135deg,#2EE6C5 0%,#5B8CFF 100%);
-    --grad-soft:linear-gradient(135deg,rgba(46,230,197,.14),rgba(91,140,255,.14));
-    --radius:22px;
-    --radius-sm:14px;
-    --shadow:0 20px 60px -20px rgba(0,0,0,.8);
-    --shadow-glow:0 0 40px -8px var(--accent-glow);
-  }
-  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-  html,body{height:100%}
-  body{
-    font-family:'Vazirmatn',system-ui,-apple-system,sans-serif;
-    background:var(--bg);
-    color:var(--txt);
-    overflow-x:hidden;
-    line-height:1.7;
-    -webkit-font-smoothing:antialiased;
-    position:relative;
-  }
-  /* پس‌زمینه گرادیانت مخملی */
-  body::before{
-    content:"";
-    position:fixed;inset:0;
-    background:
-      radial-gradient(1200px 600px at 80% -10%, rgba(91,140,255,.14), transparent 60%),
-      radial-gradient(900px 500px at 10% 10%, rgba(46,230,197,.10), transparent 60%),
-      radial-gradient(800px 800px at 50% 120%, rgba(91,140,255,.08), transparent 60%);
-    z-index:-2;
-    pointer-events:none;
-  }
-  /* نویز ظریف برای لوکس بودن */
-  body::after{
-    content:"";
-    position:fixed;inset:0;
-    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
-    opacity:.035;z-index:-1;pointer-events:none;
-  }
-  .wrap{max-width:520px;margin:0 auto;padding:0 18px 40px;position:relative}
+/* ============================================
+   AI-SINOVA · CINEMATIC LUXURY · v2
+   ============================================ */
+:root{
+  --bg:#06060A;
+  --bg-2:#0A0A12;
+  --ink:#F5F6FA;
+  --ink-dim:#A7ADBE;
+  --ink-mute:#6E7488;
 
-  /* ===== هدر شیشه‌ای ===== */
-  header{
-    position:sticky;top:0;z-index:50;
-    backdrop-filter:blur(18px) saturate(160%);
-    -webkit-backdrop-filter:blur(18px) saturate(160%);
-    background:rgba(8,8,12,.55);
-    border-bottom:1px solid var(--stroke);
-    padding:14px 18px;
-    display:flex;align-items:center;justify-content:space-between;
-    gap:12px;
-  }
-  .brand{display:flex;align-items:center;gap:10px}
-  .logo{
-    width:42px;height:42px;border-radius:13px;
-    background:var(--grad);
-    display:grid;place-items:center;
-    font-weight:900;font-size:18px;color:#06110F;
-    box-shadow:var(--shadow-glow);
-    position:relative;overflow:hidden;
-  }
-  .logo::after{
-    content:"";position:absolute;inset:0;
-    background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.5) 50%,transparent 70%);
-    transform:translateX(-120%);
-    animation:shine 4s ease-in-out infinite;
-  }
-  @keyframes shine{0%,60%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
-  .brand-text{display:flex;flex-direction:column;line-height:1.1}
-  .brand-text b{font-size:16px;font-weight:800;letter-spacing:.3px}
-  .brand-text span{font-size:10.5px;color:var(--txt-mute);font-weight:500}
+  --glass:rgba(255,255,255,.045);
+  --glass-2:rgba(255,255,255,.075);
+  --stroke:rgba(255,255,255,.09);
+  --stroke-2:rgba(255,255,255,.18);
 
-  /* دکمه‌های شناور هدر (تگل قفل‌دار) */
-  .floating-toggles{display:flex;gap:8px}
-  .toggle{
-    display:flex;align-items:center;gap:7px;
-    padding:9px 13px;border-radius:14px;
-    background:var(--card);
-    border:1px solid var(--stroke-2);
-    color:var(--txt-dim);
-    font-family:inherit;font-size:11.5px;font-weight:600;
-    cursor:pointer;position:relative;
-    transition:.35s cubic-bezier(.2,.8,.2,1);
-    backdrop-filter:blur(10px);
-  }
-  .toggle .dot{
-    width:9px;height:9px;border-radius:50%;
-    background:var(--txt-mute);
-    transition:.35s;
-    box-shadow:0 0 0 0 transparent;
-  }
-  .toggle.locked::after{
-    content:"🔒";
-    position:absolute;top:-6px;left:-6px;
-    font-size:10px;
-    filter:grayscale(1) opacity(.85);
-  }
-  .toggle:hover{border-color:var(--accent);color:var(--txt);transform:translateY(-1px)}
-  .toggle.on{
-    background:var(--grad-soft);
-    border-color:var(--accent);
-    color:var(--txt);
-  }
-  .toggle.on .dot{background:var(--accent);box-shadow:0 0 12px 2px var(--accent-glow)}
+  --cyan:#2EE6C5;
+  --cyan-soft:rgba(46,230,197,.5);
+  --violet:#7C5CFF;
+  --violet-soft:rgba(124,92,255,.5);
+  --gold:#F5C76E;
 
-  /* ===== هرو ===== */
-  .hero{
-    padding:38px 0 26px;
-    text-align:center;
-    position:relative;
-  }
-  .badge{
-    display:inline-flex;align-items:center;gap:7px;
-    padding:7px 14px;border-radius:100px;
-    background:var(--grad-soft);
-    border:1px solid var(--stroke-2);
-    font-size:11.5px;font-weight:600;color:var(--txt-dim);
-    margin-bottom:20px;
-    backdrop-filter:blur(8px);
-  }
-  .badge .pulse{
-    width:7px;height:7px;border-radius:50%;background:var(--accent);
-    box-shadow:0 0 0 0 var(--accent-glow);
-    animation:pulse 2s infinite;
-  }
-  @keyframes pulse{
-    0%{box-shadow:0 0 0 0 var(--accent-glow)}
-    70%{box-shadow:0 0 0 10px transparent}
-    100%{box-shadow:0 0 0 0 transparent}
-  }
-  .hero h1{
-    font-size:clamp(26px,7.5vw,36px);
-    font-weight:900;
-    line-height:1.35;
-    letter-spacing:-.5px;
-    margin-bottom:14px;
-  }
-  .hero h1 .grad{
-    background:var(--grad);
-    -webkit-background-clip:text;background-clip:text;
-    color:transparent;
-    filter:drop-shadow(0 0 20px rgba(46,230,197,.25));
-  }
-  .hero p{
-    font-size:14px;color:var(--txt-dim);
-    max-width:420px;margin:0 auto 26px;
-    font-weight:400;line-height:1.9;
-  }
+  --grad-cy:linear-gradient(135deg,#2EE6C5 0%,#5B8CFF 60%,#7C5CFF 100%);
+  --grad-warm:linear-gradient(135deg,#F5C76E 0%,#FF7AB6 100%);
 
-  /* CTA اصلی */
-  .cta{
-    display:inline-flex;align-items:center;justify-content:center;gap:10px;
-    width:100%;max-width:340px;
-    padding:16px 24px;
-    border-radius:18px;
-    background:var(--grad);
-    color:#06110F;
-    font-family:inherit;font-weight:800;font-size:15px;
-    border:none;cursor:pointer;
-    box-shadow:0 18px 40px -12px var(--accent-glow), inset 0 1px 0 rgba(255,255,255,.4);
-    transition:.3s cubic-bezier(.2,.8,.2,1);
-    position:relative;overflow:hidden;
-    text-decoration:none;
-  }
-  .cta::before{
-    content:"";position:absolute;inset:0;
-    background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.6) 50%,transparent 70%);
-    transform:translateX(-120%);
-    animation:shine 5s ease-in-out infinite;
-  }
-  .cta:hover{transform:translateY(-2px) scale(1.01);box-shadow:0 24px 50px -12px var(--accent-glow)}
-  .cta:active{transform:scale(.98)}
-  .cta svg{width:18px;height:18px}
+  --r-lg:32px 10px 32px 10px;    /* گوشه‌های متناوب بزرگ */
+  --r-md:22px 8px 22px 8px;
+  --r-sm:16px 6px 16px 6px;
+  --r-pill:999px;
 
-  /* ===== بخش‌ها ===== */
-  .section{margin-top:38px}
-  .section-head{
-    display:flex;align-items:center;justify-content:space-between;
-    margin-bottom:16px;
-  }
-  .section-head h2{
-    font-size:16px;font-weight:800;
-    display:flex;align-items:center;gap:8px;
-  }
-  .section-head h2 .bar{
-    width:4px;height:18px;border-radius:4px;background:var(--grad);
-    box-shadow:0 0 12px var(--accent-glow);
-  }
-  .section-head a{
-    font-size:11.5px;color:var(--accent);text-decoration:none;
-    font-weight:600;
-  }
+  --shadow-1:0 30px 80px -30px rgba(0,0,0,.9);
+  --shadow-2:0 20px 50px -20px rgba(0,0,0,.7);
+  --glow-cy:0 0 60px -10px rgba(46,230,197,.55);
+  --glow-vi:0 0 60px -10px rgba(124,92,255,.55);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{
+  font-family:'Vazirmatn',system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  position:relative;
+  font-size:16px;
+}
+/* ===== پس‌زمینه سینمایی چندلایه ===== */
+body::before{
+  content:"";position:fixed;inset:0;z-index:-3;pointer-events:none;
+  background:
+    radial-gradient(900px 500px at 90% -5%, rgba(124,92,255,.18), transparent 60%),
+    radial-gradient(700px 500px at -5% 15%, rgba(46,230,197,.14), transparent 60%),
+    radial-gradient(1000px 600px at 50% 115%, rgba(124,92,255,.12), transparent 60%),
+    linear-gradient(180deg,#06060A 0%,#0A0A12 100%);
+}
+/* گرید نقطه‌ای تزئینی */
+body::after{
+  content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background-image:radial-gradient(rgba(255,255,255,.10) 1px, transparent 1px);
+  background-size:24px 24px;
+  mask-image:radial-gradient(circle at 50% 30%, #000 0%, transparent 70%);
+  -webkit-mask-image:radial-gradient(circle at 50% 30%, #000 0%, transparent 70%);
+  opacity:.5;
+}
+.wrap{max-width:540px;margin:0 auto;padding:0 20px 120px;position:relative}
 
-  /* کارت‌های ویژگی */
-  .features{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  .feature{
-    background:var(--card);
-    border:1px solid var(--stroke);
-    border-radius:var(--radius-sm);
-    padding:16px 14px;
-    transition:.35s cubic-bezier(.2,.8,.2,1);
-    position:relative;overflow:hidden;
-  }
-  .feature::before{
-    content:"";position:absolute;inset:0;
-    background:var(--grad-soft);opacity:0;transition:.35s;
-  }
-  .feature:hover{border-color:var(--stroke-2);transform:translateY(-3px);box-shadow:var(--shadow)}
-  .feature:hover::before{opacity:1}
-  .feature .ico{
-    width:38px;height:38px;border-radius:11px;
-    background:var(--grad-soft);
-    border:1px solid var(--stroke-2);
-    display:grid;place-items:center;
-    font-size:18px;margin-bottom:11px;
-    position:relative;z-index:1;
-  }
-  .feature h3{font-size:13px;font-weight:700;margin-bottom:4px;position:relative;z-index:1}
-  .feature p{font-size:11px;color:var(--txt-mute);line-height:1.6;position:relative;z-index:1}
+/* ===== تایپوگرافی ===== */
+.h1{
+  font-size:clamp(36px,10.5vw,54px);
+  font-weight:900;
+  line-height:1.2;
+  letter-spacing:-1.5px;
+}
+.h1 .grad{
+  background:var(--grad-cy);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 24px rgba(46,230,197,.35));
+}
+.h1 .gold{
+  background:var(--grad-warm);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 24px rgba(245,199,110,.35));
+}
+.eyebrow{
+  font-size:12px;font-weight:800;letter-spacing:3px;
+  text-transform:uppercase;color:var(--cyan);
+  display:inline-flex;align-items:center;gap:8px;
+}
+.eyebrow::before{
+  content:"";width:24px;height:2px;background:var(--cyan);
+  box-shadow:0 0 10px var(--cyan-soft);
+}
+.lede{font-size:16px;color:var(--ink-dim);line-height:1.95;font-weight:400}
 
-  /* اسلایدر تبلیغات */
-  .ads{
-    display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
-    padding:4px 0 12px;margin:0 -18px;padding-right:18px;padding-left:18px;
-    scrollbar-width:none;
-  }
-  .ads::-webkit-scrollbar{display:none}
-  .ad{
-    flex:0 0 82%;scroll-snap-align:center;
-    border-radius:var(--radius-sm);
-    padding:18px;
-    background:var(--grad-soft);
-    border:1px solid var(--stroke-2);
-    min-height:110px;
-    display:flex;flex-direction:column;justify-content:space-between;
-    position:relative;overflow:hidden;
-  }
-  .ad::after{
-    content:"";position:absolute;top:-40%;left:-10%;width:60%;height:180%;
-    background:radial-gradient(circle,rgba(46,230,197,.25),transparent 70%);
-    filter:blur(20px);pointer-events:none;
-  }
-  .ad small{font-size:10px;color:var(--accent);font-weight:700;letter-spacing:1px}
-  .ad b{font-size:14px;font-weight:800;line-height:1.5;position:relative;z-index:1}
-  .ad span{font-size:11px;color:var(--txt-dim);position:relative;z-index:1}
+/* ============================================
+   هدر
+   ============================================ */
+header{
+  position:sticky;top:0;z-index:60;
+  padding:16px 20px;
+  backdrop-filter:blur(22px) saturate(180%);
+  -webkit-backdrop-filter:blur(22px) saturate(180%);
+  background:linear-gradient(180deg,rgba(6,6,10,.85),rgba(6,6,10,.55));
+  border-bottom:1px solid var(--stroke);
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;
+  max-width:540px;margin:0 auto;
+}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{
+  width:48px;height:48px;
+  border-radius:16px 6px 16px 6px;
+  background:conic-gradient(from 220deg, #2EE6C5, #5B8CFF, #7C5CFF, #2EE6C5);
+  display:grid;place-items:center;
+  font-weight:900;font-size:18px;color:#06060A;
+  box-shadow:0 0 32px -4px rgba(46,230,197,.6), inset 0 1px 0 rgba(255,255,255,.5);
+  position:relative;overflow:hidden;
+}
+.logo::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.7) 50%,transparent 65%);
+  transform:translateX(-130%);
+  animation:shine 4.5s ease-in-out infinite;
+}
+@keyframes shine{0%,55%{transform:translateX(-130%)}100%{transform:translateX(130%)}}
+.brand-text{display:flex;flex-direction:column;line-height:1.15}
+.brand-text b{font-size:17px;font-weight:900;letter-spacing:-.2px}
+.brand-text span{
+  font-size:10.5px;font-weight:700;letter-spacing:2px;
+  color:var(--cyan);text-transform:uppercase;
+}
 
-  /* راهنمای سریع */
-  .steps{display:flex;flex-direction:column;gap:10px}
-  .step{
-    display:flex;align-items:center;gap:13px;
-    background:var(--card);
-    border:1px solid var(--stroke);
-    border-radius:var(--radius-sm);
-    padding:13px 15px;
-    transition:.3s;
-  }
-  .step:hover{border-color:var(--stroke-2);transform:translateX(-3px)}
-  .step .num{
-    flex-shrink:0;width:34px;height:34px;border-radius:10px;
-    background:var(--grad);color:#06110F;
-    display:grid;place-items:center;
-    font-weight:900;font-size:14px;
-    box-shadow:0 6px 18px -6px var(--accent-glow);
-  }
-  .step div{display:flex;flex-direction:column}
-  .step b{font-size:13px;font-weight:700}
-  .step span{font-size:11px;color:var(--txt-mute)}
+/* ===== دکمه‌های شناور (تگل قفل‌دار) ===== */
+.toggles{display:flex;gap:8px}
+.toggle{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:6px;
+  width:64px;height:64px;
+  padding:0;
+  border-radius:20px 6px 20px 6px;
+  background:var(--glass);
+  border:1px solid var(--stroke-2);
+  color:var(--ink-dim);
+  font-family:inherit;font-size:9.5px;font-weight:700;line-height:1.2;
+  cursor:pointer;position:relative;
+  transition:.35s cubic-bezier(.2,.8,.2,1);
+  backdrop-filter:blur(14px);
+  text-align:center;
+  padding:0 4px;
+}
+.toggle .icon{
+  font-size:18px;display:block;
+  filter:grayscale(.4);
+  transition:.35s;
+}
+.toggle .led{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--ink-mute);
+  box-shadow:0 0 0 0 transparent;
+  transition:.35s;
+}
+.toggle.locked::after{
+  content:"🔒";
+  position:absolute;top:-7px;left:-7px;
+  font-size:11px;
+  filter:grayscale(1) opacity(.9);
+}
+.toggle:hover{
+  border-color:var(--cyan);
+  color:var(--ink);
+  transform:translateY(-2px);
+}
+.toggle:hover .icon{filter:none}
+.toggle.on{
+  background:linear-gradient(160deg, rgba(46,230,197,.15), rgba(124,92,255,.15));
+  border-color:var(--cyan);
+  color:var(--ink);
+  box-shadow:0 0 32px -8px var(--cyan-soft);
+}
+.toggle.on .led{background:var(--cyan);box-shadow:0 0 14px 2px var(--cyan-soft)}
+.toggle.on .icon{filter:none}
 
-  /* فوتر */
-  footer{
-    margin-top:44px;padding:24px 0 30px;
-    border-top:1px solid var(--stroke);
-    text-align:center;
-  }
-  footer p{font-size:11px;color:var(--txt-mute);margin-bottom:14px}
-  footer .mini-cta{
-    display:inline-flex;align-items:center;gap:8px;
-    padding:11px 20px;border-radius:12px;
-    background:var(--card-2);border:1px solid var(--stroke-2);
-    color:var(--txt);font-family:inherit;font-size:12px;font-weight:700;
-    cursor:pointer;text-decoration:none;
-    transition:.3s;
-  }
-  footer .mini-cta:hover{border-color:var(--accent);transform:translateY(-1px)}
+/* ============================================
+   هرو
+   ============================================ */
+.hero{
+  padding:46px 0 20px;
+  position:relative;
+  text-align:center;
+}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:9px 18px;
+  border-radius:999px;
+  background:rgba(46,230,197,.08);
+  border:1px solid rgba(46,230,197,.3);
+  font-size:12px;font-weight:700;
+  color:var(--cyan);
+  margin-bottom:24px;
+  backdrop-filter:blur(10px);
+  letter-spacing:.5px;
+}
+.hero-tag .pulse{
+  width:8px;height:8px;border-radius:50%;background:var(--cyan);
+  box-shadow:0 0 0 0 var(--cyan-soft);
+  animation:pulse 1.8s infinite;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 var(--cyan-soft)}
+  70%{box-shadow:0 0 0 14px transparent}
+  100%{box-shadow:0 0 0 0 transparent}
+}
+.hero h1{margin-bottom:22px}
+.hero .lede{max-width:440px;margin:0 auto 32px}
 
-  /* توست */
-  .toast{
-    position:fixed;bottom:28px;left:50%;transform:translate(-50%,120%);
-    background:rgba(14,14,21,.95);
-    border:1px solid var(--stroke-2);
-    backdrop-filter:blur(16px);
-    padding:13px 20px;border-radius:14px;
-    font-size:12.5px;font-weight:600;
-    box-shadow:var(--shadow);
-    z-index:999;
-    transition:.5s cubic-bezier(.2,.8,.2,1);
-    display:flex;align-items:center;gap:9px;
-    white-space:nowrap;
-  }
-  .toast.show{transform:translate(-50%,0)}
-  .toast .t-ico{font-size:16px}
+/* ===== CTA اصلی ===== */
+.cta{
+  display:inline-flex;align-items:center;justify-content:center;gap:12px;
+  width:100%;max-width:380px;
+  padding:20px 28px;
+  border-radius:24px 8px 24px 8px;
+  background:linear-gradient(135deg,#2EE6C5 0%,#5B8CFF 55%,#7C5CFF 100%);
+  color:#06060A;
+  font-family:inherit;font-weight:900;font-size:17px;letter-spacing:.3px;
+  border:none;cursor:pointer;
+  box-shadow:
+    0 24px 50px -14px rgba(46,230,197,.7),
+    0 0 0 1px rgba(255,255,255,.15) inset,
+    0 1px 0 rgba(255,255,255,.6) inset;
+  transition:.35s cubic-bezier(.2,.8,.2,1);
+  position:relative;overflow:hidden;
+  text-decoration:none;
+}
+.cta::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.7) 50%,transparent 65%);
+  transform:translateX(-130%);
+  animation:shine 3.6s ease-in-out infinite;
+}
+.cta:hover{transform:translateY(-3px) scale(1.015);box-shadow:0 32px 60px -14px rgba(46,230,197,.8)}
+.cta:active{transform:scale(.97)}
+.cta svg{width:20px;height:20px;flex-shrink:0}
 
-  /* انیمیشن ورود */
-  .reveal{opacity:0;transform:translateY(18px);transition:.7s cubic-bezier(.2,.8,.2,1)}
-  .reveal.in{opacity:1;transform:none}
+/* ============================================
+   بخش‌ها
+   ============================================ */
+.section{margin-top:52px;position:relative}
+.section-head{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  margin-bottom:22px;gap:12px;
+}
+.section-head .title-wrap{display:flex;flex-direction:column;gap:6px}
+.section-head .eyebrow{font-size:10.5px}
+.section-head h2{
+  font-size:24px;font-weight:900;letter-spacing:-.5px;line-height:1.2;
+}
+.section-head a{
+  font-size:12px;font-weight:700;color:var(--cyan);
+  text-decoration:none;
+  padding:8px 14px;border-radius:var(--r-sm);
+  background:rgba(46,230,197,.08);
+  border:1px solid rgba(46,230,197,.25);
+  transition:.3s;white-space:nowrap;
+}
+.section-head a:hover{background:rgba(46,230,197,.16);transform:translateX(-3px)}
+
+/* ============================================
+   کارت فیلم (poster) — احساس سینمایی
+   ============================================ */
+.films{
+  display:flex;gap:14px;overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  padding:6px 0 20px;margin:0 -20px;
+  padding-left:20px;padding-right:20px;
+  scrollbar-width:none;
+}
+.films::-webkit-scrollbar{display:none}
+.film{
+  flex:0 0 62%;scroll-snap-align:center;
+  aspect-ratio:2/3;
+  border-radius:32px 10px 32px 10px;
+  background:
+    linear-gradient(160deg,rgba(124,92,255,.25),rgba(46,230,197,.18)),
+    #0E0E18;
+  border:1px solid var(--stroke-2);
+  padding:20px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  position:relative;overflow:hidden;
+  box-shadow:var(--shadow-2);
+  transition:.4s cubic-bezier(.2,.8,.2,1);
+}
+.film::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 70% 20%, rgba(255,255,255,.15), transparent 60%);
+  pointer-events:none;
+}
+.film::after{
+  content:"▶";
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:56px;height:56px;
+  display:grid;place-items:center;
+  background:rgba(255,255,255,.14);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.35);
+  border-radius:50%;
+  font-size:16px;color:#fff;
+  transition:.4s;
+  opacity:.85;
+}
+.film:hover{transform:translateY(-6px) scale(1.01);box-shadow:var(--shadow-1), 0 0 40px -10px var(--violet-soft)}
+.film:hover::after{opacity:1;transform:translate(-50%,-50%) scale(1.1)}
+.film .tag{
+  align-self:flex-start;
+  padding:5px 11px;border-radius:999px;
+  background:rgba(6,6,10,.6);
+  border:1px solid rgba(255,255,255,.2);
+  backdrop-filter:blur(8px);
+  font-size:10px;font-weight:700;letter-spacing:1.5px;
+  color:var(--cyan);text-transform:uppercase;
+}
+.film .info{position:relative;z-index:1}
+.film .info b{
+  display:block;font-size:17px;font-weight:900;
+  line-height:1.3;letter-spacing:-.3px;
+  margin-bottom:4px;
+}
+.film .info span{font-size:12px;color:var(--ink-dim)}
+.film.f2{background:linear-gradient(160deg,rgba(46,230,197,.3),rgba(91,140,255,.18)),#0E0E18}
+.film.f3{background:linear-gradient(160deg,rgba(245,199,110,.28),rgba(255,122,182,.18)),#0E0E18}
+
+/* ============================================
+   ویژگی‌ها (کارت‌های بزرگ و شیک)
+   ============================================ */
+.features{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+.feature{
+  background:var(--glass);
+  border:1px solid var(--stroke);
+  border-radius:22px 8px 22px 8px;
+  padding:22px 18px;
+  position:relative;overflow:hidden;
+  transition:.4s cubic-bezier(.2,.8,.2,1);
+  min-height:170px;
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.feature::before{
+  content:"";position:absolute;top:-40%;right:-30%;width:70%;height:80%;
+  background:radial-gradient(circle,rgba(46,230,197,.35),transparent 70%);
+  filter:blur(30px);opacity:0;transition:.5s;pointer-events:none;
+}
+.feature:hover{
+  border-color:var(--stroke-2);
+  transform:translateY(-4px);
+  box-shadow:var(--shadow-2);
+}
+.feature:hover::before{opacity:1}
+.feature .ico{
+  width:52px;height:52px;
+  border-radius:16px 6px 16px 6px;
+  background:linear-gradient(135deg, rgba(46,230,197,.18), rgba(124,92,255,.18));
+  border:1px solid var(--stroke-2);
+  display:grid;place-items:center;
+  font-size:24px;
+  margin-bottom:auto;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1);
+}
+.feature h3{
+  font-size:16px;font-weight:900;letter-spacing:-.2px;
+  margin:16px 0 6px;line-height:1.3;
+}
+.feature p{
+  font-size:12.5px;color:var(--ink-mute);
+  line-height:1.7;font-weight:500;
+}
+
+/* ============================================
+   راهنمای ۳ قدم
+   ============================================ */
+.steps{display:flex;flex-direction:column;gap:12px}
+.step{
+  display:flex;align-items:center;gap:16px;
+  background:var(--glass);
+  border:1px solid var(--stroke);
+  border-radius:22px 8px 22px 8px;
+  padding:18px 20px;
+  transition:.35s;
+  position:relative;overflow:hidden;
+}
+.step::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:var(--grad-cy);
+  opacity:.6;
+}
+.step:hover{
+  border-color:var(--stroke-2);
+  transform:translateX(-4px);
+  background:var(--glass-2);
+}
+.step .num{
+  flex-shrink:0;
+  width:46px;height:46px;
+  border-radius:14px 4px 14px 4px;
+  background:var(--grad-cy);color:#06060A;
+  display:grid;place-items:center;
+  font-weight:900;font-size:19px;
+  box-shadow:0 10px 24px -8px var(--cyan-soft);
+}
+.step b{font-size:15px;font-weight:800;display:block;line-height:1.4}
+.step span{font-size:12px;color:var(--ink-mute);font-weight:500}
+
+/* ============================================
+   مارکی عنوان فیلم‌ها
+   ============================================ */
+.marquee{
+  margin:42px -20px 0;
+  padding:16px 0;
+  background:linear-gradient(90deg, rgba(124,92,255,.1), rgba(46,230,197,.1));
+  border-top:1px solid var(--stroke);
+  border-bottom:1px solid var(--stroke);
+  overflow:hidden;
+  position:relative;
+}
+.marquee::before,.marquee::after{
+  content:"";position:absolute;top:0;bottom:0;width:60px;z-index:2;pointer-events:none;
+}
+.marquee::before{right:0;background:linear-gradient(to left, var(--bg), transparent)}
+.marquee::after{left:0;background:linear-gradient(to right, var(--bg), transparent)}
+.marquee-track{
+  display:flex;gap:40px;white-space:nowrap;
+  animation:scroll 30s linear infinite;
+  font-size:14px;font-weight:800;letter-spacing:1.5px;
+  color:var(--ink-mute);
+}
+.marquee-track span{display:flex;align-items:center;gap:14px}
+.marquee-track span::after{content:"✦";color:var(--cyan);font-size:10px}
+@keyframes scroll{
+  from{transform:translateX(0)}
+  to{transform:translateX(50%)}
+}
+
+/* ============================================
+   فوتر
+   ============================================ */
+footer{
+  margin-top:52px;padding-top:32px;
+  border-top:1px solid var(--stroke);
+  text-align:center;
+  position:relative;
+}
+footer::before{
+  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:80px;height:2px;
+  background:var(--grad-cy);
+  border-radius:2px;
+  box-shadow:0 0 20px var(--cyan-soft);
+}
+footer p{
+  font-size:12px;color:var(--ink-mute);
+  margin-bottom:20px;font-weight:500;
+}
+footer .logo-big{
+  font-size:22px;font-weight:900;letter-spacing:-.5px;
+  background:var(--grad-cy);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  margin-bottom:8px;display:inline-block;
+}
+
+/* ============================================
+   توست
+   ============================================ */
+.toast{
+  position:fixed;bottom:30px;left:50%;transform:translate(-50%,140%);
+  background:rgba(10,10,18,.96);
+  border:1px solid var(--stroke-2);
+  backdrop-filter:blur(20px);
+  padding:16px 24px;
+  border-radius:18px 6px 18px 6px;
+  font-size:14px;font-weight:700;
+  box-shadow:var(--shadow-1), 0 0 40px -10px var(--cyan-soft);
+  z-index:999;
+  transition:.5s cubic-bezier(.2,.8,.2,1);
+  display:flex;align-items:center;gap:12px;
+  white-space:nowrap;
+}
+.toast.show{transform:translate(-50%,0)}
+.toast .t-ico{font-size:20px}
+
+/* ============================================
+   انیمیشن ورود
+   ============================================ */
+.reveal{opacity:0;transform:translateY(24px);transition:.85s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ============================================
+   ریسپانسیو
+   ============================================ */
+@media (max-width:380px){
+  .toggles{gap:6px}
+  .toggle{width:58px;height:58px;font-size:9px}
+  .section-head h2{font-size:21px}
+}
 </style>
 </head>
 <body>
@@ -334,17 +524,19 @@
     <div class="logo">Ai</div>
     <div class="brand-text">
       <b>Ai-Sinova</b>
-      <span>سینمای هوشمند</span>
+      <span>Smart Cinema</span>
     </div>
   </div>
 
-  <div class="floating-toggles">
+  <div class="toggles">
     <button class="toggle locked" data-toggle="sites" aria-label="بازکردن سایت‌های فیلم">
-      <span class="dot"></span>
+      <span class="icon">🌐</span>
+      <span class="led"></span>
       <span>سایت‌های فیلم</span>
     </button>
     <button class="toggle locked" data-toggle="translate" aria-label="ترجمه فیلم">
-      <span class="dot"></span>
+      <span class="icon">🎙️</span>
+      <span class="led"></span>
       <span>ترجمه فیلم</span>
     </button>
   </div>
@@ -354,36 +546,60 @@
 
   <!-- ===== هرو ===== -->
   <section class="hero reveal">
-    <div class="badge"><span class="pulse"></span> نسخه نسل جدید — هوش مصنوعی</div>
-    <h1>هر فیلمی، هر زبانی،<br><span class="grad">با صدای خودت</span></h1>
-    <p>دنیای فیلم و سریال بدون مرز. همه سایت‌ها باز، دوبله آنی با هوش مصنوعی، و پخش با صدای مرجع خودت.</p>
+    <div class="hero-tag"><span class="pulse"></span> نسل جدید سینمای هوشمند</div>
+    <h1 class="h1">
+      هر فیلمی،<br>
+      <span class="grad">هر زبانی،</span><br>
+      با <span class="gold">صدای خودت</span>
+    </h1>
+    <p class="lede">
+      دنیای سینما بدون مرز. همه سایت‌های فیلم باز، دوبله آنی با هوش مصنوعی،
+      و پخش با ۱۰ صدای مرجع دلخواه خودت.
+    </p>
     <a href="./activation.html" class="cta">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg>
       فعال‌سازی اشتراک
     </a>
   </section>
 
-  <!-- ===== تبلیغات ===== -->
+  <!-- ===== مارکی ===== -->
+  <div class="marquee reveal">
+    <div class="marquee-track">
+      <span>MOVIES</span><span>SERIES</span><span>LIVE TV</span><span>AI DUBBING</span><span>VOICE CLONE</span>
+      <span>MOVIES</span><span>SERIES</span><span>LIVE TV</span><span>AI DUBBING</span><span>VOICE CLONE</span>
+    </div>
+  </div>
+
+  <!-- ===== فیلم‌ها ===== -->
   <section class="section reveal">
     <div class="section-head">
-      <h2><span class="bar"></span> پیشنهاد ویژه</h2>
+      <div class="title-wrap">
+        <span class="eyebrow">NOW TRENDING</span>
+        <h2>سینمای بی‌مرز</h2>
+      </div>
       <a href="#">همه</a>
     </div>
-    <div class="ads">
-      <div class="ad">
-        <small>OFFER · AI SINOVA</small>
-        <b>دوبله آنی با هوش مصنوعی</b>
-        <span>هم‌زمان با پخش، فارسی بشنو</span>
+    <div class="films">
+      <div class="film">
+        <span class="tag">4K · HDR</span>
+        <div class="info">
+          <b>دنیای آزاد سینما</b>
+          <span>هر سایتی · هر فیلمی</span>
+        </div>
       </div>
-      <div class="ad">
-        <small>NEW · VOICE CLONE</small>
-        <b>۱۰ صدای مرجع شخصی</b>
-        <span>فیلم با صدای خودت پخش شه</span>
+      <div class="film f2">
+        <span class="tag">AI · LIVE</span>
+        <div class="info">
+          <b>دوبله آنی</b>
+          <span>هم‌زمان با پخش</span>
+        </div>
       </div>
-      <div class="ad">
-        <small>LIVE · SMART TV</small>
-        <b>هر چی از تلویزیون پخش شه، فارسی</b>
-        <span>بدون تأخیر، بدون قطعی</span>
+      <div class="film f3">
+        <span class="tag">VOICE · 10X</span>
+        <div class="info">
+          <b>صدای مرجع شخصی</b>
+          <span>با صدای خودت</span>
+        </div>
       </div>
     </div>
   </section>
@@ -391,58 +607,81 @@
   <!-- ===== ویژگی‌ها ===== -->
   <section class="section reveal">
     <div class="section-head">
-      <h2><span class="bar"></span> قدرت Ai-Sinova</h2>
+      <div class="title-wrap">
+        <span class="eyebrow">FEATURES</span>
+        <h2>قدرت Ai-Sinova</h2>
+      </div>
     </div>
     <div class="features">
       <div class="feature">
         <div class="ico">🌐</div>
-        <h3>دسترسی آزاد</h3>
-        <p>تمام سایت‌های فیلم جهان باز</p>
+        <div>
+          <h3>دسترسی آزاد</h3>
+          <p>تمام سایت‌های فیلم جهان، بدون محدودیت</p>
+        </div>
       </div>
       <div class="feature">
         <div class="ico">🎙️</div>
-        <h3>دوبله آنی</h3>
-        <p>ترجمه هم‌زمان با هوش مصنوعی</p>
+        <div>
+          <h3>دوبله آنی</h3>
+          <p>ترجمه هم‌زمان با هوش مصنوعی</p>
+        </div>
       </div>
       <div class="feature">
         <div class="ico">📺</div>
-        <h3>تلویزیون هوشمند</h3>
-        <p>هر پخش زنده، فارسی</p>
+        <div>
+          <h3>تلویزیون هوشمند</h3>
+          <p>هر پخش زنده، فارسی و روان</p>
+        </div>
       </div>
       <div class="feature">
         <div class="ico">🎧</div>
-        <h3>۱۰ صدای مرجع</h3>
-        <p>با صدای دلخواهت بشنو</p>
+        <div>
+          <h3>۱۰ صدای مرجع</h3>
+          <p>با صدای دلخواهت بشنو</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== راهنمای سریع ===== -->
+  <!-- ===== راهنما ===== -->
   <section class="section reveal">
     <div class="section-head">
-      <h2><span class="bar"></span> در ۳ قدم شروع کن</h2>
-      <a href="./guide.html">راهنمای کامل</a>
+      <div class="title-wrap">
+        <span class="eyebrow">GET STARTED</span>
+        <h2>در ۳ قدم شروع کن</h2>
+      </div>
+      <a href="./guide.html">راهنما</a>
     </div>
     <div class="steps">
       <div class="step">
         <div class="num">۱</div>
-        <div><b>اشتراک تهیه کن</b><span>فعال‌سازی سریع در چند ثانیه</span></div>
+        <div>
+          <b>اشتراک تهیه کن</b>
+          <span>فعال‌سازی سریع در چند ثانیه</span>
+        </div>
       </div>
       <div class="step">
         <div class="num">۲</div>
-        <div><b>دکمه‌های هوشمند را روشن کن</b><span>سایت‌های فیلم + ترجمه آنی</span></div>
+        <div>
+          <b>دکمه‌های هوشمند را روشن کن</b>
+          <span>سایت‌های فیلم + ترجمه آنی</span>
+        </div>
       </div>
       <div class="step">
         <div class="num">۳</div>
-        <div><b>از سینمای شخصی لذت ببر</b><span>با ۱۰ صدای مرجع دلخواهت</span></div>
+        <div>
+          <b>از سینمای شخصی لذت ببر</b>
+          <span>با ۱۰ صدای مرجع دلخواهت</span>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ===== فوتر ===== -->
   <footer>
-    <p>© 2026 Ai-Sinova — ساخته‌شده برای عاشقان سینما</p>
-    <a href="./activation.html" class="mini-cta">✨ فعال‌سازی اشتراک</a>
+    <div class="logo-big">Ai-Sinova</div>
+    <p>© 2026 — ساخته‌شده برای عاشقان سینما</p>
   </footer>
 
 </div>
@@ -455,7 +694,7 @@
 
 <script>
   // ===== دکمه‌های شناور قفل‌دار =====
-  const toasts = document.querySelectorAll('.toggle');
+  const toggles = document.querySelectorAll('.toggle');
   const toastEl = document.getElementById('toast');
   const toastText = document.getElementById('toast-text');
   let toastTimer;
@@ -468,11 +707,10 @@
     toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2800);
   }
 
-  toasts.forEach(btn => {
+  toggles.forEach(btn => {
     btn.addEventListener('click', () => {
       if (btn.classList.contains('locked')) {
         showToast('برای فعال‌سازی ابتدا اشتراک تهیه کنید', '🔒');
-        // هدایت بعد از ۱ ثانیه به صفحه فعال‌سازی
         setTimeout(() => { window.location.href = './activation.html'; }, 1100);
       } else {
         btn.classList.toggle('on');
@@ -482,12 +720,11 @@
 
   // ===== انیمیشن ورود =====
   const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.12 });
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-  // ===== لمس نرم =====
-  document.addEventListener('touchstart', () => {}, { passive: true });
 </script>
 
 </body>
