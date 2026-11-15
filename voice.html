@@ -52,23 +52,13 @@ button{font:inherit;cursor:pointer}
 button:focus-visible,a:focus-visible{outline:3px solid #FFF5E9;outline-offset:5px}
 .container{width:min(100% - 34px,720px);margin:auto;position:relative;z-index:1}
 
-/* Ambient */
 .ambient{
   position:fixed;pointer-events:none;z-index:0;border-radius:50%;
   filter:blur(3px);mix-blend-mode:screen;
 }
-.ambient.one{
-  width:240px;height:240px;top:17%;right:-130px;
-  background:radial-gradient(circle,rgba(255,220,179,.42),transparent 70%);
-}
-.ambient.two{
-  width:300px;height:300px;bottom:8%;left:-170px;
-  background:radial-gradient(circle,rgba(255,174,111,.35),transparent 70%);
-}
-.ambient.three{
-  width:170px;height:170px;top:48%;left:25%;
-  background:radial-gradient(circle,rgba(255,228,191,.18),transparent 70%);
-}
+.ambient.one{width:240px;height:240px;top:17%;right:-130px;background:radial-gradient(circle,rgba(255,220,179,.42),transparent 70%)}
+.ambient.two{width:300px;height:300px;bottom:8%;left:-170px;background:radial-gradient(circle,rgba(255,174,111,.35),transparent 70%)}
+.ambient.three{width:170px;height:170px;top:48%;left:25%;background:radial-gradient(circle,rgba(255,228,191,.18),transparent 70%)}
 
 /* Header */
 .header{
@@ -141,7 +131,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #FFF5E9;outline-offset:5p
   color:#FFE4CC;white-space:nowrap;
 }
 
-/* Hero — Voice fun */
+/* Hero */
 .voice-hero{
   position:relative;isolation:isolate;overflow:hidden;
   border-radius:31px;
@@ -254,7 +244,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #FFF5E9;outline-offset:5p
 .info-desc{font-size:13px;color:#FFE2CB;font-weight:600;line-height:1.9;margin:0}
 .info-desc strong{color:#FFF8F0;font-weight:900}
 
-/* Toggle card — همون چک‌باکس صفحه اصلی */
+/* Toggle card */
 .toggle-card{
   position:relative;
   display:flex;align-items:center;justify-content:space-between;
@@ -304,9 +294,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #FFF5E9;outline-offset:5p
 }
 
 /* Progress */
-.progress-wrap{
-  margin-bottom:18px;
-}
+.progress-wrap{margin-bottom:18px}
 .progress-head{
   display:flex;align-items:center;justify-content:space-between;
   gap:12px;margin-bottom:10px;
@@ -342,9 +330,9 @@ button:focus-visible,a:focus-visible{outline:3px solid #FFF5E9;outline-offset:5p
 }
 .slot{
   position:relative;
-  min-height:150px;
+  min-height:170px;
   border-radius:22px;
-  padding:16px 14px;
+  padding:18px 14px 14px;
   border:1.5px dashed rgba(255,241,224,.35);
   background:linear-gradient(145deg,rgba(255,245,231,.14),rgba(255,227,204,.06));
   backdrop-filter:blur(12px);
@@ -371,13 +359,13 @@ button:focus-visible,a:focus-visible{outline:3px solid #FFF5E9;outline-offset:5p
   letter-spacing:1px;
 }
 .slot-mic{
-  width:58px;height:58px;border-radius:50%;
+  width:56px;height:56px;border-radius:50%;
   display:grid;place-items:center;
   background:linear-gradient(145deg,rgba(255,246,229,.28),rgba(255,220,190,.12));
   border:1.5px solid rgba(255,245,226,.45);
   box-shadow:0 6px 16px rgba(110,37,13,.2),inset 0 1px 0 rgba(255,255,255,.3);
   color:#FFF2E5;
-  margin-top:8px;
+  margin-top:4px;
   transition:.3s;
 }
 .slot:hover .slot-mic{
@@ -386,12 +374,12 @@ button:focus-visible,a:focus-visible{outline:3px solid #FFF5E9;outline-offset:5p
 }
 .slot-mic svg{width:26px;height:26px}
 .slot-label{
-  font-size:13px;font-weight:900;color:#FFF8F0;
-  margin-top:6px;
+  font-size:12.5px;font-weight:900;color:#FFF8F0;
+  margin-top:8px;line-height:1.5;
 }
 .slot-hint{
   font-size:11px;color:#FFE2CB;font-weight:600;
-  margin-top:2px;
+  margin-top:3px;
 }
 
 /* Filled slot */
@@ -566,17 +554,57 @@ button:focus-visible,a:focus-visible{outline:3px solid #FFF5E9;outline-offset:5p
   color:#5B220C;
   transition:.3s;
 }
+.rec-modal.recording .rec-circle{
+  background:radial-gradient(circle at 35% 30%,#FF9090,#E64A4A 50%,#C83030 100%);
+  border-color:rgba(255,240,240,.7);
+  box-shadow:0 12px 32px rgba(200,40,40,.5),0 0 32px rgba(255,80,80,.5),inset 0 2px 0 rgba(255,255,255,.4);
+  animation:recPulse 1.2s ease-in-out infinite;
+}
+@keyframes recPulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.05)}
+}
 .rec-circle svg{width:42px;height:42px;filter:drop-shadow(0 2px 3px rgba(80,25,10,.3))}
+
+.rec-status{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:7px 14px;border-radius:30px;
+  background:rgba(103,35,14,.3);
+  border:1px solid rgba(255,212,178,.35);
+  font-size:12px;font-weight:900;color:#FFE2CB;
+  margin-bottom:8px;
+  transition:.3s;
+}
+.rec-status-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:rgba(255,212,178,.5);
+  transition:.3s;
+}
+.rec-modal.recording .rec-status{
+  background:rgba(180,30,30,.4);
+  border-color:rgba(255,120,120,.5);
+  color:#FFF0F0;
+}
+.rec-modal.recording .rec-status-dot{
+  background:#FF6B6B;
+  box-shadow:0 0 12px #FF6B6B;
+  animation:dotBlink 1s infinite;
+}
+@keyframes dotBlink{
+  0%,100%{opacity:1}
+  50%{opacity:.3}
+}
+
 .rec-time{
   font-size:32px;font-weight:900;
-  color:#FFF8F0;margin:0 0 4px;
+  color:#FFF8F0;margin:6px 0 4px;
   font-variant-numeric:tabular-nums;
   letter-spacing:1px;
   text-shadow:0 2px 10px rgba(80,25,10,.3);
 }
 .rec-limit{
   font-size:12px;color:#FFE2CB;font-weight:700;
-  margin:0 0 20px;
+  margin:0 0 18px;
 }
 .rec-live-wave{
   display:flex;align-items:center;justify-content:center;gap:3px;
@@ -618,11 +646,15 @@ button:focus-visible,a:focus-visible{outline:3px solid #FFF5E9;outline-offset:5p
   color:white;
   border-color:rgba(255,255,255,.4);
   box-shadow:0 12px 28px rgba(180,40,40,.4),inset 0 2px 0 rgba(255,255,255,.35);
+  animation:stopBtnPulse 1.5s ease-in-out infinite;
+}
+@keyframes stopBtnPulse{
+  0%,100%{box-shadow:0 12px 28px rgba(180,40,40,.4),inset 0 2px 0 rgba(255,255,255,.35)}
+  50%{box-shadow:0 12px 28px rgba(180,40,40,.6),0 0 24px rgba(255,80,80,.6),inset 0 2px 0 rgba(255,255,255,.35)}
 }
 .rec-btn.stop:hover{transform:translateY(-1px)}
 .rec-btn:active{transform:scale(.97)}
 .rec-btn svg{width:20px;height:20px}
-.rec-btn:disabled{opacity:.5;cursor:not-allowed;transform:none!important}
 
 /* Loading overlay */
 .loading-overlay{
@@ -636,9 +668,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #FFF5E9;outline-offset:5p
   opacity:0;transition:opacity .3s;
 }
 .loading-overlay.show{display:flex;opacity:1}
-.loading-content{
-  text-align:center;color:#FFF3E7;
-}
+.loading-content{text-align:center;color:#FFF3E7}
 .loading-spinner{
   width:70px;height:70px;
   border-radius:50%;
@@ -726,10 +756,10 @@ button:focus-visible,a:focus-visible{outline:3px solid #FFF5E9;outline-offset:5p
   .voice-hero{padding:22px 18px}
   .voice-title{font-size:28px}
   .voice-desc{font-size:14px}
-  .slot{min-height:135px;padding:12px 10px}
-  .slot-mic{width:50px;height:50px}
+  .slot{min-height:150px;padding:14px 10px 10px}
+  .slot-mic{width:48px;height:48px}
   .slot-mic svg{width:22px;height:22px}
-  .slot-label{font-size:12px}
+  .slot-label{font-size:11.5px}
   .nav-item{font-size:12px}
   .fab{width:68px;height:68px}
   .fab svg{width:30px;height:30px}
@@ -803,7 +833,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #FFF5E9;outline-offset:5p
 
     <div class="hero-chips">
       <span class="hero-chip">✨ ۱۰ صدا</span>
-      <span class="hero-chip">🎭 هر کاراکتر یه صدا</span>
+      <span class="hero-chip">🎭 هر شخصیت یه صدا</span>
       <span class="hero-chip">🎙️ تحلیل هوشمند</span>
     </div>
   </section>
@@ -819,7 +849,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #FFF5E9;outline-offset:5p
       <div class="info-title">چطوری کار می‌کنه؟ 🤔</div>
       <p class="info-desc">
         صدات توسط <strong>هوش مصنوعی</strong> آنالیز می‌شه و ما اون رو برای دوبله نگه می‌داریم.
-        بعدش هر کاراکتر فیلم، یکی از این صداها رو می‌گیره و فیلم با صدای تو و دوستات پخش می‌شه. جملات مهم نیستن — <strong>خود صداست که مهمه</strong>.
+        بعدش هر شخصیت فیلم، یکی از این صداها رو می‌گیره و فیلم با صدای تو و دوستات پخش می‌شه. جملات مهم نیستن — <strong>خود صداست که مهمه</strong>.
       </p>
     </div>
   </div>
@@ -833,11 +863,11 @@ button:focus-visible,a:focus-visible{outline:3px solid #FFF5E9;outline-offset:5p
         </svg>
       </div>
       <div>
-        <div class="toggle-title">صدای من جای کاراکترها</div>
+        <div class="toggle-title">صدای من جای شخصیت‌ها</div>
         <div class="toggle-desc">با روشن کردن این، فیلم‌ها با صدای تو پخش می‌شن</div>
       </div>
     </div>
-    <button class="switch" type="button" role="switch" aria-checked="false" aria-label="صدای من جای کاراکترها" data-voice-toggle></button>
+    <button class="switch" type="button" role="switch" aria-checked="false" aria-label="صدای من جای شخصیت‌ها" data-voice-toggle></button>
   </div>
 
   <div class="progress-wrap">
@@ -873,7 +903,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #FFF5E9;outline-offset:5p
   <div class="rec-card">
     <div class="rec-handle"></div>
     <h3 class="rec-title" id="recTitle">صداتو ضبط کن 🎙️</h3>
-    <p class="rec-sub">یه جمله کوتاه با لحن طبیعی بگو. مهم نیست چی می‌گی — فقط صداتو می‌خوایم!</p>
+    <p class="rec-sub" id="recSub">یه جمله کوتاه با لحن طبیعی بگو. مهم نیست چی می‌گی — فقط صداتو می‌خوایم!</p>
 
     <div class="rec-visual">
       <div class="rec-ring"></div>
@@ -885,6 +915,11 @@ button:focus-visible,a:focus-visible{outline:3px solid #FFF5E9;outline-offset:5p
           <path d="M5 11v1a7 7 0 0 0 14 0v-1M12 19v3M8 22h8"/>
         </svg>
       </div>
+    </div>
+
+    <div class="rec-status" id="recStatus">
+      <span class="rec-status-dot"></span>
+      <span id="recStatusText">آماده ضبط</span>
     </div>
 
     <p class="rec-time" id="recTime">۰۰:۰۰</p>
@@ -975,6 +1010,19 @@ const MAX_DURATION = 30;
 const STORAGE_KEY = 'aisinova_voice_slots';
 const TOGGLE_KEY = 'aisinova_voice_toggle';
 
+const SLOT_NAMES = [
+  'ضبط صدای شخصیت اصلی فیلم',
+  'ضبط صدای شخصیت دوم فیلم',
+  'ضبط صدای شخصیت سوم فیلم',
+  'ضبط صدای شخصیت چهارم فیلم',
+  'ضبط صدای شخصیت پنجم فیلم',
+  'ضبط صدای شخصیت ششم فیلم',
+  'ضبط صدای شخصیت هفتم فیلم',
+  'ضبط صدای شخصیت هشتم فیلم',
+  'ضبط صدای شخصیت نهم فیلم',
+  'ضبط صدای شخصیت دهم فیلم'
+];
+
 const slotsGrid = document.getElementById('slotsGrid');
 const progressCount = document.getElementById('progressCount');
 const progressFill = document.getElementById('progressFill');
@@ -985,20 +1033,22 @@ const recCancel = document.getElementById('recCancel');
 const recStart = document.getElementById('recStart');
 const recTime = document.getElementById('recTime');
 const recWave = document.getElementById('recWave');
+const recStatus = document.getElementById('recStatus');
+const recStatusText = document.getElementById('recStatusText');
+const recSub = document.getElementById('recSub');
+const recTitle = document.getElementById('recTitle');
 const loadingOverlay = document.getElementById('loadingOverlay');
 const toast = document.getElementById('toast');
 const toastText = document.getElementById('toastText');
 const voiceToggle = document.querySelector('[data-voice-toggle]');
 
 let slots = [];
-let recorder = null;
-let chunks = [];
 let timer = null;
 let elapsed = 0;
 let isRecording = false;
-let mediaStream = null;
 let currentSlot = null;
 let toastTimer = null;
+let waveTimer = null;
 
 function loadSlots(){
   try{
@@ -1051,8 +1101,8 @@ function renderSlots(){
           <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
         </div>
         <div>
-          <div class="slot-label">صدای ${toPersianNum(i+1)}</div>
-          <div class="slot-hint">${formatTime(data.duration || 0)}</div>
+          <div class="slot-label">${SLOT_NAMES[i]}</div>
+          <div class="slot-hint">${formatTime(data.duration || 0)} · ذخیره شد</div>
         </div>
         <div class="slot-actions">
           <button type="button" data-action="play" aria-label="پخش">
@@ -1073,8 +1123,8 @@ function renderSlots(){
           </svg>
         </div>
         <div>
-          <div class="slot-label">ضبط کن</div>
-          <div class="slot-hint">اسلات خالی</div>
+          <div class="slot-label">${SLOT_NAMES[i]}</div>
+          <div class="slot-hint">برای ضبط کلیک کن</div>
         </div>
         <div style="height:34px"></div>
       `;
@@ -1093,7 +1143,7 @@ function renderSlots(){
       }
       if(action === 'play'){
         e.stopPropagation();
-        showToast('در حال پخش صدای ' + toPersianNum(i+1));
+        showToast('در حال پخش ' + SLOT_NAMES[i]);
         return;
       }
       if(!data){
@@ -1119,17 +1169,22 @@ function openRecording(index){
   currentSlot = index;
   elapsed = 0;
   isRecording = false;
+
+  recTitle.textContent = SLOT_NAMES[index] + ' 🎙️';
+  recSub.textContent = 'دکمه شروع رو بزن و شروع کن به حرف زدن. مهم نیست چی می‌گی — فقط صداتو می‌خوایم!';
   recTime.textContent = '۰۰:۰۰';
+  recStatusText.textContent = 'آماده ضبط';
+
   recModal.classList.add('show');
   recModal.classList.remove('recording');
   recModal.setAttribute('aria-hidden','false');
   document.body.style.overflow = 'hidden';
+
   recStart.innerHTML = `
     <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="12" cy="12" r="6"/></svg>
     شروع ضبط
   `;
   recStart.className = 'rec-btn start';
-  recStart.disabled = false;
 }
 
 function closeRecording(){
@@ -1137,72 +1192,56 @@ function closeRecording(){
   recModal.classList.remove('recording');
   recModal.setAttribute('aria-hidden','true');
   document.body.style.overflow = '';
-  stopRecorder();
+  stopRecording();
 }
 
-async function startRecorder(){
-  try{
-    mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-    chunks = [];
-    const mimeType = MediaRecorder.isTypeSupported('audio/webm;codecs=opus') ? 'audio/webm;codecs=opus' : 'audio/webm';
-    recorder = new MediaRecorder(mediaStream, { mimeType });
-    recorder.ondataavailable = (e) => { if(e.data.size > 0) chunks.push(e.data); };
-    recorder.onstop = () => {
-      const blob = new Blob(chunks, { type: mimeType });
-      finalizeRecording(blob);
-    };
-    recorder.start();
-    isRecording = true;
-    recModal.classList.add('recording');
-    recStart.innerHTML = `
-      <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
-      توقف و ذخیره
-    `;
-    recStart.className = 'rec-btn stop';
+function startRecording(){
+  isRecording = true;
+  recModal.classList.add('recording');
+  recStatusText.textContent = 'در حال ضبط...';
+  recStart.innerHTML = `
+    <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
+    توقف و ذخیره
+  `;
+  recStart.className = 'rec-btn stop';
 
-    elapsed = 0;
-    timer = setInterval(() => {
-      elapsed++;
-      recTime.textContent = formatTime(elapsed);
-      animateWave();
-      if(elapsed >= MAX_DURATION){
-        stopRecorder();
-      }
-    }, 1000);
+  elapsed = 0;
+  timer = setInterval(() => {
+    elapsed++;
+    recTime.textContent = formatTime(elapsed);
+    if(elapsed >= MAX_DURATION){
+      stopRecording();
+      finalizeRecording();
+    }
+  }, 1000);
 
-  }catch(err){
-    showToast('دسترسی به میکروفون داده نشد');
-  }
+  // موج زنده شبیه‌سازی
+  waveTimer = setInterval(() => {
+    const bars = recWave.querySelectorAll('i');
+    bars.forEach(b => {
+      const h = 6 + Math.random() * 30;
+      b.style.height = h + 'px';
+    });
+  }, 120);
 }
 
-function animateWave(){
-  const bars = recWave.querySelectorAll('i');
-  bars.forEach(b => {
-    const h = 6 + Math.random() * 30;
-    b.style.height = h + 'px';
-  });
-}
-
-function stopRecorder(){
+function stopRecording(){
   if(timer){ clearInterval(timer); timer = null; }
-  if(recorder && recorder.state !== 'inactive'){
-    recorder.stop();
-  }
-  if(mediaStream){
-    mediaStream.getTracks().forEach(t => t.stop());
-    mediaStream = null;
-  }
+  if(waveTimer){ clearInterval(waveTimer); waveTimer = null; }
   isRecording = false;
   recModal.classList.remove('recording');
+  const bars = recWave.querySelectorAll('i');
+  bars.forEach(b => b.style.height = '6px');
 }
 
-function finalizeRecording(blob){
+function finalizeRecording(){
   closeRecording();
   loadingOverlay.classList.add('show');
 
   setTimeout(() => {
     loadingOverlay.classList.remove('show');
     const duration = elapsed || 1;
+
     if(currentSlot !== null && currentSlot !== undefined && currentSlot < MAX_SLOTS){
       slots[currentSlot] = { duration, ts: Date.now() };
     }else{
@@ -1218,9 +1257,10 @@ function finalizeRecording(blob){
 
 recStart.addEventListener('click', () => {
   if(isRecording){
-    stopRecorder();
+    stopRecording();
+    finalizeRecording();
   }else{
-    startRecorder();
+    startRecording();
   }
 });
 
@@ -1235,7 +1275,6 @@ fabRecord.addEventListener('click', () => {
   openRecording(emptyIndex);
 });
 
-// Toggle
 function loadToggle(){
   const saved = localStorage.getItem(TOGGLE_KEY);
   voiceToggle.setAttribute('aria-checked', saved === '1' ? 'true' : 'false');
@@ -1245,10 +1284,9 @@ voiceToggle.addEventListener('click', () => {
   const next = !isOn;
   voiceToggle.setAttribute('aria-checked', String(next));
   localStorage.setItem(TOGGLE_KEY, next ? '1' : '0');
-  showToast(next ? 'صدای تو جای کاراکترها فعال شد ✨' : 'حالت عادی برگشت');
+  showToast(next ? 'صدای تو جای شخصیت‌ها فعال شد ✨' : 'حالت عادی برگشت');
 });
 
-// Init
 loadSlots();
 loadToggle();
 renderSlots();
@@ -1256,4 +1294,4 @@ updateProgress();
 </script>
 
 </body>
-</html>
+  </html>
