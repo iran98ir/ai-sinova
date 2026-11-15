@@ -606,6 +606,55 @@ main,.header,.brand-signature{position:relative;z-index:1}
 }
 .success-footer strong{color:#B9522A;font-weight:900}
 
+/* Footer */
+.footer-signature{
+  margin:29px 0 20px;display:flex;align-items:center;justify-content:center;gap:13px
+}
+.footer-mark{
+  width:38px;height:38px;border:1px solid #E9A77F;
+  display:grid;place-items:center;transform:rotate(45deg);
+  border-radius:11px;background:linear-gradient(145deg,#FFF9F3,#FFE5D3);
+  box-shadow:0 5px 13px #A85C2A14
+}
+.footer-mark svg{width:25px;height:25px;transform:rotate(-45deg)}
+.footer-word{font-size:14px;letter-spacing:2px;font-weight:900;color:#B85B35}
+.footer-caption{font-size:10px;letter-spacing:1.4px;color:#A58A7C;font-weight:800;margin-top:3px}
+
+/* Bottom navigation */
+.bottom-nav{
+  position:fixed;z-index:30;bottom:0;left:0;right:0;
+  padding:9px 12px calc(9px + env(safe-area-inset-bottom));
+  background:rgba(255,251,246,.94);backdrop-filter:blur(22px);
+  border-top:1px solid #EED9C8;box-shadow:0 -8px 28px #68432B12
+}
+.nav-inner{width:min(100%,790px);margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+.nav-item{
+  min-height:66px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:5px;color:#88818A;font-size:14px;font-weight:800;position:relative;border-radius:13px
+}
+.nav-item svg{width:26px;height:26px;stroke-width:1.8}
+.nav-item.active{
+  color:#B94E27;background:#FFF0E5;
+  box-shadow:inset 0 0 0 1px #F5D4BE
+}
+.nav-item.active:before{
+  content:"";position:absolute;top:0;width:27px;height:3px;
+  background:var(--orange);border-radius:0 0 5px 5px
+}
+.nav-item.active svg{color:#E96B34;stroke-width:2.2}
+.nav-item:active{opacity:.75}
+
+/* Toast */
+.toast{
+  position:fixed;z-index:60;bottom:100px;left:50%;
+  transform:translate(-50%,12px);opacity:0;pointer-events:none;
+  padding:13px 18px;border-radius:12px;
+  background:#343545;color:white;border:1px solid #F47735;
+  font-size:14px;font-weight:900;max-width:calc(100% - 30px);
+  text-align:center;transition:.2s;box-shadow:0 8px 25px #0002
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
 @media(min-width:650px){
   .container{width:min(100% - 52px,790px)}
   .plans{grid-template-columns:1fr 1fr;align-items:stretch}
@@ -1540,4 +1589,4 @@ form.addEventListener('input', ()=>{
 });
 </script>
 </body>
-        </html>
+  </html>
