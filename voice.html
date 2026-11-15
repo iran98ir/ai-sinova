@@ -351,7 +351,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #FFF5E9;outline-offset:5p
   background:linear-gradient(145deg,rgba(255,245,231,.2),rgba(255,227,204,.1));
   box-shadow:0 18px 40px rgba(104,37,13,.2),inset 0 1px 0 rgba(255,255,255,.25);
 }
-.slot.empty:active{transform:scale(.97)}
+.slot:active{transform:scale(.97)}
 .slot-num{
   position:absolute;top:10px;left:12px;
   font-size:11px;font-weight:900;
@@ -381,60 +381,6 @@ button:focus-visible,a:focus-visible{outline:3px solid #FFF5E9;outline-offset:5p
   font-size:11px;color:#FFE2CB;font-weight:600;
   margin-top:3px;
 }
-
-/* Filled slot */
-.slot.filled{
-  border-style:solid;
-  border-color:rgba(255,212,178,.5);
-  background:linear-gradient(145deg,rgba(255,230,200,.22),rgba(255,180,120,.1));
-  box-shadow:0 14px 32px rgba(104,37,13,.2),inset 0 1px 0 rgba(255,255,255,.25),0 0 0 1px rgba(255,212,178,.15);
-}
-.slot.filled .slot-mic{
-  background:linear-gradient(145deg,#FFD4B2,#FFAC70);
-  border-color:#FFF0D4;
-  color:#5B220C;
-  box-shadow:0 6px 18px rgba(255,140,70,.4),inset 0 1px 0 rgba(255,255,255,.5);
-}
-.slot-wave{
-  display:flex;align-items:center;gap:2px;height:22px;
-  margin-top:6px;
-}
-.slot-wave i{
-  display:block;width:2.5px;border-radius:2px;
-  background:linear-gradient(to top,#FFD4B2,#FFF0D4);
-  height:100%;
-  animation:wave 1.2s ease-in-out infinite;
-}
-.slot-wave i:nth-child(1){height:40%;animation-delay:0s}
-.slot-wave i:nth-child(2){height:70%;animation-delay:.1s}
-.slot-wave i:nth-child(3){height:100%;animation-delay:.2s}
-.slot-wave i:nth-child(4){height:75%;animation-delay:.3s}
-.slot-wave i:nth-child(5){height:55%;animation-delay:.4s}
-.slot-wave i:nth-child(6){height:80%;animation-delay:.15s}
-.slot-wave i:nth-child(7){height:45%;animation-delay:.25s}
-@keyframes wave{
-  0%,100%{transform:scaleY(.5)}
-  50%{transform:scaleY(1)}
-}
-.slot-actions{
-  display:flex;gap:6px;margin-top:8px;
-}
-.slot-actions button{
-  border:1px solid rgba(255,241,224,.35);
-  background:rgba(103,35,14,.25);
-  color:#FFF2E5;
-  width:32px;height:32px;border-radius:50%;
-  display:grid;place-items:center;
-  transition:.2s;
-  backdrop-filter:blur(8px);
-}
-.slot-actions button:hover{
-  background:rgba(103,35,14,.45);
-  border-color:rgba(255,241,224,.6);
-  transform:scale(1.08);
-}
-.slot-actions button svg{width:14px;height:14px}
-.slot-actions .del{color:#FFC8B8}
 
 /* FAB */
 .fab{
@@ -1050,12 +996,6 @@ function toPersianNum(n){
   return String(n).replace(/\d/g, d => map[+d]);
 }
 
-function formatTime(sec){
-  const m = Math.floor(sec / 60);
-  const s = sec % 60;
-  return toPersianNum(String(m).padStart(2,'0')) + ':' + toPersianNum(String(s).padStart(2,'0'));
-}
-
 function showToast(message){
   toastText.textContent = message;
   toast.classList.add('show');
@@ -1066,72 +1006,27 @@ function showToast(message){
 function renderSlots(){
   slotsGrid.innerHTML = '';
   for(let i = 0; i < MAX_SLOTS; i++){
-    const data = slots[i];
     const slot = document.createElement('div');
-    slot.className = 'slot ' + (data ? 'filled' : 'empty');
+    slot.className = 'slot';
     slot.dataset.index = i;
 
-    if(data){
-      slot.innerHTML = `
-        <div class="slot-num">${toPersianNum(String(i+1).padStart(2,'0'))}</div>
-        <div class="slot-mic">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="9" y="2" width="6" height="13" rx="3"/>
-            <path d="M5 11v1a7 7 0 0 0 14 0v-1M12 19v3M8 22h8"/>
-          </svg>
-        </div>
-        <div class="slot-wave">
-          <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-        </div>
-        <div>
-          <div class="slot-label">${SLOT_NAMES[i]}</div>
-          <div class="slot-hint">${formatTime(data.duration || 0)} · ذخیره شد</div>
-        </div>
-        <div class="slot-actions">
-          <button type="button" data-action="play" aria-label="پخش">
-            <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M8 5v14l11-7z"/></svg>
-          </button>
-          <button type="button" class="del" data-action="del" aria-label="حذف">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
-          </button>
-        </div>
-      `;
-    }else{
-      slot.innerHTML = `
-        <div class="slot-num">${toPersianNum(String(i+1).padStart(2,'0'))}</div>
-        <div class="slot-mic">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="9" y="2" width="6" height="13" rx="3"/>
-            <path d="M5 11v1a7 7 0 0 0 14 0v-1M12 19v3M8 22h8"/>
-          </svg>
-        </div>
-        <div>
-          <div class="slot-label">${SLOT_NAMES[i]}</div>
-          <div class="slot-hint">برای ضبط کلیک کن</div>
-        </div>
-        <div style="height:34px"></div>
-      `;
-    }
+    slot.innerHTML = `
+      <div class="slot-num">${toPersianNum(String(i+1).padStart(2,'0'))}</div>
+      <div class="slot-mic">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="2" width="6" height="13" rx="3"/>
+          <path d="M5 11v1a7 7 0 0 0 14 0v-1M12 19v3M8 22h8"/>
+        </svg>
+      </div>
+      <div>
+        <div class="slot-label">${SLOT_NAMES[i]}</div>
+        <div class="slot-hint">برای ضبط کلیک کن</div>
+      </div>
+      <div style="height:34px"></div>
+    `;
 
-    slot.addEventListener('click', (e) => {
-      const action = e.target.closest('[data-action]')?.dataset.action;
-      if(action === 'del'){
-        e.stopPropagation();
-        slots.splice(i, 1);
-        saveSlots();
-        renderSlots();
-        updateProgress();
-        showToast('صدا حذف شد');
-        return;
-      }
-      if(action === 'play'){
-        e.stopPropagation();
-        showToast('در حال پخش ' + SLOT_NAMES[i]);
-        return;
-      }
-      if(!data){
-        openRecording(i);
-      }
+    slot.addEventListener('click', () => {
+      openRecording(i);
     });
 
     slotsGrid.appendChild(slot);
@@ -1145,10 +1040,6 @@ function updateProgress(){
 }
 
 function openRecording(index){
-  if(slots.length >= MAX_SLOTS && index === undefined){
-    showToast('۱۰ صدا پر شده! اول یکی رو حذف کن.');
-    return;
-  }
   currentSlot = index;
   elapsed = 0;
   isRecording = false;
@@ -1191,7 +1082,7 @@ function startRecording(){
   elapsed = 0;
   timer = setInterval(() => {
     elapsed++;
-    recTime.textContent = formatTime(elapsed);
+    recTime.textContent = toPersianNum(String(Math.floor(elapsed/60)).padStart(2,'0')) + ':' + toPersianNum(String(elapsed%60).padStart(2,'0'));
     if(elapsed >= MAX_DURATION){
       stopRecording();
       finalizeRecording();
@@ -1211,16 +1102,11 @@ function finalizeRecording(){
 
   setTimeout(() => {
     loadingOverlay.classList.remove('show');
-    const duration = elapsed || 1;
-
     if(currentSlot !== null && currentSlot !== undefined && currentSlot < MAX_SLOTS){
-      slots[currentSlot] = { duration, ts: Date.now() };
-    }else{
-      slots.push({ duration, ts: Date.now() });
+      if(!slots[currentSlot]) slots[currentSlot] = { ts: Date.now() };
     }
     if(slots.length > MAX_SLOTS) slots = slots.slice(0, MAX_SLOTS);
     saveSlots();
-    renderSlots();
     updateProgress();
     showToast('صدای شما ذخیره شد! ✨ حالا تو فیلم‌ها می‌پیچه');
   }, 2000);
@@ -1238,11 +1124,15 @@ recStart.addEventListener('click', () => {
 recCancel.addEventListener('click', closeRecording);
 recBackdrop.addEventListener('click', closeRecording);
 fabRecord.addEventListener('click', () => {
-  if(slots.length >= MAX_SLOTS){
-    showToast('۱۰ صدا پر شده! اول یکی رو حذف کن.');
+  const firstEmpty = slots.findIndex((v,i) => !v && i < MAX_SLOTS) ;
+  let emptyIndex = -1;
+  for(let i = 0; i < MAX_SLOTS; i++){
+    if(!slots[i]){ emptyIndex = i; break; }
+  }
+  if(emptyIndex === -1){
+    showToast('۱۰ صدا پر شده!');
     return;
   }
-  const emptyIndex = slots.length;
   openRecording(emptyIndex);
 });
 
