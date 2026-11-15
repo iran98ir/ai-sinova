@@ -1,0 +1,740 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#17100C">
+<title>فعال‌سازی اشتراک | Ai-Sinova</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#17100c;
+  --bg2:#21140e;
+  --orange:#ff762e;
+  --orange2:#ff9a51;
+  --cream:#fff1df;
+  --muted:#c4a995;
+  --line:rgba(255,207,165,.13);
+  --gold:#f5c77d;
+  --green:#80d7a3;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Vazirmatn,sans-serif;
+  color:#fff7ef;
+  background:
+    radial-gradient(ellipse at 50% -10%,rgba(255,112,37,.27),transparent 42%),
+    radial-gradient(ellipse at 100% 42%,rgba(180,68,24,.12),transparent 35%),
+    radial-gradient(ellipse at 0% 75%,rgba(255,125,46,.08),transparent 35%),
+    linear-gradient(160deg,#21140e 0%,#140e0a 52%,#1d100b 100%);
+  min-height:100vh;
+  padding-bottom:105px;
+  overflow-x:hidden;
+}
+body:before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:0;
+  opacity:.12;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.24'/%3E%3C/svg%3E");
+}
+button,input{font:inherit}
+button{cursor:pointer}
+.page{position:relative;z-index:1;width:min(100% - 28px,850px);margin:auto}
+header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:23px 2px 20px;
+}
+.brand{display:flex;align-items:center;gap:11px}
+.brand-mark{
+  width:43px;height:43px;border-radius:15px;
+  display:grid;place-items:center;
+  background:linear-gradient(145deg,#ffb36d,#f15b1e);
+  color:#29130a;font-size:22px;font-weight:900;
+  box-shadow:0 7px 24px #f56c2d55,inset 0 1px 1px #fff8;
+}
+.brand-name{font-size:19px;font-weight:900;letter-spacing:-.6px}
+.brand-sub{font-size:10px;color:#c8a38a;margin-top:-3px}
+.header-tag{
+  border:1px solid #ff9b5844;
+  color:#ffc18f;background:#ff8a2510;
+  padding:8px 12px;border-radius:30px;
+  font-size:11px;font-weight:700;
+}
+.hero{text-align:center;padding:24px 5px 27px}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:7px;
+  border:1px solid #ff9b5844;
+  border-radius:30px;padding:7px 13px;
+  color:#ffc18e;background:#ff7a2410;
+  font-size:11px;font-weight:700;
+}
+.eyebrow i{
+  width:7px;height:7px;border-radius:50%;
+  background:#ff9b54;box-shadow:0 0 12px #ff8b39;
+}
+.hero h1{
+  margin:17px 0 10px;
+  font-size:clamp(29px,7vw,49px);
+  line-height:1.45;font-weight:900;letter-spacing:-1.6px;
+}
+.hero h1 span{
+  background:linear-gradient(90deg,#ffd2a5,#ff813b,#ffc18b);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero p{
+  max-width:590px;margin:0 auto;
+  color:#d2b9a6;font-size:14px;line-height:2.1;
+}
+.hero-note{
+  display:inline-block;margin-top:16px;
+  color:#ffe2c8;font-size:12px;font-weight:700;
+  padding:9px 14px;border-radius:12px;
+  background:rgba(255,131,53,.09);
+  border:1px solid rgba(255,153,86,.18);
+}
+.section-heading{text-align:center;margin:15px 0 20px}
+.section-heading h2{font-size:22px;font-weight:900;margin:0 0 7px}
+.section-heading p{font-size:12px;color:#bda18e;margin:0;line-height:1.9}
+.plans{display:grid;gap:21px;margin:0 auto 36px}
+.plan{
+  position:relative;isolation:isolate;
+  border-radius:25px;padding:25px 22px 21px;
+  overflow:hidden;cursor:pointer;
+  border:1px solid rgba(255,190,139,.22);
+  background:
+    radial-gradient(ellipse at 85% 0%,rgba(255,158,83,.18),transparent 42%),
+    linear-gradient(145deg,#392116 0%,#24150f 50%,#1b100c 100%);
+  box-shadow:
+    0 18px 38px #0008,
+    0 7px 0 #110b08,
+    inset 0 1px 1px #ffdfc033,
+    inset 0 -1px 0 #0008;
+  transform:perspective(1000px) rotateX(1deg);
+  transition:.25s ease;
+}
+.plan:before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(125deg,transparent 20%,#ffffff08 42%,transparent 64%);
+  pointer-events:none;
+}
+.plan:after{
+  content:"";position:absolute;width:190px;height:190px;
+  border-radius:50%;top:-120px;left:-60px;
+  background:#ff8c3b22;filter:blur(35px);z-index:-1;
+}
+.plan.selected{
+  border-color:#ffad71;
+  box-shadow:0 0 0 2px #ff873b44,0 22px 48px #0009,
+  0 7px 0 #110b08,0 0 35px #ff782b24,inset 0 1px 1px #fff5;
+  transform:perspective(1000px) translateY(-3px);
+}
+.plan.diamond{
+  background:
+    radial-gradient(ellipse at 90% 0%,rgba(255,206,132,.23),transparent 45%),
+    linear-gradient(145deg,#45301b 0%,#2c1d11 52%,#1b120b 100%);
+  border-color:#d9ad6a66;
+}
+.plan.diamond.selected{
+  border-color:#f4ce8b;
+  box-shadow:0 0 0 2px #e8bd7544,0 22px 48px #0009,
+  0 7px 0 #110b08,0 0 40px #e8b85c22,inset 0 1px 1px #fff7;
+}
+.plan-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.plan-label{display:flex;align-items:center;gap:10px}
+.plan-icon{
+  width:45px;height:45px;border-radius:15px;
+  display:grid;place-items:center;font-size:22px;
+  color:#2a150b;background:linear-gradient(145deg,#ffc18b,#f56d2a);
+  box-shadow:0 7px 20px #f77b343b,inset 0 1px 2px #fff8;
+}
+.diamond .plan-icon{
+  background:linear-gradient(145deg,#fff0c4,#c99a4c);
+  color:#36220c;box-shadow:0 7px 20px #d9ad6a38;
+}
+.plan-title{font-size:20px;font-weight:900}
+.plan-subtitle{font-size:11px;color:#d0ad94;margin-top:1px}
+.plan-badge{
+  border-radius:30px;padding:7px 11px;
+  font-size:10px;font-weight:800;
+  color:#ffcfaa;background:#ff873b19;border:1px solid #ffad7140;
+  white-space:nowrap;
+}
+.diamond .plan-badge{color:#ffe2a9;background:#e9bd6318;border-color:#e9bd6345}
+.plan-description{
+  color:#e2c9b5;font-size:13px;line-height:2;
+  margin:18px 0 15px;
+}
+.plan-features{
+  display:grid;grid-template-columns:1fr 1fr;gap:10px;
+  padding:14px 0;border-top:1px solid #ffffff15;
+  border-bottom:1px solid #ffffff15;
+}
+.feature{display:flex;align-items:center;gap:8px;color:#f1ddcc;font-size:12px}
+.check{
+  width:18px;height:18px;flex:0 0 18px;border-radius:50%;
+  display:grid;place-items:center;background:#78c99420;
+  color:#8ce0a7;font-size:11px;font-weight:900;
+}
+.price-row{
+  display:flex;align-items:end;justify-content:space-between;
+  gap:12px;margin-top:17px;
+}
+.price-caption{font-size:11px;color:#c4a38b}
+.price{font-size:31px;font-weight:900;line-height:1.4;color:#fff0df;letter-spacing:-1px}
+.price small{font-size:12px;color:#d8b69d;font-weight:600;letter-spacing:0}
+.old-price{font-size:13px;color:#b99b84;text-decoration:line-through;margin-bottom:1px}
+.discount-price{font-size:33px;font-weight:900;color:#ffd38e;line-height:1.4}
+.choose{
+  min-width:115px;text-align:center;
+  padding:12px 14px;border-radius:13px;
+  color:#281309;font-size:12px;font-weight:900;
+  background:linear-gradient(135deg,#ffc18c,#f97832);
+  box-shadow:0 5px 0 #a94419,0 9px 18px #0005;
+}
+.diamond .choose{
+  background:linear-gradient(135deg,#fff0c5,#d6a451);
+  box-shadow:0 5px 0 #8d642d,0 9px 18px #0005;
+}
+.plan.selected .choose{filter:brightness(1.08)}
+.selected-mark{
+  display:none;position:absolute;top:13px;left:14px;
+  width:25px;height:25px;border-radius:50%;
+  background:#8ee0a7;color:#173321;
+  place-items:center;font-size:14px;font-weight:900;
+}
+.plan.selected .selected-mark{display:grid}
+.support-strip{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+  margin:28px 0 37px;
+}
+.support-item{
+  text-align:center;padding:15px 7px;
+  border:1px solid #ffbb8120;border-radius:15px;
+  background:linear-gradient(145deg,#ffffff09,#ffffff03);
+}
+.support-icon{font-size:21px;margin-bottom:7px}
+.support-item strong{display:block;font-size:11px;color:#ffe4cd}
+.support-item span{display:block;font-size:9px;color:#bda18e;margin-top:4px;line-height:1.7}
+.form-section{
+  border:1px solid #ffb77b2c;border-radius:25px;
+  background:
+    radial-gradient(ellipse at 100% 0%,#ff8c3212,transparent 40%),
+    linear-gradient(145deg,#2a1a12,#1c120d);
+  padding:23px 18px;
+  box-shadow:0 20px 50px #0007,inset 0 1px 1px #fff1;
+}
+.form-heading{text-align:center;margin-bottom:22px}
+.form-heading .step{
+  display:inline-block;padding:6px 12px;border-radius:20px;
+  color:#ffc18e;background:#ff873b16;border:1px solid #ff873b30;
+  font-size:10px;font-weight:800;
+}
+.form-heading h2{font-size:23px;font-weight:900;margin:12px 0 5px}
+.form-heading p{font-size:12px;color:#c4a995;line-height:1.9;margin:0}
+.field{margin:17px 0}
+.field label{display:block;font-size:13px;font-weight:800;color:#f8e4d2;margin-bottom:9px}
+.required{color:#ff9a5c}
+.input{
+  width:100%;height:53px;border-radius:13px;
+  padding:0 14px;color:#fff2e6;
+  background:#120c09;border:1px solid #ffcb9b26;
+  outline:none;transition:.2s;
+}
+.input:focus{border-color:#ff9656;box-shadow:0 0 0 3px #ff873b18}
+.input::placeholder{color:#927967}
+.field-hint{font-size:10px;color:#d1a17d;line-height:1.9;margin:8px 2px 0}
+.email-optional{font-size:10px;color:#a98c77;font-weight:500}
+.selected-plan-box{
+  padding:15px;border-radius:15px;
+  background:#ff873b12;border:1px solid #ff873b30;
+  margin:20px 0;
+}
+.selected-plan-title{font-size:14px;font-weight:900;color:#ffd0a7}
+.selected-plan-details{font-size:12px;line-height:2.1;color:#d8bba5;margin-top:7px}
+.bank-box{
+  margin:22px 0;padding:19px 15px;border-radius:17px;
+  border:1px solid #ffbc7a38;
+  background:linear-gradient(135deg,#3a2416,#24160e);
+  box-shadow:inset 0 1px 1px #fff2,0 8px 20px #0004;
+}
+.bank-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.bank-top strong{font-size:14px}
+.bank-top span{font-size:10px;color:#d3a87d}
+.card-number{
+  direction:ltr;text-align:center;
+  font-size:clamp(19px,5.5vw,25px);font-weight:900;
+  letter-spacing:1.5px;color:#ffe2c5;
+  padding:17px 0 12px;
+  font-variant-numeric:tabular-nums;
+}
+.bank-bottom{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.account-name{font-size:12px;color:#e8cdb5}
+.copy-btn{
+  border:1px solid #ffb47755;border-radius:10px;
+  background:#ff873b17;color:#ffd0a7;
+  padding:8px 12px;font-size:11px;font-weight:800;
+}
+.upload-area{
+  display:block;position:relative;
+  border:1px dashed #ffb47777;border-radius:17px;
+  padding:22px 14px;text-align:center;
+  background:#ff873b09;cursor:pointer;
+  transition:.2s;
+}
+.upload-area:hover{background:#ff873b13;border-color:#ffc18c}
+.upload-icon{
+  width:53px;height:53px;margin:0 auto 11px;
+  border-radius:17px;display:grid;place-items:center;
+  background:#ff873b20;color:#ffb47d;font-size:25px;
+}
+.upload-area strong{display:block;font-size:13px;color:#ffe4ce}
+.upload-area small{display:block;font-size:10px;color:#b99a83;margin-top:6px;line-height:1.8}
+.upload-area input{position:absolute;width:1px;height:1px;opacity:0}
+.upload-guidance{
+  margin-top:11px;font-size:11px;line-height:2.1;
+  color:#d5b9a3;background:#ffffff08;
+  border-radius:11px;padding:11px 12px;
+}
+.preview-wrap{display:none;margin-top:13px;text-align:center}
+.preview-wrap img{
+  max-width:100%;max-height:240px;object-fit:contain;
+  border-radius:12px;border:1px solid #ffb47744;
+}
+.remove-file{
+  margin-top:9px;border:0;background:none;color:#ffae83;
+  font-size:11px;font-weight:700;
+}
+.submit-btn{
+  width:100%;border:0;border-radius:15px;
+  padding:16px 14px;margin-top:19px;
+  color:#2b150a;font-size:15px;font-weight:900;
+  background:linear-gradient(120deg,#ffd0a3,#ff873e 60%,#f46b2a);
+  box-shadow:0 6px 0 #a84319,0 13px 25px #0006;
+  transition:.18s;
+}
+.submit-btn:active{transform:translateY(3px);box-shadow:0 3px 0 #a84319}
+.submit-note{text-align:center;color:#a98c77;font-size:10px;line-height:1.9;margin:13px 0 0}
+.technical-note{
+  margin:22px 2px 25px;padding:15px;
+  border-radius:14px;background:#ffffff06;
+  border:1px solid #ffffff12;
+  color:#cbb19c;font-size:11px;line-height:2.1;text-align:center;
+}
+.technical-note b{color:#ffbd8c}
+.footer{text-align:center;color:#856e5c;font-size:10px;padding:5px 0 15px}
+.bottom-nav{
+  position:fixed;z-index:10;bottom:0;left:0;right:0;
+  padding:10px 12px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(23,15,10,.94);
+  backdrop-filter:blur(18px);
+  border-top:1px solid #ffb77b22;
+  display:flex;justify-content:center;
+}
+.nav-inner{width:min(100%,520px);display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+.nav-item{
+  text-decoration:none;color:#9f8876;
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  padding:7px 3px;border-radius:12px;font-size:10px;font-weight:700;
+}
+.nav-item .nav-icon{font-size:21px;line-height:1.2}
+.nav-item.active{color:#ffb47d;background:#ff873b13}
+.toast{
+  position:fixed;z-index:30;bottom:100px;left:50%;
+  transform:translate(-50%,15px);opacity:0;pointer-events:none;
+  background:#f6d2ae;color:#28150d;
+  border-radius:12px;padding:11px 17px;
+  font-size:12px;font-weight:800;transition:.25s;
+  width:max-content;max-width:90%;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(min-width:700px){
+  .plans{grid-template-columns:1fr 1fr;align-items:stretch;gap:17px}
+  .plan{padding:24px 18px}
+  .plan-title{font-size:18px}
+  .plan-description{min-height:78px}
+  .price{font-size:27px}
+  .discount-price{font-size:29px}
+  .choose{min-width:95px}
+  .form-section{padding:30px}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 15px}
+  .field.full{grid-column:1/-1}
+}
+@media(max-width:370px){
+  .plan{padding:20px 15px}
+  .plan-badge{font-size:9px;padding:6px 8px}
+  .plan-title{font-size:17px}
+  .plan-features{grid-template-columns:1fr}
+  .price{font-size:27px}
+}
+</style>
+</head>
+
+<body>
+<div class="page">
+
+<header>
+  <div class="brand">
+    <div class="brand-mark">S</div>
+    <div>
+      <div class="brand-name">Ai-Sinova</div>
+      <div class="brand-sub">THE NEXT LEVEL OF CINEMA</div>
+    </div>
+  </div>
+  <div class="header-tag">مرکز اختصاصی اشتراک</div>
+</header>
+
+<section class="hero">
+  <div class="eyebrow"><i></i> تجربه سینما، با زبان و صدای شما</div>
+  <h1>فقط تماشا نکنید؛<br><span>به زبان خودتان تجربه کنید.</span></h1>
+  <p>
+    با فعال‌سازی اشتراک Ai-Sinova، تجربه تماشای محتوای تصویری را
+    با ترجمه و صدای فارسی وارد مرحله‌ای تازه کنید.
+  </p>
+  <div class="hero-note">یک انتخاب ویژه؛ برای سال‌ها تماشای متفاوت</div>
+</section>
+
+<div class="section-heading">
+  <h2>اشتراک اختصاصی خود را انتخاب کنید</h2>
+  <p>دو مسیر برای ورود به تجربه کامل Ai-Sinova</p>
+</div>
+
+<section class="plans">
+
+  <article class="plan selected" data-plan="platinum" onclick="selectPlan('platinum')">
+    <div class="selected-mark">✓</div>
+    <div class="plan-top">
+      <div class="plan-label">
+        <div class="plan-icon">✦</div>
+        <div>
+          <div class="plan-title">پلاتینیوم</div>
+          <div class="plan-subtitle">اشتراک یک‌ساله ویژه</div>
+        </div>
+      </div>
+      <div class="plan-badge">انتخاب حرفه‌ای</div>
+    </div>
+
+    <p class="plan-description">
+      یک سال همراهی با Ai-Sinova؛ برای تماشای محتوای موردعلاقه‌تان
+      با تجربه ترجمه و صدای فارسی، بدون نیاز به تنظیمات پیچیده.
+    </p>
+
+    <div class="plan-features">
+      <div class="feature"><span class="check">✓</span> اعتبار یک‌ساله</div>
+      <div class="feature"><span class="check">✓</span> فعال‌سازی روی ۳ نمایشگر</div>
+      <div class="feature"><span class="check">✓</span> پشتیبانی از سرویس‌های سازگار</div>
+      <div class="feature"><span class="check">✓</span> به‌روزرسانی‌های نسخه</div>
+      <div class="feature"><span class="check">✓</span> پشتیبانی و راهنمایی</div>
+      <div class="feature"><span class="check">✓</span> تجربه صدای فارسی</div>
+    </div>
+
+    <div class="price-row">
+      <div>
+        <div class="price-caption">هزینه اشتراک یک‌ساله</div>
+        <div class="price">۲۹٬۰۰۰ <small>تومان</small></div>
+      </div>
+      <div class="choose">انتخاب طرح</div>
+    </div>
+  </article>
+
+  <article class="plan diamond" data-plan="diamond" onclick="selectPlan('diamond')">
+    <div class="selected-mark">✓</div>
+    <div class="plan-top">
+      <div class="plan-label">
+        <div class="plan-icon">◆</div>
+        <div>
+          <div class="plan-title">الماس</div>
+          <div class="plan-subtitle">اشتراک پنج‌ساله ممتاز</div>
+        </div>
+      </div>
+      <div class="plan-badge">فرصت محدود</div>
+    </div>
+
+    <p class="plan-description">
+      انتخابی بلندمدت برای کسانی که می‌خواهند با خیال آسوده
+      همراه Ai-Sinova بمانند و از امکانات و قابلیت‌های تکمیلی این نسخه بهره‌مند شوند.
+    </p>
+
+    <div class="plan-features">
+      <div class="feature"><span class="check">✓</span> اعتبار پنج‌ساله</div>
+      <div class="feature"><span class="check">✓</span> امکانات مضاعف نسخه الماس</div>
+      <div class="feature"><span class="check">✓</span> به‌روزرسانی‌های بیشتر</div>
+      <div class="feature"><span class="check">✓</span> پشتیبانی و راهنمایی</div>
+      <div class="feature"><span class="check">✓</span> تجربه صدای فارسی</div>
+      <div class="feature"><span class="check">✓</span> پیشنهاد ویژه حمایتی</div>
+    </div>
+
+    <div class="price-row">
+      <div>
+        <div class="price-caption">قیمت ویژه فرصت محدود</div>
+        <div class="old-price">۱۴۵٬۰۰۰ تومان</div>
+        <div class="discount-price">۹۹٬۰۰۰ <small>تومان</small></div>
+      </div>
+      <div class="choose">انتخاب طرح</div>
+    </div>
+  </article>
+
+</section>
+
+<section class="support-strip">
+  <div class="support-item">
+    <div class="support-icon">♛</div>
+    <strong>تعهد کیفیت</strong>
+    <span>پشتیبانی از کیفیت تجربه ارائه‌شده</span>
+  </div>
+  <div class="support-item">
+    <div class="support-icon">↺</div>
+    <strong>ضمانت بازگشت وجه</strong>
+    <span>طبق شرایط و ضوابط بازپرداخت</span>
+  </div>
+  <div class="support-item">
+    <div class="support-icon">✧</div>
+    <strong>امکانات اختصاصی</strong>
+    <span>قابلیت‌ها و به‌روزرسانی‌های بیشتر</span>
+  </div>
+</section>
+
+<section class="form-section" id="activation-form">
+  <div class="form-heading">
+    <div class="step">مرحله نهایی خرید</div>
+    <h2>اشتراک خود را فعال کنید</h2>
+    <p>اطلاعات را با دقت وارد کنید تا درخواست فعال‌سازی شما بررسی شود.</p>
+  </div>
+
+  <form id="purchaseForm">
+    <div class="form-grid">
+
+      <div class="field">
+        <label for="fullname">نام و نام خانوادگی <span class="required">*</span></label>
+        <input class="input" id="fullname" name="fullname" type="text"
+          placeholder="نام کامل خود را وارد کنید" autocomplete="name" required>
+      </div>
+
+      <div class="field">
+        <label for="phone">شماره موبایل <span class="required">*</span></label>
+        <input class="input" id="phone" name="phone" type="tel"
+          inputmode="tel" placeholder="مثلاً ۰۹۱۲۱۲۳۴۵۶۷"
+          autocomplete="tel" required>
+        <div class="field-hint">
+          شماره موبایل را با دقت وارد کنید؛ اشتراک برای همین شماره ثبت و فعال خواهد شد.
+        </div>
+      </div>
+
+      <div class="field full">
+        <label for="email">آدرس ایمیل <span class="email-optional">(اختیاری)</span></label>
+        <input class="input" id="email" name="email" type="email"
+          placeholder="example@email.com" autocomplete="email">
+      </div>
+
+    </div>
+
+    <div class="selected-plan-box" aria-live="polite">
+      <div class="selected-plan-title" id="chosenTitle">اشتراک طرح پلاتینیوم</div>
+      <div class="selected-plan-details" id="chosenDetails">
+        • اعتبار یک‌ساله اشتراک<br>
+        • فعال‌سازی روی ۳ نمایشگر<br>
+        • مبلغ قابل پرداخت: ۲۹٬۰۰۰ تومان
+      </div>
+    </div>
+
+    <div class="bank-box">
+      <div class="bank-top">
+        <strong>اطلاعات پرداخت اشتراک</strong>
+        <span>پرداخت کارت‌به‌کارت</span>
+      </div>
+      <div class="card-number" id="cardNumber">5022 2910 9895 3217</div>
+      <div class="bank-bottom">
+        <div class="account-name">به نام: <b>حمیدرضا سلیمی</b></div>
+        <button type="button" class="copy-btn" onclick="copyCard()">کپی شماره کارت</button>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>تصویر رسید پرداخت <span class="required">*</span></label>
+      <label class="upload-area" for="receipt">
+        <div class="upload-icon">⇧</div>
+        <strong id="uploadTitle">تصویر رسید را از گالری انتخاب کنید</strong>
+        <small>فقط یک تصویر قابل بارگذاری است · JPG، PNG یا WEBP</small>
+        <input id="receipt" name="receipt" type="file"
+          accept="image/jpeg,image/png,image/webp" required>
+      </label>
+
+      <div class="preview-wrap" id="previewWrap">
+        <img id="receiptPreview" alt="پیش‌نمایش رسید پرداخت">
+        <br>
+        <button type="button" class="remove-file" onclick="removeReceipt()">حذف تصویر و انتخاب مجدد</button>
+      </div>
+
+      <div class="upload-guidance">
+        لطفاً تصویر پیامک بانکی یا رسید واریز اشتراک را ارسال کنید؛
+        تصویری که تاریخ و ساعت پرداخت و کد رهگیری در آن مشخص باشد.
+        پس از بررسی و تأیید پرداخت، فرایند فعال‌سازی اشتراک شما در سریع‌ترین زمان انجام خواهد شد.
+      </div>
+    </div>
+
+    <button type="submit" class="submit-btn">ثبت درخواست و ارسال رسید اشتراک ←</button>
+    <p class="submit-note">
+      پس از ثبت درخواست، اطلاعات پرداخت و شماره اعلام‌شده برای بررسی و فعال‌سازی استفاده خواهد شد.
+    </p>
+  </form>
+</section>
+
+<div class="technical-note">
+  <b>فناوری فعال‌سازی Ai-Sinova</b><br>
+  این اپلیکیشن با بهره‌گیری از دانش متخصصان فناوری توسعه یافته است.
+  ثبت و فعال‌سازی اشتراک با استفاده از شناسه اختصاصی دستگاه
+  <b>Android ID</b> و شماره موبایل اعلام‌شده انجام می‌شود.
+</div>
+
+<div class="footer">Ai-Sinova · تجربه‌ای فراتر از تماشای معمولی</div>
+</div>
+
+<nav class="bottom-nav">
+  <div class="nav-inner">
+    <a class="nav-item" href="./index.html">
+      <span class="nav-icon">⌂</span><span>خانه</span>
+    </a>
+    <a class="nav-item" href="./guide.html">
+      <span class="nav-icon">▤</span><span>راهنما</span>
+    </a>
+    <a class="nav-item active" href="./activation.html">
+      <span class="nav-icon">♛</span><span>فعال‌سازی</span>
+    </a>
+    <a class="nav-item" href="./voice.html">
+      <span class="nav-icon">♫</span><span>صدای شما</span>
+    </a>
+  </div>
+</nav>
+
+<div class="toast" id="toast"></div>
+
+<script>
+let selectedPlan = "platinum";
+let receiptFile = null;
+let previewURL = null;
+
+const plans = {
+  platinum:{
+    title:"اشتراک طرح پلاتینیوم",
+    details:"• اعتبار یک‌ساله اشتراک<br>• فعال‌سازی روی ۳ نمایشگر<br>• مبلغ قابل پرداخت: ۲۹٬۰۰۰ تومان"
+  },
+  diamond:{
+    title:"اشتراک طرح الماس",
+    details:"• اعتبار پنج‌ساله اشتراک<br>• بهره‌مندی از امکانات و به‌روزرسانی‌های مضاعف<br>• مبلغ ویژه فرصت محدود: ۹۹٬۰۰۰ تومان"
+  }
+};
+
+function selectPlan(plan){
+  selectedPlan=plan;
+  document.querySelectorAll(".plan").forEach(card=>{
+    card.classList.toggle("selected",card.dataset.plan===plan);
+  });
+  document.getElementById("chosenTitle").textContent=plans[plan].title;
+  document.getElementById("chosenDetails").innerHTML=plans[plan].details;
+}
+
+function showToast(message){
+  const toast=document.getElementById("toast");
+  toast.textContent=message;
+  toast.classList.add("show");
+  clearTimeout(window.toastTimer);
+  window.toastTimer=setTimeout(()=>toast.classList.remove("show"),2600);
+}
+
+async function copyCard(){
+  const number="5022291098953217";
+  try{
+    await navigator.clipboard.writeText(number);
+    showToast("شماره کارت کپی شد");
+  }catch(e){
+    const area=document.createElement("textarea");
+    area.value=number;
+    document.body.appendChild(area);
+    area.select();
+    document.execCommand("copy");
+    area.remove();
+    showToast("شماره کارت کپی شد");
+  }
+}
+
+document.getElementById("receipt").addEventListener("change",function(){
+  const file=this.files[0];
+  if(!file)return;
+
+  if(!["image/jpeg","image/png","image/webp"].includes(file.type)){
+    showToast("لطفاً یک تصویر معتبر انتخاب کنید");
+    this.value="";
+    return;
+  }
+
+  if(file.size>8*1024*1024){
+    showToast("حجم تصویر باید کمتر از ۸ مگابایت باشد");
+    this.value="";
+    return;
+  }
+
+  receiptFile=file;
+  if(previewURL)URL.revokeObjectURL(previewURL);
+  previewURL=URL.createObjectURL(file);
+
+  document.getElementById("receiptPreview").src=previewURL;
+  document.getElementById("previewWrap").style.display="block";
+  document.getElementById("uploadTitle").textContent=file.name;
+});
+
+function removeReceipt(){
+  const input=document.getElementById("receipt");
+  input.value="";
+  receiptFile=null;
+  if(previewURL)URL.revokeObjectURL(previewURL);
+  previewURL=null;
+  document.getElementById("receiptPreview").src="";
+  document.getElementById("previewWrap").style.display="none";
+  document.getElementById("uploadTitle").textContent="تصویر رسید را از گالری انتخاب کنید";
+}
+
+document.getElementById("purchaseForm").addEventListener("submit",function(e){
+  e.preventDefault();
+
+  const fullname=document.getElementById("fullname").value.trim();
+  const phone=document.getElementById("phone").value.trim();
+  const email=document.getElementById("email").value.trim();
+
+  if(fullname.length<3){
+    showToast("لطفاً نام و نام خانوادگی را کامل وارد کنید");
+    return;
+  }
+
+  const normalizedPhone=phone.replace(/[۰-۹]/g,d=>"۰۱۲۳۴۵۶۷۸۹".indexOf(d)).replace(/[٠-٩]/g,d=>"٠١٢٣٤٥٦٧٨٩".indexOf(d));
+  if(!/^09\d{9}$/.test(normalizedPhone)){
+    showToast("شماره موبایل معتبر وارد کنید");
+    return;
+  }
+
+  if(email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    showToast("آدرس ایمیل معتبر نیست");
+    return;
+  }
+
+  if(!receiptFile){
+    showToast("لطفاً تصویر رسید پرداخت را انتخاب کنید");
+    return;
+  }
+
+  /*
+    اتصال به سرور:
+    در این قسمت باید اطلاعات فرم و فایل رسید با FormData
+    به نشانی API واقعی پنل ارسال شوند.
+    تا پیش از تعیین API، فرم فقط اعتبارسنجی سمت مرورگر انجام می‌دهد.
+  */
+  showToast("فرم آماده است؛ برای ارسال نهایی باید به سرور متصل شود.");
+});
+</script>
+</body>
+</html>
