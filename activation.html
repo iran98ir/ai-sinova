@@ -442,6 +442,7 @@ main,.header,.brand-signature{position:relative;z-index:1}
 }
 .input-wrap input.invalid{border-color:#FFC8B8;background:rgba(120,20,10,.2);box-shadow:0 0 0 3px rgba(255,180,160,.2)}
 .phone-input,.email-input{direction:ltr;text-align:left}
+.card-input{direction:ltr;text-align:left;letter-spacing:1px;font-family:monospace}
 .field-error{display:none;margin-top:7px;color:#FFF0D4;font-size:14px;font-weight:800;line-height:1.8}
 .field-error.show{display:block}
 .field-help{font-size:14px;color:#FFE0C9;line-height:1.9;margin:8px 0 0;font-weight:600}
@@ -1109,6 +1110,15 @@ main,.header,.brand-signature{position:relative;z-index:1}
     </div>
 
     <div class="field">
+      <label for="cardNumber">شماره کارت بانکی <span class="required">*</span></label>
+      <div class="input-wrap">
+        <input id="cardNumber" name="card_number" class="card-input" type="tel" inputmode="numeric" autocomplete="cc-number" maxlength="19" placeholder="مثلاً 5022-2910-9895-3217">
+      </div>
+      <div class="field-error" id="cardError" aria-live="polite"></div>
+      <p class="field-help">پر کردن این بخش اجباری است؛ در صورت رضایت‌نداشتن، مبلغ پرداختی به همین شماره کارت بازگردانده می‌شود.</p>
+    </div>
+
+    <div class="field">
       <label for="email">آدرس ایمیل <span class="optional">اختیاری</span></label>
       <div class="input-wrap">
         <input id="email" name="email" class="email-input" type="email" inputmode="email" autocomplete="email" placeholder="example@email.com">
@@ -1361,6 +1371,7 @@ const $ = id => document.getElementById(id);
 const form = $('activationForm');
 const fullName = $('fullName');
 const mobile = $('mobile');
+const cardNumber = $('cardNumber');
 const email = $('email');
 const receiptInput = $('receiptInput');
 const uploadBox = $('uploadBox');
@@ -1520,6 +1531,32 @@ function validatePhone(showError=true){
   return true;
 }
 
+function formatCardNumber(value){
+  const digits=normalizeDigits(value).replace(/\D/g,'').slice(0,16);
+  return digits.replace(/(\d{4})(?=\d)/g,'$1-');
+}
+
+cardNumber.addEventListener('input',()=>{
+  cardNumber.value=formatCardNumber(cardNumber.value);
+  clearFieldError(cardNumber,$('cardError'));
+  clearMessage();
+});
+
+cardNumber.addEventListener('blur',()=>validateCard(false));
+
+function validateCard(showError=true){
+  const digits=normalizeDigits(cardNumber.value).replace(/\D/g,'');
+  if(!/^\d{16}$/.test(digits)){
+    if(showError){
+      setFieldError(cardNumber,$('cardError'),'شماره کارت باید دقیقاً ۱۶ رقم باشد.');
+    }
+    return false;
+  }
+  cardNumber.value=digits.replace(/(\d{4})(?=\d)/g,'$1-');
+  clearFieldError(cardNumber,$('cardError'));
+  return true;
+}
+
 fullName.addEventListener('input',()=>{
   clearFieldError(fullName,$('nameError'));
   clearMessage();
@@ -1555,14 +1592,14 @@ function validateEmail(){
 }
 
 $('copyCard').addEventListener('click',async()=>{
-  const cardNumber='5022291098953217';
+  const cardNumberValue='5022291098953217';
 
   try{
     if(navigator.clipboard&&window.isSecureContext){
-      await navigator.clipboard.writeText(cardNumber);
+      await navigator.clipboard.writeText(cardNumberValue);
     }else{
       const temporary=document.createElement('textarea');
-      temporary.value=cardNumber;
+      temporary.value=cardNumberValue;
       temporary.style.position='fixed';
       temporary.style.opacity='0';
       document.body.appendChild(temporary);
@@ -1684,6 +1721,7 @@ function validateForm(){
 
   const nameValid=validateName();
   const phoneValid=validatePhone(true);
+  const cardValid=validateCard(true);
   const emailValid=validateEmail();
 
   let receiptValid=true;
@@ -1695,7 +1733,7 @@ function validateForm(){
     clearFileError();
   }
 
-  return nameValid&&phoneValid&&emailValid&&receiptValid;
+  return nameValid&&phoneValid&&cardValid&&emailValid&&receiptValid;
 }
 
 form.addEventListener('submit',async event=>{
@@ -1722,6 +1760,7 @@ form.addEventListener('submit',async event=>{
   const data=new FormData();
   data.append('full_name',fullName.value.trim());
   data.append('mobile',normalizePhone(mobile.value));
+  data.append('card_number',normalizeDigits(cardNumber.value).replace(/\D/g,''));
   data.append('email',email.value.trim());
   data.append('plan',$('selectedPlan').value);
   data.append('receipt',selectedFile);
